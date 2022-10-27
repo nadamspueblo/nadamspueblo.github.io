@@ -1,0 +1,15 @@
+body {
+    /* Body elements have a margin by default. The following line removes the margin. 
+    You don't need to add anyting else to this selector */
+    margin: 0px;
+}
+
+
+#blog-button {
+    /* The line below makes the element a block instead of inline 
+    You will need to add to this selector*/
+    display: block;
+    text-decoration: none;
+}
+
+/* Add additional selectors needed to style the index.html and blog.html below */
