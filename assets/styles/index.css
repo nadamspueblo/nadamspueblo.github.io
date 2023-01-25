@@ -1,0 +1,150 @@
+@import url("base-styles.css");
+
+#hero-section {
+    min-height: 100vh;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#hero-section .button {
+    opacity: 0%;
+    animation-name: fade-in;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+#title-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: fit-content;
+    min-height: 300px;
+    margin: 0 auto;
+}
+
+#title-box h1 {
+    font-size: 60px;
+}
+
+#title-box h1:after {
+    content: "_";
+    color: rgb(240, 240, 240);
+    opacity: 0%;
+    animation-name: blink;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+}
+
+#title-box h2 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 30px;
+    opacity: 0%;
+    animation-name: fade-in;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
+}
+
+#quick-link-box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.quick-links {
+    display:block;
+    color: rgb(80, 80, 80);
+    text-decoration: none;
+    padding: 0 10px;
+    border-bottom: 1px solid rgb(50, 50, 50);
+}
+
+.quick-links:hover{
+    border-bottom: 1px solid rgb(80, 80, 80);
+}
+
+.donate-links {
+    display: block;
+    color: rgb(80, 80, 80);
+    border-bottom: 1px solid rgb(50, 50, 50);
+    text-decoration: none;
+    min-width: 100px;
+    text-align: center;
+}
+
+.donate-links:hover {
+    border-bottom: 1px solid rgb(80, 80, 80);
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
+    }
+}
+
+#nav-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.nav-link {
+    display: block;
+    text-decoration: none;
+    font-size: 30px;
+    height: 100%;
+    padding: 0px 10px;
+}
+
+.nav-link:hover {
+    background-color: rgb(50, 50, 50);
+}
+
+.nav-link:after {
+    content: "_";
+    opacity: 0%;
+    color: rgb(240, 240, 240);
+}
+
+.nav-link:hover:after {
+    animation-name: blink;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+}
+
+.anim-type-text {
+    color: rgb(120, 120, 120);
+    font-size: 18pt;
+    pointer-events: none;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0%;
+    }
+
+    10% {
+        opacity: 100%;
+    }
+
+    40% {
+        opacity: 100%;
+    }
+
+    80% {
+        opacity: 0%;
+    }
+}
+
