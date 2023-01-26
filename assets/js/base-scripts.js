@@ -29,7 +29,7 @@ if (window.matchMedia("(min-width: 768px)").matches) {
 for (var i = 0; i < navLinks.length; i++) {
   navLinks[i].addEventListener(eventType, function (e) {
     var dataElement = this.getElementsByClassName("data")[0];
-    if (dataElement && dataElement.className == "data") {
+    if (eventType == "mouseover" && dataElement && dataElement.className == "data") {
       animTextElement = this.getElementsByClassName("anim-type-text")[0];
       text = dataElement.innerHTML;
       this.anim = new TypingAnimation(animTextElement, text, 25, 400);
