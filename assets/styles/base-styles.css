@@ -134,10 +134,6 @@ footer a:hover {
   overflow: hidden;
 }
 
-.panel-show { 
-  display: block;
-}
-
 .resource-card {
   background-color: rgb(60, 60, 60);
   width: fit-content;
