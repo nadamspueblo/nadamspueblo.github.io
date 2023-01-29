@@ -8,8 +8,10 @@
 :root {
   --primary-text-color: rgb(80, 80, 255);
   --light-text-color: rgb(240, 240, 240);
-  --primary-background-color: rgb(40, 40, 40);
-  --secondary-background-color: rgb(80, 80, 80);
+  --dark-text-color: rgb(120, 120, 120);
+  --primary-bg-color: rgb(40, 40, 40);
+  --active-primary-bg-color: rgb(50, 50, 50);
+  --secondary-bg-color: rgb(80, 80, 80);
   --secondary-text-color: rgb(60, 60, 60);
   scroll-behavior: smooth;
 }
@@ -24,7 +26,7 @@ body, a {
 }
 
 body {
-  background-color: var(--primary-background-color);
+  background-color: var(--primary-bg-color);
 }
 
 p {
@@ -52,7 +54,7 @@ h2 {
 
 .button:hover {
   background-color: var(--primary-text-color);
-  color: var(--primary-background-color);
+  color: var(--primary-bg-color);
 }
 
 header {
@@ -82,8 +84,8 @@ footer {
   padding: 10px;
   font-size: small;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: var(--secondary-background-color);
-  border-top: 2px solid var(--secondary-background-color);
+  color: var(--secondary-bg-color);
+  border-top: 2px solid var(--secondary-bg-color);
 }
 
 footer a {
@@ -110,7 +112,7 @@ footer a:hover {
 }
 
 .soc-media-placeholder {
-  background-color: rgb(60, 60, 60);
+  background-color: var(--secondary-text-color);
   min-width: 30px;
   min-height: 30px;
   border-radius: 50%;
@@ -120,8 +122,8 @@ footer a:hover {
 .accordion {
   font-family: 'Orbitron', sans-serif;
   font-size: medium;
-  background-color: rgb(40, 40, 40);
-  color: rgb(120, 120, 120);
+  background-color: var(--primary-bg-color);
+  color: var(--dark-text-color);
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -131,25 +133,25 @@ footer a:hover {
 }
 
 .active {
-  background-color: rgb(50, 50, 50);
+  background-color: var(--active-primary-bg-color);
   color: rgb(80, 80, 255);;
 }
 
 .accordion:hover {
-  background-color: rgb(50, 50, 50);
+  background-color: var(--active-primary-bg-color);
 }
 
 .panel {
   padding: 0px 9px 9px 9px;
-  background-color: rgb(50, 50, 50);
-  color: rgb(120, 120, 120);
+  background-color: var(--active-primary-bg-color);
+  color: var(--dark-text-color);
   font-size: medium;
   display: none;
   overflow: hidden;
 }
 
 .resource-card {
-  background-color: rgb(60, 60, 60);
+  background-color: var(--secondary-text-color);
   width: fit-content;
   flex-grow: 1;
   min-width: 280px;

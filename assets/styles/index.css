@@ -33,7 +33,7 @@
 
 #title-box h1:after {
     content: "_";
-    color: rgb(240, 240, 240);
+    color: var(--light-text-color);
     opacity: 0%;
     animation-name: blink;
     animation-duration: 1000ms;
@@ -41,6 +41,7 @@
 }
 
 #title-box h2 {
+    color: var(--light-text-color);
     font-family: 'Josefin Sans', sans-serif;
     font-size: 30px;
     opacity: 0%;
@@ -82,7 +83,7 @@
     max-width: 75%;
     width: 75%;
     height: 130px;
-    border: 1px solid rgb(80, 80, 255);
+    border: 1px solid var(--primary-text-color);
     background-color: rgb(20, 20, 20);
     border-radius: 8px;
     padding: 10px 20px;
@@ -106,10 +107,6 @@
     }
 }
 
-.news-item {
-    color:white;
-}
-
 #quick-link-box {
     width: 100%;
     display: flex;
@@ -120,32 +117,32 @@
 
 .quick-links {
     display: block;
-    color: rgb(80, 80, 80);
+    color: var(--secondary-bg-color);
     text-decoration: none;
     padding: 0 10px;
-    border-bottom: 1px solid rgb(50, 50, 50);
+    border-bottom: 1px solid var(--primary-bg-color);
 }
 
 .quick-links:hover {
-    border-bottom: 1px solid rgb(80, 80, 80);
+    border-bottom: 1px solid var(--secondary-bg-color);
 }
 
 .donate-links {
     display: block;
-    color: rgb(80, 80, 80);
-    border-bottom: 1px solid rgb(50, 50, 50);
+    color: var(--secondary-bg-color);
+    border-bottom: 1px solid var(--primary-bg-color);
     text-decoration: none;
     min-width: 100px;
     text-align: center;
 }
 
 .donate-links:hover {
-    border-bottom: 1px solid rgb(80, 80, 80);
+    border-bottom: 1px solid var(--secondary-bg-color);
 }
 
 .down-button {
-    background-color: rgb(80, 80, 255);
-    color: rgb(40, 40, 40);
+    background-color: var(--primary-text-color);
+    color: var(--primary-bg-color);
     min-width: 60px;
     min-height: 60px;
     border-radius: 50%;
@@ -184,13 +181,13 @@
 }
 
 .nav-link:hover {
-    background-color: rgb(50, 50, 50);
+    background-color: var(--active-primary-bg-color);
 }
 
 .nav-link:after {
     content: "_";
     opacity: 0%;
-    color: rgb(240, 240, 240);
+    color: var(--light-text-color);
 }
 
 .nav-link:hover:after {
@@ -200,7 +197,7 @@
 }
 
 .anim-type-text {
-    color: rgb(120, 120, 120);
+    color: var(--dark-text-color);
     font-size: 18pt;
     pointer-events: none;
 }
