@@ -1,16 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Sofia+Sans&display=swap');
 
+@font-face {
+  font-family: 'Paragraph';
+  src: url('/assets/fonts/IBMPlexMono-Medium.ttf');
+}
+
+:root {
+  --primary-text-color: rgb(80, 80, 255);
+  --light-text-color: rgb(240, 240, 240);
+  --primary-background-color: rgb(40, 40, 40);
+  --secondary-background-color: rgb(80, 80, 80);
+  --secondary-text-color: rgb(60, 60, 60);
+  scroll-behavior: smooth;
+}
+
 body, h1, h2 {
     margin: 0;
 }
 
 body, a {
     font-family: 'Orbitron', sans-serif;
-    color: rgb(80, 80, 255);
+    color: var(--primary-text-color);
 }
 
 body {
-  background-color: rgb(40, 40, 40);
+  background-color: var(--primary-background-color);
 }
 
 p {
@@ -31,14 +45,14 @@ h2 {
   width: fit-content;
   height: fit-content;
   padding: 10px 20px;
-  border: 2px solid rgb(80, 80, 255);
+  border: 2px solid var(--primary-text-color);
   border-radius: 4px;
   text-decoration: none;
 }
 
 .button:hover {
-  background-color: rgb(80, 80, 255);
-  color: rgb(40, 40, 40);
+  background-color: var(--primary-text-color);
+  color: var(--primary-background-color);
 }
 
 header {
@@ -51,7 +65,7 @@ header {
 }
 
 header h1 {
-  color: rgb(240, 240, 240);
+  color: var(--light-text-color);
   font-size: 50px;
 }
 
@@ -68,8 +82,8 @@ footer {
   padding: 10px;
   font-size: small;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(80, 80, 80);
-  border-top: 2px solid rgb(80, 80, 80);
+  color: var(--secondary-background-color);
+  border-top: 2px solid var(--secondary-background-color);
 }
 
 footer a {
@@ -153,4 +167,10 @@ footer a:hover {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px 40px;
+}
+
+.horz-flex-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
