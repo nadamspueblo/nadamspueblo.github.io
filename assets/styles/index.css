@@ -88,10 +88,15 @@
     border-radius: 8px;
     padding: 10px 20px;
     overflow-y: scroll;
-    -ms-overflow-style: none;
     /* IE and Edge */
-    scrollbar-width: none;
+    -ms-overflow-style: none;
     /* Firefox */
+    scrollbar-width: none;
+    opacity: 0%;
+    animation-name: fade-in;
+    animation-delay: 4s;
+    animation-fill-mode: forwards;
+    animation-duration: 1s;
 
 }
 

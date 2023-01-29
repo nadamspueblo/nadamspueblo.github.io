@@ -20,3 +20,4 @@ function loadNewsItem(){
 
 loadNews();
 loadNewsItem();
+window.scrollTo(0, 1);
