@@ -13,6 +13,7 @@ function loadNewsItem(){
   var newsDiv = document.getElementById("news");
   newsDiv.innerHTML = "";
   newsDiv.innerHTML = newsItems[newsIndex].innerHTML;
+  newsDiv.scrollTop = 0;
   newsIndex++;
   newsIndex %= newsItems.length;
   setTimeout(loadNewsItem, 10000);
@@ -20,10 +21,11 @@ function loadNewsItem(){
 
 loadNews();
 loadNewsItem();
-window.scrollTo(0, 1);
 
 
 function startTypingTitle() {
+  location.hash = "#top";
+  window.scrollTo(0, 1);
   var anim = new TypingAnimation(document.getElementById("site-title"), document.getElementById("site-title-text").innerHTML, 100);
   anim.start()
 }
