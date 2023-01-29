@@ -11,6 +11,7 @@
   --dark-text-color: rgb(120, 120, 120);
   --primary-bg-color: rgb(40, 40, 40);
   --active-primary-bg-color: rgb(50, 50, 50);
+  --dark-bg-color: rgb(20, 20, 20);
   --secondary-bg-color: rgb(80, 80, 80);
   --secondary-text-color: rgb(60, 60, 60);
   scroll-behavior: smooth;
@@ -26,6 +27,18 @@ body, a {
 }
 
 body {
+  background-color: var(--primary-bg-color);
+}
+
+@media screen and (min-width: 992px) {
+  body {
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: var(--primary-text-color);
+  }
+}
+
+header, section, nav, footer {
   background-color: var(--primary-bg-color);
 }
 
@@ -60,7 +73,7 @@ h2 {
 header {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: auto;
   margin-left: auto;
   margin-right: auto;
   padding: 10px;

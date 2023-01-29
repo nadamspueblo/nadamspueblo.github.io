@@ -106,12 +106,6 @@
 }
 
 
-@media screen and (min-width: 768px) {
-    #news {
-        max-width: 50%;
-    }
-}
-
 #quick-link-box {
     width: 100%;
     display: flex;

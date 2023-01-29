@@ -46,18 +46,6 @@ for (var i = 0; i < navLinks.length; i++) {
 }
 
 
-function startTypingTitle() {
-  var anim = new TypingAnimation(document.getElementById("site-title"), document.getElementById("site-title-text").innerHTML, 100);
-  anim.start()
-}
-
-window.addEventListener("popstate", () => {
-  if (document.visibilityState === 'visible') {
-    animTextElement = document.getElementById("site-title");
-    animTextElement.innerHTML = "";
-    startTypingTitle();
-  }
-});
 
 
 console.log("Script loaded");

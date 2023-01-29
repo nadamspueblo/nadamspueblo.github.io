@@ -21,3 +21,18 @@ function loadNewsItem(){
 loadNews();
 loadNewsItem();
 window.scrollTo(0, 1);
+
+
+function startTypingTitle() {
+  var anim = new TypingAnimation(document.getElementById("site-title"), document.getElementById("site-title-text").innerHTML, 100);
+  anim.start()
+}
+
+window.addEventListener("popstate", () => {
+  if (document.visibilityState === 'visible') {
+    animTextElement = document.getElementById("site-title");
+    //animTextElement.innerHTML = "";
+    //startTypingTitle();
+    animTextElement.innerHTML = document.getElementById("site-title-text").innerHTML;
+  }
+});
