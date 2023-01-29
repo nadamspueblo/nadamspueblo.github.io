@@ -8,12 +8,14 @@
 :root {
   --primary-text-color: rgb(80, 80, 255);
   --light-text-color: rgb(240, 240, 240);
-  --dark-text-color: rgb(120, 120, 120);
+  --medium-text-color: rgb(120, 120, 120);
+  --dark-text-color: rgb(40, 40, 40);
   --primary-bg-color: rgb(40, 40, 40);
   --active-primary-bg-color: rgb(50, 50, 50);
   --dark-bg-color: rgb(20, 20, 20);
   --secondary-bg-color: rgb(80, 80, 80);
   --secondary-text-color: rgb(60, 60, 60);
+  --light-bg-color: rgb(100, 100, 100);
   scroll-behavior: smooth;
 }
 
@@ -48,6 +50,23 @@ p {
 
 h2 {
   font-size: medium;
+}
+
+/* Color classes */
+.light-bg-color {
+  background-color: var(--light-bg-color);
+}
+
+.primary-bg-color {
+  background-color: var(--primary-bg-color);
+}
+
+.medium-text-color {
+  color: var(--medium-text-color);
+}
+
+.dark-text-color {
+  color: var(--dark-text-color);
 }
 
 .data {
@@ -136,7 +155,7 @@ footer a:hover {
   font-family: 'Orbitron', sans-serif;
   font-size: medium;
   background-color: var(--primary-bg-color);
-  color: var(--dark-text-color);
+  color: var(--medium-text-color);
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -157,7 +176,7 @@ footer a:hover {
 .panel {
   padding: 0px 9px 9px 9px;
   background-color: var(--active-primary-bg-color);
-  color: var(--dark-text-color);
+  color: var(--medium-text-color);
   font-size: medium;
   display: none;
   overflow: hidden;
@@ -174,6 +193,20 @@ footer a:hover {
 
 .resource-card p {
   margin: 0 0 10px 0;
+}
+
+.resource-card img {
+  display: block;
+  width: 120px;
+}
+
+.image-item-card {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  width: fit-content;
+  padding-right: 8px;
+  flex-basis: 300px;
 }
 
 .item-box {

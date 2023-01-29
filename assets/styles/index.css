@@ -196,7 +196,7 @@
 }
 
 .anim-type-text {
-    color: var(--dark-text-color);
+    color: var(--medium-text-color);
     font-size: 18pt;
     pointer-events: none;
 }
