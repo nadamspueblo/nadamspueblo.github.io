@@ -9,7 +9,7 @@ function loadNews() {
   newsItems = element.getElementsByClassName("news-item");
 }
 
-function loadNewsItem(){
+function loadNewsItem() {
   var newsDiv = document.getElementById("news");
   newsDiv.innerHTML = "";
   newsDiv.innerHTML = newsItems[newsIndex].innerHTML;
@@ -24,9 +24,11 @@ loadNewsItem();
 
 
 function startTypingTitle() {
-  location.hash = "#top";
-  window.scrollTop = 0;
-  window.scrollTo(0, 1);
+  if (location.hash == "") {
+    location.hash = "#top";
+    window.scrollTop = 0;
+    window.scrollTo(0, 1);
+  }
   var anim = new TypingAnimation(document.getElementById("site-title"), document.getElementById("site-title-text").innerHTML, 100);
   anim.start()
 }
