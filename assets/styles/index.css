@@ -131,7 +131,7 @@
     color: var(--secondary-bg-color);
     border-bottom: 1px solid var(--primary-bg-color);
     text-decoration: none;
-    min-width: 100px;
+    min-width: 80px;
     text-align: center;
 }
 

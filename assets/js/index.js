@@ -21,15 +21,16 @@ function loadNewsItem() {
 
 loadNews();
 loadNewsItem();
-
+if (location.hash == "") {
+  location.hash = "#top";
+}
 
 function startTypingTitle() {
-  if (location.hash == "") {
-    location.hash = "#top";
-  }
   if (location.hash == "#top"){
-    window.scrollTop = 0;
-    window.scrollTo(0, 1);
+    setTimeout(function() {
+      window.scrollTop = 0;
+      window.scrollTo(0, 1);
+    }, 1);
   }
   document.getElementById("site-title").innerHTML = "";
   var anim = new TypingAnimation(document.getElementById("site-title"), document.getElementById("site-title-text").innerHTML, 100);
