@@ -1,7 +1,7 @@
 @import url("base-styles.css");
 
 
-#snap-screenshot {
+#snap-screenshot, #vscode-screenshot {
   width: 100%;
   margin: 0px;
 }
@@ -9,7 +9,11 @@
 @media screen and (min-width: 768px) {
  #snap-screenshot {
   float: right;
-  max-width: 40vw;
+ }
+
+ #snap-screenshot, #vscode-screenshot {
+  max-width: 33vw;
   margin-left: 8px;
+  margin-right: 8px;
  }
 }
