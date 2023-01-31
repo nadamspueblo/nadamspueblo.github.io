@@ -32,9 +32,12 @@ function startTypingTitle() {
       window.scrollTo(0, 1);
     }, 1);
   }
-  document.getElementById("site-title").innerHTML = "";
-  var anim = new TypingAnimation(document.getElementById("site-title"), document.getElementById("site-title-text").innerHTML, 100);
-  anim.start()
+  var title = document.getElementById("site-title");
+  if (title.innerHTML == ""){
+    title.innerHTML = "";
+    var anim = new TypingAnimation(title, document.getElementById("site-title-text").innerHTML, 100);
+    anim.start();
+  }
 }
 
 window.addEventListener("popstate", () => {
@@ -42,6 +45,7 @@ window.addEventListener("popstate", () => {
     animTextElement = document.getElementById("site-title");
     //animTextElement.innerHTML = "";
     //startTypingTitle();
-    animTextElement.innerHTML = document.getElementById("site-title-text").innerHTML;
+    if (animTextElement.innerHTML == "")
+      animTextElement.innerHTML = document.getElementById("site-title-text").innerHTML;
   }
 });
