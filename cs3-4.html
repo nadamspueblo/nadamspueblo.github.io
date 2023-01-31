@@ -1,18 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/styles/base-styles.css">
+  <link rel="stylesheet" href="assets/styles/cs1-2.css">
   <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
 
   <title>CS3-4 AP CS Principles - Pueblo High School</title>
 </head>
-<body>
 
-  <h1>Coming soon ...</h1>
-  
+<body>
+  <header>
+    <div>
+      <h2>&lt;CS3-4&gt;</h2>
+      <h1>AP CS Principles</h1>
+      <h2 style="align-self: flex-end;">&lt;/CS3-4&gt;</h2>
+    </div>
+  </header>
+  <nav>
+    <button id="overview" class="accordion">Course overview</button>
+    <article class="panel">
+      <div id="about-panel">
+        <p>CS3-4 is AP Computer Science Principles. It is still an introductory course, but with a more academic focus
+          culminating in the AP exam in the spring semester. </p>
+
+        <p>In the fall semester of AP CSP we study how data is represented using binary digits (bits), transmiting
+          binary data over a network, and continue learning Javascript.
+        </p>
+
+        <img id="vscode-screenshot" src="assets/images/vscode-screenshot.png" alt="VS Code Screenshot">
+
+        <p>
+          In the spring semester, we study <i>algorithms</i> in Javascript for working with strings and lists. Then we
+          prepare to take the state technical skills assessment (TSA) and the AP exam which consists of a multiple
+          choice and project called the <i>AP Create Task</i> that will developed in class.</p>
+      </div>
+    </article>
+
+    <button class="accordion">Web Resources</button>
+    <article class="panel">
+      <div class="item-box">
+        <div class="resource-card">
+          <h3><u>Online Programming Tools</u></h3>
+          <a href="https://codehs.com" target="_blank">CodeHS</a>
+          <p>Online computer science learning platform that we use as a part of class</p>
+          <a href="https://replit.com" target="_blank">Repl.it</a>
+          <p>Online IDE with support for many languages</p>
+          <a href="https://github.com" target="_blank">Github</a>
+          <p>Online repository to store, share, collaborate, and publish</p>
+          <a href="https://github.com/features/codespaces" target="_blank">Github codespaces</a>
+          <p>Online VS Code IDE connected to your github repository</p>
+        </div>
+        <div class="resource-card">
+          <h3><u>Graphics</u></h3>
+          <a href="https://pixlr.com/x/" target="_blank">Pixlr X</a>
+          <p>Good for removing back</p>
+          <a href="https://www.pixilart.com/" target="_blank">Pixilart</a>
+          <p>Pixel-based image editor</p>
+          <a href="https://favicomatic.com/" target="_blank">Favic-O-Matic</a>
+          <p>Get an icon for your webpage</p>
+        </div>
+        <div class="resource-card">
+          <h3><u>Web Development</u></h3>
+          <a href="https://www.w3schools.com/" target="_blank">W3 Schools</a>
+          <p>Good resource for HTML, CSS, and Javascript reference and tutorials</p>
+          <a href="https://developer.mozilla.org/en-US/" target="_blank">MDN Web Docs</a>
+          <p>HTML, CSS, and Javascript by Mozilla, makers of FireFox</p>
+        </div>
+        <div class="resource-card">
+          <h3><u>Downloads</u></h3>
+          <a href="https://code.visualstudio.com/download" target="_blank">VS Code</a>
+          <p>Professional IDE that we use in class</p>
+          <a href="https://www.gimp.org/downloads/" target="_blank">GIMP</a>
+          <p>Free open-source Photoshop clone (not installable on TUSD devices)</p>
+        </div>
+      </div>
+    </article>
+    <button class="accordion">Student Projects</button>
+    <article class="panel">
+      <div class="item-box">
+        <div class="resource-card">
+          <h3><u>Best of fall 2022 Snap! projects</u></h3>
+
+          <div class="horz-flex-box" style="justify-content: space-around; gap: 16px; align-items: flex-start;">
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-jesus-acuna-cat-piano.png" alt="Cat piano screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20cat%20piano&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Cat piano</a>
+                <p>Cat Piano by Jesus Acuna</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-juan-angumea-zombie-game.png" alt="Zombie game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Zombie%20Game&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Zombie game</a>
+                <p>Zombie game by Juan Angumea</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-edgar-m-space-hockey.png" alt="Space Hockey screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Space%20Hockey&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Space hockey</a>
+                <p>Space Hockey by Edgar Martinez</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-luis-m-space-hockey.png" alt="Duck Hunt screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Duck%20Hunt&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Duck hunt</a>
+                <p>Duck Hunt style game by Luis Montoya</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-remi-tubaknight.png" alt="Tuba Knight screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Tuba%20Knight&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Tuba Knight</a>
+                <p>Tuba Knight adventure game by Remi Mwamba</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-alan-s-rhythm.png" alt="Rhythm game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Rhythm%20game&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Rhythm game</a>
+                <p>Rhythm game by Alan Salazar</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-mark-a-gta.png" alt="GTA game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Grand%20Theft%20Auto&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">GTA: Snap City</a>
+                <p>Grand Theft Auto inspired game by Mark Anaya</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-ryanc-dungeon.png" alt="Dungeon game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Dungeon%20Game&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Dungeon Game</a>
+                <p>Top-down dungeon maze game by Ryan Clevinger</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-antonn-racing.png" alt="Racing game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Racing%20Game&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Racing Game</a>
+                <p>Top-down racing game by Anton Niebur</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </article>
+  </nav>
+  <footer>
+    <div class="social-media-box">
+      <div><a href="#" class="donate-links">volunteer</a></div>
+      <div class="soc-media-placeholder"></div>
+      <div class="soc-media-placeholder"></div>
+      <div class="soc-media-placeholder"></div>
+      <div><a href="#" class="donate-links">donate</a></div>
+    </div>
+    <p style="text-align:center;">
+      Copyright (C) 2023 Nathan Adams<br> <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a>
+    </p>
+  </footer>
 </body>
+<script src="assets/js/base-scripts.js"></script>
+<script src="assets/js/cs1-2.js"></script>
+
 </html>
