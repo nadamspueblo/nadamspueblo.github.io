@@ -46,7 +46,7 @@
     font-size: 30px;
     opacity: 0%;
     animation-name: fade-in;
-    animation-delay: 3s;
+    animation-delay: 3200ms;
     animation-fill-mode: forwards;
     animation-duration: 1s;
 }

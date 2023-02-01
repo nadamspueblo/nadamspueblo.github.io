@@ -3,13 +3,16 @@ class TypingAnimation {
   prevTime = 0;
   speed = 0;
   run = false;
+  origText;
 
-  constructor(textElement, text, speed, delay = 0) {
+  constructor(textElement, text, speed, delay = 0, fillEnd = false) {
     this.textElement = textElement;
+    this.origText = text;
     this.text = text;
     this.speed = speed;
     this.delay = delay;
     this.prevTime = 0;
+    this.fillEnd = fillEnd;
   }
 
   typingAnimation = (timestamp) => {
@@ -34,6 +37,7 @@ class TypingAnimation {
     else {
       this.prevTime = 0;
       this.run = false;
+      if (fillEnd) this.textElement.innerHTML = this.origText;
     }
   }
 

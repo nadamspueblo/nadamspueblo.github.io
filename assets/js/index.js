@@ -34,8 +34,7 @@ function startTypingTitle() {
   }
   var title = document.getElementById("site-title");
   if (title.innerHTML == ""){
-    title.innerHTML = "";
-    var anim = new TypingAnimation(title, document.getElementById("site-title-text").innerHTML, 100);
+    var anim = new TypingAnimation(title, document.getElementById("site-title-text").innerHTML, 100, true);
     anim.start();
   }
 }
@@ -45,7 +44,7 @@ window.addEventListener("popstate", () => {
     animTextElement = document.getElementById("site-title");
     //animTextElement.innerHTML = "";
     //startTypingTitle();
-    if (animTextElement.innerHTML == "")
-      animTextElement.innerHTML = document.getElementById("site-title-text").innerHTML;
+    //if (animTextElement.innerHTML == "")
+    //  animTextElement.innerHTML = document.getElementById("site-title-text").innerHTML;
   }
 });
