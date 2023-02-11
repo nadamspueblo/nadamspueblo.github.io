@@ -69,6 +69,10 @@ h2 {
   color: var(--dark-text-color);
 }
 
+.dark-bg-color {
+  background-color: var(--dark-bg-color);
+}
+
 .data {
   display: none;
   overflow: hidden;
@@ -166,7 +170,7 @@ footer a:hover {
 
 .active {
   background-color: var(--active-primary-bg-color);
-  color: rgb(80, 80, 255);;
+  color: var(--primary-text-color);
 }
 
 .accordion:hover {
@@ -180,6 +184,10 @@ footer a:hover {
   font-size: medium;
   display: none;
   overflow: hidden;
+}
+
+.hidden {
+  display: none;
 }
 
 .resource-card {

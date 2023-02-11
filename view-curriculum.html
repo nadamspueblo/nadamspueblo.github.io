@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="assets/styles/cs1-2.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
+  <title>CS1-2 Curriculum</title>
+</head>
+<body>
+  <header>
+    <h1 id="page-heading">CS1-2 Curriculum</h1>
+  </header>
+  <main>
+    <button class="accordion">Unit 1</button>
+    <section class="panel">
+
+    </section>
+  </main>
+</body>
+
+<script>
+   firebase.initializeApp({
+    apiKey: "AIzaSyDZ8fhLVmOVay80Y33LAEVBopns1k-Fytg",
+    authDomain: "pueblo-cs-website.firebaseapp.com",
+    projectId: "pueblo-cs-website",
+    storageBucket: "pueblo-cs-website.appspot.com",
+    messagingSenderId: "528094862817",
+    appId: "1:528094862817:web:2f8468a947f9161ff846a0",
+    measurementId: "G-85Z0RPVRNR"
+  });
+
+  const db = firebase.firestore();
+
+  const urlParams = new URL(window.location.toLocaleString()).searchParams;
+  const course = urlParams.get('course');
+  if (course == "cs1-2"){
+    document.getElementById("page-heading").innerHTML = "CS1-2 Curriculum";
+  }
+  db.collection(course + "-curriculum").get().then((querySnapshot) => {
+      
+  })
+  .catch((error) => {
+    console.log("Error getting documents: ", error);
+  });
+</script>
+</html>
