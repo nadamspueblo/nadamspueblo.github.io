@@ -1,0 +1,234 @@
+@import url("cs1-2.css");
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  min-height: 290px;
+}
+
+@media screen and (min-width: 768px) {
+  header {
+    min-height: auto;
+  }
+}
+
+header > * {
+  flex-grow: 1;
+}
+
+header h1,
+header h2 {
+  font-size: x-large;
+  width: fit-content;
+  padding: 10px 20px;
+  min-width: 50%;
+}
+
+p, pre {
+  width: fit-content;
+  font-family: "Sofia Sans";
+  color: var(--light-text-color);
+  padding: 0px 20px;
+  transition: 200ms linear;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px;
+}
+ul, ol {
+  font-family: "Sofia Sans";
+  color: var(--light-text-color);
+}
+
+ul li {
+  margin: 10px;
+}
+
+main {
+  display: block;
+}
+
+section, aside {
+  width: auto;
+  background-color: var(--primary-bg-color);
+  padding: 10px 20px;
+}
+
+@media screen and (min-width: 768px) {
+
+}
+
+
+section h2, aside h2 {
+  border-bottom: 2px solid var(--primary-text-color);
+}
+
+summary, details {
+  color: var(--light-text-color);
+  font-family: "Sofia Sans";
+  margin: 10px;
+}
+
+.edit-bar {
+  width: 100%;
+  background-color: var(--secondary-bg-color);
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-items: stretch;
+  transition: 200ms linear;
+}
+
+@media screen and (min-width: 992px){
+  .edit-bar {
+    height: 20px;
+  }
+}
+
+.edit-bar:hover {
+  height: 50px;
+}
+
+.edit-bar-active {
+  height: 50px;
+}
+
+.button {
+  flex-grow: 1;
+  color: var(--light-text-color);
+  background-color: var(--secondary-bg-color);
+  border: 0px;
+  border-bottom: 2px solid var(--secondary-bg-color);
+  border-radius: 0;
+  padding: 0px 20px;
+  font-size: medium;
+  transition: 200ms linear;
+  overflow: hidden;
+  height: 100%;
+}
+
+.button:hover {
+  color: white;
+  border-bottom: 2px solid var(--primary-text-color);
+  background-color: var(--light-bg-color);
+}
+
+.hide-button {
+  min-width: 0px;
+  width: 0px;
+  padding: 2px 0px;
+  border: none;
+  flex-grow: 0;
+}
+
+/***************** Edit mode styles *******************/
+
+input,
+textarea,
+select {
+  background-color: var(--secondary-bg-color);
+  color: var(--light-text-color);
+  font-size: large;
+  transition: 200ms linear;
+}
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+}
+
+select {
+  max-width: 100%;
+  min-width: 100%;
+}
+
+option,
+optgroup {
+  max-width: 100%;
+}
+
+#edit-unit-title {
+  width: 90%;
+  font-size: xx-large;
+}
+
+.header-editbox {
+  margin: 5px;
+}
+
+.delete-button {
+  margin: 10px;
+  cursor: pointer;
+  font-family: "Paragraph";
+  content: "+";
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  padding-bottom: 2px;
+  text-align: center;
+  background-color: var(--primary-text-color);
+  color: var(--light-text-color);
+  border-radius: 100%;
+  border: 1px solid var(--light-text-color);
+}
+
+.standard {
+  display: flex;
+  align-items: center;
+}
+
+.small-button{
+  margin: 10px;
+  cursor: pointer;
+  font-family: "Paragraph";
+  content: "+";
+  width: fit-content;
+  min-width: 20px;
+  min-height: 20px;
+  margin-right: 5px;
+  text-align: center;
+  background-color: var(--primary-text-color);
+  color: var(--light-text-color);
+  border-radius: 100%;
+  border: 1px solid var(--light-text-color);
+  font-size: small;
+}
+
+.btn-color-red:hover {
+  background-color: crimson;
+  color: var(--light-text-color);
+}
+
+.btn-color-red {
+  background-color: rgb(216, 90, 116);
+  color: var(--light-text-color);
+}
+
+.btn-color-green:hover {
+  background-color: limegreen; 
+  color: white;
+}
+
+.btn-color-green {
+  background-color: rgb(114, 230, 114); 
+  color: white;
+}
+
+.edit-container {
+  display: flex;;
+  align-items: center;
+}

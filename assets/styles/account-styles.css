@@ -1,0 +1,33 @@
+#account {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-wrap: wrap;
+
+}
+
+#account > input {
+  background-color: var(--secondary-bg-color);
+  color: var(--light-text-color);
+  font-size: large;
+  transition: 200ms linear;
+  border: 1px solid var(--primary-text-color);
+  padding: 2px;
+  margin:2px;
+}
+
+.acct-button {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-text-color);
+  background-color: var(--primary-bg-color);
+  border: 1px solid var(--primary-text-color);
+  border-radius: 4px;
+  padding: 4px 8px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.acct-button:hover {
+  color: var(--light-text-color);
+  background-color: var(--secondary-bg-color);
+}

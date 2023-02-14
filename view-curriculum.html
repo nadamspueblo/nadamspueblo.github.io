@@ -1,51 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
   <link rel="stylesheet" href="assets/styles/cs1-2.css">
+  <link rel="stylesheet" href="assets/styles/account-styles.css">
   <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
   <title>CS1-2 Curriculum</title>
 </head>
+
 <body>
   <header>
-    <h1 id="page-heading">CS1-2 Curriculum</h1>
+    <h1 id="page-heading">Choose Curriculum</h1>
   </header>
-  <main>
-    <button class="accordion">Unit 1</button>
-    <section class="panel">
 
+  <section id="account">
+    <input id="user-email" type="email" placeholder="name@domain.com">
+    <input id="user-password" type="password" placeholder="password">
+    <button id="sign-in-button" class="acct-button" onclick="signIn()">Sign-in</button>
+    <span id="account-info" style="color: var(--light-text-color)"></span>
+    <button id="sign-out-button" class="acct-button hidden" onclick="auth.signOut()">Sign-out</button>
+  </section>
+
+  <main id="main">
+    <nav id="course-choices">
+      <a href="view-curriculum.html?course=cs1-2">CS 1-2 Intro to Computer Science</a>
+      <a href="view-curriculum.html?course=cs3-4">CS 3-4 AP CS Principles</a>
+      <a href="view-curriculum.html?course=cs5-6">CS 5-6 Intro to Computer Science</a>
+    </nav>
+    <section>
+      <a class="add-lesson hidden" onclick="addUnit()">Add unit</a>
     </section>
+    
   </main>
+  <footer>
+
+  </footer>
 </body>
 
-<script>
-   firebase.initializeApp({
-    apiKey: "AIzaSyDZ8fhLVmOVay80Y33LAEVBopns1k-Fytg",
-    authDomain: "pueblo-cs-website.firebaseapp.com",
-    projectId: "pueblo-cs-website",
-    storageBucket: "pueblo-cs-website.appspot.com",
-    messagingSenderId: "528094862817",
-    appId: "1:528094862817:web:2f8468a947f9161ff846a0",
-    measurementId: "G-85Z0RPVRNR"
-  });
-
-  const db = firebase.firestore();
-
-  const urlParams = new URL(window.location.toLocaleString()).searchParams;
-  const course = urlParams.get('course');
-  if (course == "cs1-2"){
-    document.getElementById("page-heading").innerHTML = "CS1-2 Curriculum";
+<style>
+  section {
+    padding: 10px;
   }
-  db.collection(course + "-curriculum").get().then((querySnapshot) => {
-      
-  })
-  .catch((error) => {
-    console.log("Error getting documents: ", error);
-  });
-</script>
+  .add-lesson {
+    margin-left: 5px;
+    text-decoration: none;
+    width: fit-content;
+    cursor: pointer;
+  }
+
+  .add-lesson::before {
+    font-family: "Paragraph";
+    content: "+";
+    min-width: 20px;
+    min-height: 20px;
+    margin-right: 5px;
+    padding: 0px 5px 2px 5px;
+    text-align: center;
+    background-color: var(--primary-text-color);
+    color: var(--light-text-color);
+    border-radius: 100%;
+    border: 1px solid var(--light-text-color);
+  }
+
+  .add-lesson:hover{
+    text-decoration: underline;
+  }
+
+  #course-choices {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
+
+  #course-choices > * {
+    background-color: var(--secondary-bg-color);
+    display: block;
+    text-align: center;
+    padding: 25px;
+    width: 67%;
+    margin: 10px 0px;
+    text-decoration: none;
+  }
+</style>
+
+<script src="assets/js/view-curriculum.js"></script>
+
 </html>

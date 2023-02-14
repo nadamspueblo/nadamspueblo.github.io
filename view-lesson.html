@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  
+  <link rel="stylesheet" href="assets/styles/account-styles.css">
+  <link rel="stylesheet" href="assets/styles/lesson-plan.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
+  <title>CS1-2 Calendar - Pueblo HS Computer Science</title>
+</head>
+
+<body>
+  <header>
+    <div>
+      <h1 id="unit-title">Unit title</h1>
+      <h2 id="lesson-title">Lesson title</h2>
+      <input id="edit-unit-title" class="header-editbox" type="text" placeholder="Unit title">
+      <div id="edit-header">
+        <input id="edit-unit-num" class="header-editbox" type="number" style="width: 4em;" placeholder="Unit #">
+        <input id="edit-lesson-num" class="header-editbox" type="number" style="width: 5em;" placeholder="Lesson #">
+        <input id="edit-lesson-title" class="header-editbox" type="text" placeholder="Lesson title">
+        <input id="edit-duration" class="header-editbox" type="number" placeholder="Number of 50-min classes">
+      </div>
+
+    </div>
+    <p id="header-details">
+      <span id="lesson-date">August 1</span> SY: <span id="lesson-year">2022-23</span><br>
+      Nathan Adams<br>
+      Pueblo High School<br>
+      Software and App Design<br>
+    </p>
+  </header>
+
+  <section id="account">
+    <input id="user-email" type="email" placeholder="name@domain.com">
+    <input id="user-password" type="password" placeholder="password">
+    <button id="sign-in-button" class="acct-button" onclick="signIn()">Sign-in</button>
+    <span id="account-info" style="color: var(--light-text-color)"></span>
+    <button id="sign-out-button" class="acct-button hidden" onclick="auth.signOut()">Sign-out</button>
+  </section>
+
+  <div id="edit-bar" class="edit-bar" style="display: none;">
+    <button id="new-button" class="button" onclick="newLesson()">New</button>
+    <button id="edit-button" class="button" onclick="editLesson()">Edit</button>
+    <button id="save-button" class="button btn-color-green hide-button" onclick="saveLesson()">Save and return</button>
+    <button id="cancel-button" class="button btn-color-red hide-button" onclick="cancelEdit()">Cancel</button>
+    <button id="delete-button" class="button hide-button" onclick="deleteLesson()">Delete</button>
+  </div>
+
+  <main>
+    <section id="objectives">
+      <h2>Objectives</h2>
+      <textarea id="edit-objectives" rows="3" placeholder="Learning objectives"></textarea>
+    </section>
+
+    <section id="assessment">
+      <h2>Assessment</h2>
+      <textarea id="edit-assessment" rows="3" placeholder="Success criteria and assessment"></textarea>
+    </section>
+
+    <section id="tech-standards">
+      <h2>Technial Standards</h2>
+      <select id="edit-tech-standard-select">
+        <option value="0">Select standard</option>
+      </select>
+    </section>
+
+    <section id="academic-integration">
+      <h2>Academic Integration</h2>
+      <textarea id="edit-academic-integration" rows="3" placeholder="Academic integration"></textarea>
+    </section>
+
+    <section id="prof-standards">
+      <h2>Professional Skills</h2>
+      <select id="edit-prof-standard-select">
+        <option value="0">Select standard</option>
+      </select>
+    </section>
+
+    <section id="work-based-learning">
+      <h2>Work-based Integration</h2>
+      <textarea id="edit-work-based-learning" rows="3" placeholder="Work-based learning experiences"></textarea>
+    </section>
+
+    <aside id="vocab">
+      <h2>Vocabulary</h2>
+      <div style="display: flex;">
+        <textarea id="edit-vocab" rows="1" placeholder="Vocab word : definition" style="min-width: 0px;"></textarea>
+        <div class="small-button" onclick="addVocab()">+</div>
+      </div>
+    </aside>
+
+    <section id="agenda">
+      <h2>Agenda</h2>
+      <textarea id="edit-agenda" rows="6" placeholder="Agenda and participation strategies"></textarea>
+    </section>
+
+    <section id="notes">
+      <h2>Notes</h2>
+      <textarea id="edit-notes" rows="3" placeholder="Teacher notes"></textarea>
+    </section>
+
+  </main>
+
+  <footer>
+
+  </footer>
+</body>
+
+<script src="assets/js/view-lesson.js"></script>
+
+</html>
