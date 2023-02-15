@@ -363,7 +363,7 @@ function saveLesson() {
           changed = false;
 
           // Update UI
-          document.title = unitNum + "." + lessonNum + " " + doc.data()['lesson-title'] + " - Pueblo HS Computer Science";
+          document.title = unitNum + "." + lessonNum + " " + editLessonTitle.value + " - Pueblo HS Computer Science";
           
           // Remove dynamically created data views
           clearDataAndElements();
