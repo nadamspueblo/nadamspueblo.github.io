@@ -69,7 +69,7 @@ const urlParams = new URL(window.location.toLocaleString()).searchParams;
 const course = urlParams.get('course');
 if (course == "cs1-2") {
   document.getElementById("page-heading").innerHTML = "CS1-2 Curriculum";
-  document.title = "CS1-2 Curriculum";
+  document.title = "CS1-2 Curriculum - Pueblo HS Computer Science";
   loadCurriculum();
 }
 else {
