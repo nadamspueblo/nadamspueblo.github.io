@@ -28,7 +28,7 @@ auth.onAuthStateChanged((_user) => {
     document.getElementById("sign-out-button").classList.remove("hidden");
     document.getElementById("account-info").innerHTML = user.email;
     console.log("User signed in");
-    
+
   } else {
     // User is signed out
     // Update UI
@@ -245,21 +245,21 @@ function signIn() {
   email = document.getElementById("user-email");
   password = document.getElementById("user-password");
   auth.signInWithEmailAndPassword(email.value, password.value)
-  .then((userCredential) => {
-    // Signed in
-    user = userCredential.user;
-    password.value = "";
-    document.getElementById("edit-bar").style.display = "flex";
-    if (!lessonRef){
-      editLesson();
-    }
-    // ...
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    alert("Error signing in: ", errorMessage);
-  });
+    .then((userCredential) => {
+      // Signed in
+      user = userCredential.user;
+      password.value = "";
+      document.getElementById("edit-bar").style.display = "flex";
+      if (!lessonRef) {
+        editLesson();
+      }
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert("Error signing in: ", errorMessage);
+    });
 }
 
 // Create new lesson
@@ -394,7 +394,18 @@ function deleteLesson() {
   if (confirm("Delete lesson?")) {
     db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum).delete()
       .then(() => {
-        window.location.href = "view-curriculum.html?course=cs1-2";
+        db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").get()
+          .then((querySnapshot) => {
+            if (querySnapshot.size <= 1) {
+              db.collection(course + "-curriculum").doc("unit-" + unitNum).delete()
+                .then(() => {
+                  window.location.href = "view-curriculum.html?course=cs1-2";
+                });
+            }
+            else {
+              window.location.href = "view-curriculum.html?course=cs1-2";
+            }
+          });
       })
       .catch((error) => {
         alert("Error removing document: ", error);

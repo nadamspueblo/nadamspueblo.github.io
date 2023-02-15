@@ -14,18 +14,19 @@
   <link rel="stylesheet" href="assets/styles/account-styles.css">
   <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
-  <title>CS1-2 Curriculum</title>
+  <title>CS1-2 Curriculum - Pueblo HS Computer Science</title>
 </head>
 
 <body>
   <header>
+    <h2>PH:\S&gt; Computer Science</h2>
     <h1 id="page-heading">Choose Curriculum</h1>
   </header>
 
   <section id="account">
-    <input id="user-email" type="email" placeholder="name@domain.com">
-    <input id="user-password" type="password" placeholder="password">
-    <button id="sign-in-button" class="acct-button" onclick="signIn()">Sign-in</button>
+    <input id="user-email" class="hidden" type="email" placeholder="name@domain.com">
+    <input id="user-password" class="hidden" type="password" placeholder="password">
+    <button id="sign-in-button" class="acct-button hidden" onclick="signIn()">Sign-in</button>
     <span id="account-info" style="color: var(--light-text-color)"></span>
     <button id="sign-out-button" class="acct-button hidden" onclick="auth.signOut()">Sign-out</button>
   </section>
@@ -76,7 +77,8 @@
   }
 
   #course-choices {
-    display: flex;
+    /* display: flex; in JS to show*/
+    display: none;
     flex-direction: column;
     align-items: center;
     padding: 10px;

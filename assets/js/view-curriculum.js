@@ -51,9 +51,7 @@ function signIn() {
     // Signed in
     user = userCredential.user;
     password.value = "";
-    if (!lessonRef){
-      editLesson();
-    }
+    showEditUi();
     // ...
   })
   .catch((error) => {
@@ -76,6 +74,7 @@ if (course == "cs1-2") {
 }
 else {
   hideEditUi();
+  showCourseSelect();
 }
 
 var unitCount = 0;
@@ -157,6 +156,10 @@ function loadCurriculum() {
 
 function hideCourseSelect() {
   document.getElementById("course-choices").style.display = "none";
+}
+
+function showCourseSelect() {
+  document.getElementById("course-choices").style.display = "flex";
 }
 
 function hideEditUi(){
