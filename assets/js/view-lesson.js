@@ -364,7 +364,7 @@ function saveLesson() {
 
           // Update UI
           document.title = unitNum + "." + lessonNum + " " + editLessonTitle.value + " - Pueblo HS Computer Science";
-          
+
           // Remove dynamically created data views
           clearDataAndElements();
           loadLesson();
@@ -567,7 +567,16 @@ function loadTechStandards() {
           if (p != "title" && p != "number") {
             var option = document.createElement("option");
             option.value = doc.data()["number"] + "." + p + " " + doc.data()[p];
-            option.text = option.value;
+            var truncIndex = option.value.length;
+            var maxLength = 100;
+            if (option.value.length > maxLength) {
+              do {
+              truncIndex = option.value.indexOf(" ", maxLength);
+              maxLength -=1;
+              } while (truncIndex < 1 && maxLength > 20);
+            }
+            option.text = option.value.substring(0, truncIndex);
+            if (option.text.length < option.value.length) option.text += " ...";
             optgroup.appendChild(option);
           }
         }
