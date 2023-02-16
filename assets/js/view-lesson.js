@@ -65,6 +65,7 @@ const editDuration = document.getElementById("edit-duration");
 const editObjectives = document.getElementById("edit-objectives");
 const editAssessment = document.getElementById("edit-assessment");
 const editTechStandardSelect = document.getElementById("edit-tech-standard-select");
+const editTechSubStandardSelect = document.getElementById("edit-tech-substandard-select");
 const editAcademic = document.getElementById("edit-academic-integration");
 const editProfStandardSelect = document.getElementById("edit-prof-standard-select");
 const editWorkBased = document.getElementById("edit-work-based-learning");
@@ -427,6 +428,7 @@ function hideEditElements() {
   editObjectives.classList.add("hidden");
   editAssessment.classList.add("hidden");
   editTechStandardSelect.classList.add("hidden");
+  editTechSubStandardSelect.classList.add("hidden");
   editAcademic.classList.add("hidden");
   editProfStandardSelect.classList.add("hidden");
   editWorkBased.classList.add("hidden");
@@ -467,6 +469,7 @@ function showEditElements() {
   editObjectives.classList.remove("hidden");
   editAssessment.classList.remove("hidden");
   editTechStandardSelect.classList.remove("hidden");
+  //editTechSubStandardSelect.classList.remove("hidden");
   editAcademic.classList.remove("hidden");
   editProfStandardSelect.classList.remove("hidden");
   editWorkBased.classList.remove("hidden");
@@ -559,28 +562,13 @@ function loadTechStandards() {
   db.collection("tech-standards")
     .get()
     .then((querySnapshot) => {
-      var dropdown = document.getElementById("edit-tech-standard-select");
       querySnapshot.forEach((doc) => {
-        var optgroup = document.createElement("optgroup");
-        optgroup.label = doc.data()["title"];
-        for (const p in doc.data()) {
-          if (p != "title" && p != "number") {
-            var option = document.createElement("option");
-            option.value = doc.data()["number"] + "." + p + " " + doc.data()[p];
-            var truncIndex = option.value.length;
-            var maxLength = 100;
-            if (option.value.length > maxLength) {
-              do {
-              truncIndex = option.value.indexOf(" ", maxLength);
-              maxLength -=1;
-              } while (truncIndex < 1 && maxLength > 20);
-            }
-            option.text = option.value.substring(0, truncIndex);
-            if (option.text.length < option.value.length) option.text += " ...";
-            optgroup.appendChild(option);
-          }
-        }
-        dropdown.add(optgroup);
+
+        var option = document.createElement("option");
+        option.text = doc.data()["title"];
+        option.value = doc.id;
+        editTechStandardSelect.appendChild(option);
+
       });
 
     })
@@ -589,6 +577,37 @@ function loadTechStandards() {
     });
 
   editTechStandardSelect.addEventListener("change", (event) => {
+    db.collection("tech-standards").doc(event.target.value)
+      .get()
+      .then((doc) => {
+        while (editTechSubStandardSelect.firstChild) {
+          editTechSubStandardSelect.removeChild(editTechSubStandardSelect.lastChild);
+        }
+        for (var x in doc.data()) {
+          if (x != "title" && x != "number") {
+            var option = document.createElement("option");
+            option.value = doc.data()["number"] + "." + x + " " + doc.data()[x];
+            var truncIndex = option.value.length;
+            var maxLength = 100;
+            if (option.value.length > maxLength) {
+              do {
+                truncIndex = option.value.indexOf(" ", maxLength);
+                maxLength -= 1;
+              } while (truncIndex < 1 && maxLength > 20);
+            }
+            option.text = option.value.substring(0, truncIndex);
+            if (option.text.length < option.value.length) option.text += " ...";
+            editTechSubStandardSelect.appendChild(option);
+          }
+        }
+        editTechSubStandardSelect.classList.remove("hidden");
+
+      });
+
+
+  });
+
+  editTechSubStandardSelect.addEventListener("change", (event) => {
     //console.log(event.target.value);
     var text = event.target.value;
     techStandardsData.push(text);
