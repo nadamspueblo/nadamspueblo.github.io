@@ -232,3 +232,32 @@ optgroup {
   display: flex;;
   align-items: center;
 }
+
+/*Animations*/
+.highlight-green {
+  animation-name: bg-green-to-initial;
+  animation-duration: 800ms;
+}
+
+@keyframes bg-green-to-initial {
+  0% {
+    background-color: rgb(114, 230, 114);
+  }
+  100% {
+    background-color: initial;
+  }
+}
+
+.highlight-red {
+  animation-name: bg-red-to-initial;
+  animation-duration: 800ms;
+}
+
+@keyframes bg-red-to-initial {
+  0% {
+    background-color: rgb(216, 90, 116);
+  }
+  100% {
+    background-color: initial;
+  }
+}

@@ -74,8 +74,8 @@ const editAgenda = document.getElementById("edit-agenda");
 const editNotes = document.getElementById("edit-notes");
 
 // Arrays hold db data for editing
-var techStandardsData = [];
-var profStandardsData = [];
+var techStandardsData = [], addedTechStandards = [], addedStandardElems = [];
+var profStandardsData = [], addedProfStandards = [];
 var vocabData = [];
 
 var changed = false;
@@ -299,6 +299,12 @@ function editLesson() {
 function cancelEdit() {
   hideEditElements();
   showViewElements();
+
+  // Remove added standard elements
+  for (index in addedStandardElems){
+    addedStandardElems[index].remove();
+  }
+
   var button = document.getElementById("new-button");
   button.classList.remove("hide-button");
 
@@ -335,6 +341,9 @@ function saveLesson() {
     "unit-title": editUnitTitle.value
   }, { merge: true })
     .then(() => {
+      // add new standards to data
+      techStandardsData.concat(addedTechStandards);
+      profStandardsData.concat(addedProfStandards);
       // Write lesson to database
       db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum).set({
         "teacher-name": "Nathan Adams",
@@ -363,6 +372,10 @@ function saveLesson() {
           lessonRef = db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum);
           changed = false;
 
+          
+          addedTechStandards = [];
+          addedProfStandards = [];
+          
           // Update UI
           document.title = unitNum + "." + lessonNum + " " + editLessonTitle.value + " - Pueblo HS Computer Science";
 
@@ -559,7 +572,7 @@ function loadTechStandards() {
   // If standards have been loaded already, return
   if (editTechStandardSelect.childElementCount > 2) return;
 
-  db.collection("tech-standards")
+  db.collection("tech-standards").orderBy("number")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
@@ -580,9 +593,15 @@ function loadTechStandards() {
     db.collection("tech-standards").doc(event.target.value)
       .get()
       .then((doc) => {
+        // Remove all elements
         while (editTechSubStandardSelect.firstChild) {
           editTechSubStandardSelect.removeChild(editTechSubStandardSelect.lastChild);
         }
+        // Add default option
+        var defaultOption = document.createElement("option");
+        defaultOption.value = 0;
+        defaultOption.text = "Select standard";
+        editTechSubStandardSelect.appendChild(defaultOption);
         for (var x in doc.data()) {
           if (x != "title" && x != "number") {
             var option = document.createElement("option");
@@ -610,8 +629,16 @@ function loadTechStandards() {
   editTechSubStandardSelect.addEventListener("change", (event) => {
     //console.log(event.target.value);
     var text = event.target.value;
-    techStandardsData.push(text);
+    // don't add if already on the list
+    var index = techStandardsData.indexOf(text);
+    if (index > -1) {
+      techStandards.children[index + 3].classList.add("highlight-red");
+      editTechSubStandardSelect.value = 0;
+      return; 
+    }
+    addedTechStandards.push(text);
     const container = document.createElement("div");
+    addedStandardElems.push(container);
     container.classList.add("edit-container");
     var button = document.createElement("div");
     button.classList.add("small-button");
@@ -632,7 +659,8 @@ function loadTechStandards() {
     pre.innerHTML = text;
     container.appendChild(pre);
     techStandards.appendChild(container);
-    editTechStandardSelect.value = 0;
+    container.classList.add("highlight-green");
+    editTechSubStandardSelect.value = 0;
   });
 }
 
@@ -667,8 +695,9 @@ function loadProfStandards() {
   editProfStandardSelect.addEventListener("change", (event) => {
     //console.log(event.target.value);
     var text = event.target.value;
-    profStandardsData.push(text);
+    addedProfStandards.push(text);
     const container = document.createElement("div");
+    addedStandardElems.push(container);
     container.classList.add("edit-container");
     var button = document.createElement("div");
     button.classList.add("small-button");
