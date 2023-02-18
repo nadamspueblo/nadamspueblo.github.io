@@ -83,6 +83,8 @@ summary, details {
 }
 
 .edit-bar {
+  position: sticky;
+  top: 0;
   width: 100%;
   background-color: var(--secondary-bg-color);
   height: 50px;

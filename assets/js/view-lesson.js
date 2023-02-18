@@ -68,6 +68,7 @@ const editTechStandardSelect = document.getElementById("edit-tech-standard-selec
 const editTechSubStandardSelect = document.getElementById("edit-tech-substandard-select");
 const editAcademic = document.getElementById("edit-academic-integration");
 const editProfStandardSelect = document.getElementById("edit-prof-standard-select");
+const editProfSubStandardSelect = document.getElementById("edit-prof-substandard-select");
 const editWorkBased = document.getElementById("edit-work-based-learning");
 const editVocab = document.getElementById("edit-vocab");
 const editAgenda = document.getElementById("edit-agenda");
@@ -342,8 +343,8 @@ function saveLesson() {
   }, { merge: true })
     .then(() => {
       // add new standards to data
-      techStandardsData.concat(addedTechStandards);
-      profStandardsData.concat(addedProfStandards);
+      techStandardsData = techStandardsData.concat(addedTechStandards);
+      profStandardsData = profStandardsData.concat(addedProfStandards);
       // Write lesson to database
       db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum).set({
         "teacher-name": "Nathan Adams",
@@ -444,6 +445,7 @@ function hideEditElements() {
   editTechSubStandardSelect.classList.add("hidden");
   editAcademic.classList.add("hidden");
   editProfStandardSelect.classList.add("hidden");
+  editProfSubStandardSelect.classList.add("hidden");
   editWorkBased.classList.add("hidden");
   editVocab.classList.add("hidden");
   editAgenda.classList.add("hidden");
@@ -570,7 +572,7 @@ function addVocab() {
 // Load tech standards from db
 function loadTechStandards() {
   // If standards have been loaded already, return
-  if (editTechStandardSelect.childElementCount > 2) return;
+  if (editTechStandardSelect.childElementCount > 3) return;
 
   db.collection("tech-standards").orderBy("number")
     .get()
@@ -630,9 +632,12 @@ function loadTechStandards() {
     //console.log(event.target.value);
     var text = event.target.value;
     // don't add if already on the list
-    var index = techStandardsData.indexOf(text);
+    var index = techStandardsData.concat(addedTechStandards).indexOf(text);
     if (index > -1) {
       techStandards.children[index + 3].classList.add("highlight-red");
+      setTimeout(() => {
+        profStandards.children[index + 3].classList.remove("highlight-red");
+      }, 1000);
       editTechSubStandardSelect.value = 0;
       return; 
     }
@@ -651,6 +656,10 @@ function loadTechStandards() {
       if (index !== -1) {
         techStandardsData.splice(index, 1);
       }
+      index = addedTechStandards.indexOf(value);
+      if (index !== -1) {
+        addedTechStandards.splice(index, 1);
+      }
       console.log(techStandardsData);
     });
     container.appendChild(button);
@@ -660,6 +669,9 @@ function loadTechStandards() {
     container.appendChild(pre);
     techStandards.appendChild(container);
     container.classList.add("highlight-green");
+    setTimeout(() => {
+      techStandards.children[profStandards.children.length - 1].classList.remove("highlight-green");
+    }, 1000);
     editTechSubStandardSelect.value = 0;
   });
 }
@@ -667,24 +679,17 @@ function loadTechStandards() {
 // Load prof standards from db
 function loadProfStandards() {
   // If standards have been loaded already, return
-  if (editProfStandardSelect.childElementCount > 2) return;
+  if (editProfStandardSelect.childElementCount > 3) return;
 
   // Load prof standards into select element from Firestore
-  db.collection("prof-standards")
+  db.collection("prof-standards").orderBy("number")
     .get()
     .then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        var optgroup = document.createElement("optgroup");
-        optgroup.label = doc.data()["title"];
-        for (const p in doc.data()) {
-          if (p != "title" && p != "number") {
-            var option = document.createElement("option");
-            option.value = doc.data()["number"] + "." + p + " " + doc.data()[p];
-            option.text = option.value;
-            optgroup.appendChild(option);
-          }
-        }
-        editProfStandardSelect.add(optgroup);
+        var option = document.createElement("option");
+        option.text = doc.data()["title"];
+        option.value = doc.id;
+        editProfStandardSelect.appendChild(option);
       });
 
     })
@@ -692,9 +697,56 @@ function loadProfStandards() {
       console.log("Error getting documents: ", error);
     });
 
-  editProfStandardSelect.addEventListener("change", (event) => {
+    editProfStandardSelect.addEventListener("change", (event) => {
+      db.collection("prof-standards").doc(event.target.value)
+        .get()
+        .then((doc) => {
+          // Remove all elements
+          while (editProfSubStandardSelect.firstChild) {
+            editProfSubStandardSelect.removeChild(editProfSubStandardSelect.lastChild);
+          }
+          // Add default option
+          var defaultOption = document.createElement("option");
+          defaultOption.value = 0;
+          defaultOption.text = "Select standard";
+          editProfSubStandardSelect.appendChild(defaultOption);
+          for (var x in doc.data()) {
+            if (x != "title" && x != "number") {
+              var option = document.createElement("option");
+              option.value = doc.data()["number"] + "." + x + " " + doc.data()[x];
+              var truncIndex = option.value.length;
+              var maxLength = 100;
+              if (option.value.length > maxLength) {
+                do {
+                  truncIndex = option.value.indexOf(" ", maxLength);
+                  maxLength -= 1;
+                } while (truncIndex < 1 && maxLength > 20);
+              }
+              option.text = option.value.substring(0, truncIndex);
+              if (option.text.length < option.value.length) option.text += " ...";
+              editProfSubStandardSelect.appendChild(option);
+            }
+          }
+          editProfSubStandardSelect.classList.remove("hidden");
+  
+        });
+  
+  
+    });
+
+  editProfSubStandardSelect.addEventListener("change", (event) => {
     //console.log(event.target.value);
     var text = event.target.value;
+    // don't add if already on the list
+    const index = profStandardsData.concat(addedProfStandards).indexOf(text);
+    if (index > -1) {
+      profStandards.children[index + 3].classList.add("highlight-red");
+      setTimeout(() => {
+        profStandards.children[index + 3].classList.remove("highlight-red");
+      }, 1000);
+      editProfSubStandardSelect.value = 0;
+      return; 
+    }
     addedProfStandards.push(text);
     const container = document.createElement("div");
     addedStandardElems.push(container);
@@ -710,7 +762,10 @@ function loadProfStandards() {
       if (index !== -1) {
         profStandardsData.splice(index, 1);
       }
-      console.log(profStandardsData);
+      index = addedProfStandards.indexOf(value);
+      if (index !== -1) {
+        addedProfStandards.splice(index, 1);
+      }
     });
     container.appendChild(button);
     pre = document.createElement("pre");
@@ -718,6 +773,10 @@ function loadProfStandards() {
     pre.innerHTML = text;
     container.appendChild(pre);
     profStandards.appendChild(container);
-    editProfStandardSelect.value = 0;
+    container.classList.add("highlight-green");
+    setTimeout(() => {
+      profStandards.children[profStandards.children.length - 1].classList.remove("highlight-green");
+    }, 1000);
+    editProfSubStandardSelect.value = 0;
   });
 }
