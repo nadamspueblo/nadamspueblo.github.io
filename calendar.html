@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+  <link rel="stylesheet" href="assets/styles/calendar.css">
+  <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
+  <title>Calendar - Pueblo HS Computer Science</title>
+</head>
+<body>
+  <header>
+    <h1>CS1-2 Calendar</h1>
+    <nav>
+      <div class="arrow-up" onclick="prevMonth()"></div>
+      <h2 id="month-name">August</h2>
+      <div class="arrow-down" onclick="nextMonth()"></div>
+    </nav>
+  </header>
+    <section id="calendar-container" >
+      <div id="month-bg" class="month"></div>
+      <div id="unit-container" class="lesson-month"></div>
+      <div id="lesson-container" class="lesson-month"></div>
+      
+      
+    </section>
+</body>
+<script src="assets/js/calendar.js"></script>
+</html>
