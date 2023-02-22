@@ -203,7 +203,7 @@ function loadLessons(unit) {
         }
         var unitLength = parseInt(doc.data()["duration"]);
         var unitEndDate = getEndDateFromSchoolDays(unitStartDate, unitLength);
-        if (unitEndDate > nextOpenDate) {
+        if (unitEndDate > nextOpenDate && unitStartDate <= calendarEndDate) {
           // Calc how many days fit on the calendar
           days = getSchoolDaysBetween(nextOpenDate, unitEndDate);
 
@@ -212,7 +212,7 @@ function loadLessons(unit) {
             var daysTilBreak = Math.min(5, getSchoolDaysUntilNextBreak(nextOpenDate));
 
             if (daysTilBreak > 0) {
-              var freeSpace = Math.max(0, daysTilBreak - totalLessonDays % 5);
+              var freeSpace = Math.max(1, daysTilBreak - totalLessonDays % 5);
               freeSpace = Math.min(freeSpace, days - i);
               div.style.gridColumnStart = "span " + freeSpace;
               i += freeSpace;
