@@ -163,7 +163,6 @@ function advanceNextOpenDate(days = 1) {
   //console.log("Advancing day by ", days, " end date ", nextOpenDate);
 }
 
-// Load unit and lesson data
 unitContainer.style.maxWidth = calendarBg.offsetWidth + "px";
 unitContainer.style.minWidth = calendarBg.offsetWidth + "px";
 lessonContainer.style.maxWidth = calendarBg.offsetWidth + "px";
@@ -219,7 +218,11 @@ function loadLessons(unit) {
     .orderBy("lesson-num")
     .get()
     .then((querySnapShot) => {
-
+      // Set number of columns depending on screen size
+      var cols = 2;
+      var screen = window.matchMedia("(min-width: 740px)");
+      if (screen.matches) cols = 5;
+      
       querySnapShot.forEach((doc) => {
         // Determine if unit fits within current calendar
         var days = 0;
@@ -236,10 +239,10 @@ function loadLessons(unit) {
 
           for (var i = 0; totalLessonDays < 25 && i < days;) {
             var div = document.createElement("div");
-            var daysTilBreak = Math.min(5, getSchoolDaysUntilNextBreak(nextOpenDate));
+            var daysTilBreak = Math.min(cols, getSchoolDaysUntilNextBreak(nextOpenDate));
 
             if (daysTilBreak > 0) {
-              var freeSpace = Math.max(1, daysTilBreak - totalLessonDays % 5);
+              var freeSpace = Math.min(daysTilBreak, Math.abs(cols - totalLessonDays % cols));
               freeSpace = Math.min(freeSpace, days - i);
               div.style.gridColumnStart = "span " + freeSpace;
               i += freeSpace;
@@ -261,7 +264,7 @@ function loadLessons(unit) {
               addNoSchoolDay(noSchoolDays.get(nextOpenDate.toLocaleDateString('en-us', {year: 'numeric', month:'numeric', day:'numeric'})));
               advanceNextOpenDate();
               totalLessonDays++;
-              days++;
+              //days++;
             }
           }
         }

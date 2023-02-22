@@ -12,6 +12,10 @@ nav {
   padding: 10px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .arrow-up {
@@ -54,6 +58,7 @@ nav {
   grid-template-columns: 1fr 1fr;
   background-color: var(--primary-bg-color);
   padding: 5px;
+  top: 0px;
 }
 
 .lesson-month {
@@ -62,33 +67,7 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding: 5px;
-}
-
-.lesson, .unit, .no-school {
-  color: white;
-  box-sizing: border-box;
-  border-radius: 8px;
-  margin: 4px;
-  margin-top: 41px;
-  padding: 4px;
-  padding-left: 10px;
-  min-height: calc(20vh - 40px);
-  width: auto;
-}
-
-.lesson {
-  background-color: goldenrod;
-  margin: 8px;
-  margin-top: 70px;
-  min-height: calc(20vh - 74px);
-}
-
-.no-school {
-  background-color: var(--secondary-bg-color);
-}
-
-.unit {
-  background-color: cornflowerblue;
+  top: 0px;
 }
 
 @media screen and (min-width: 740px) {
@@ -104,6 +83,32 @@ nav {
     transform: translateX(-50%);
     grid-template-columns: repeat(5, minmax(100px, 1fr));
   }
+}
+
+.lesson, .unit, .no-school {
+  color: white;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin: 4px;
+  margin-top: 33px;
+  padding: 4px;
+  padding-left: 10px;
+  min-height: calc(20vh - 31px);
+}
+
+.lesson {
+  background-color: goldenrod;
+  margin: 8px;
+  margin-top: 64px;
+  min-height: calc(20vh - 64px);
+}
+
+.no-school {
+  background-color: var(--secondary-bg-color);
+}
+
+.unit {
+  background-color: cornflowerblue;
 }
 
 .date {
@@ -126,6 +131,7 @@ nav {
 }
 
 .day h3 {
+  font-size: small;
   margin: 0px;
   padding: 4px 0px;
   overflow: hidden;
