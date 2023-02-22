@@ -163,11 +163,13 @@ function advanceNextOpenDate(days = 1) {
   //console.log("Advancing day by ", days, " end date ", nextOpenDate);
 }
 
+// Line up calendar elements
 unitContainer.style.maxWidth = calendarBg.offsetWidth + "px";
 unitContainer.style.minWidth = calendarBg.offsetWidth + "px";
 lessonContainer.style.maxWidth = calendarBg.offsetWidth + "px";
 lessonContainer.style.minWidth = calendarBg.offsetWidth + "px";
 calendarContainer.style.minHeight = calendarBg.offsetHeight + "px";
+var colors = ["cornflowerblue", "goldenrod"];
 var unitStartDate;
 
 function nextMonth(){
@@ -249,8 +251,12 @@ function loadLessons(unit) {
               totalLessonDays += freeSpace;
               advanceNextOpenDate(freeSpace);
               if (doc.data()["lesson-num"] == 0) {
-                div.innerHTML = "Unit " + doc.data()["unit-num"] + " " + doc.data()["unit-title"];
+                var link = document.createElement("a");
+                link.innerHTML = "Unit " + doc.data()["unit-num"] + " " + doc.data()["unit-title"]; 
+                link.href = "view-lesson.html?course=cs1-2&unit=" + doc.data()["unit-num"] + "&lesson=0";
+                div.appendChild(link);
                 div.classList.add("unit");
+                div.style.backgroundColor = colors[unit % colors.length];
                 unitContainer.appendChild(div);
               }
               else {

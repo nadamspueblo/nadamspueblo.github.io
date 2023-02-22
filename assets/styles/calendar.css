@@ -97,7 +97,7 @@ nav {
 }
 
 .lesson {
-  background-color: goldenrod;
+  background-color: rgba(128, 128, 128, 0.5);
   margin: 8px;
   margin-top: 64px;
   min-height: calc(20vh - 64px);
@@ -108,7 +108,16 @@ nav {
 }
 
 .unit {
-  background-color: cornflowerblue;
+  background-color:cornflowerblue;
+}
+
+.unit > a, .unit > a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.unit > a:hover {
+  text-decoration: underline;
 }
 
 .date {
