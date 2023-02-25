@@ -25,11 +25,37 @@
   </header>
     <section id="calendar-container" >
       <div id="month-bg" class="month"></div>
-      <div id="unit-container" class="lesson-month"></div>
-      <div id="lesson-container" class="lesson-month"></div>
-      
+      <div id="unit-container" class="lesson-month">
+        <div class="unit" style="grid-column-start: span 2;">
+          <a href="#">Unit title</a>
+          <div style="display:grid; grid-template-columns: repeat(2, minmax(100px, 1fr));">
+            <div class="lesson">
+              <a href="#">
+              <h4 style="margin: 0px; border-bottom: 1px solid;">3.1 Lesson title</h4>
+              Lab: Final Web Project
+              <div class="progress-bar">10 min</div>
+            </a>
+            </div>
+            <div>
+              Lesson title
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>
+       
+
+        .progress-bar {
+          min-height: 12px;
+          background-color: white;
+          color: var(--primary-text-color);
+          max-width: 40%;
+          font-size: small;
+        }
+      </style>
       
     </section>
 </body>
+<script src="assets/js/db.js"></script>
 <script src="assets/js/calendar.js"></script>
 </html>

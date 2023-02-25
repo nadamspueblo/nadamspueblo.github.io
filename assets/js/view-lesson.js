@@ -54,6 +54,7 @@ const profStandards = document.getElementById("prof-standards");
 const workBased = document.getElementById("work-based-learning");
 const vocab = document.getElementById("vocab");
 const agenda = document.getElementById("agenda");
+const lab = document.getElementById("lab");
 const notes = document.getElementById("notes");
 const editBar = document.getElementById("edit-bar");
 
@@ -72,6 +73,8 @@ const editProfSubStandardSelect = document.getElementById("edit-prof-substandard
 const editWorkBased = document.getElementById("edit-work-based-learning");
 const editVocab = document.getElementById("edit-vocab");
 const editAgenda = document.getElementById("edit-agenda");
+const editLabDuration = document.getElementById("edit-lab-duration");
+const editLabTitle = document.getElementById("edit-lab-title");
 const editNotes = document.getElementById("edit-notes");
 
 // Arrays hold db data for editing
@@ -149,6 +152,16 @@ function loadLesson() {
       pre.innerHTML = doc.data()['agenda'];
       agenda.appendChild(pre);
       editAgenda.value = doc.data()['agenda'];
+
+      pre = document.createElement("pre");
+      pre.classList.add("data-view");
+      pre.classList.add("hide-in-edit");
+      if (doc.data()["lab-title"]) {
+        pre.innerHTML = doc.data()["lab-duration"] + " min: " + doc.data()["lab-title"];
+        editLabTitle.value = doc.data()["lab-title"];
+        editLabDuration.value = doc.data()["lab-duration"];
+      }
+      lab.appendChild(pre);
 
       pre = document.createElement("pre");
       pre.classList.add("data-view");
@@ -302,7 +315,7 @@ function cancelEdit() {
   showViewElements();
 
   // Remove added standard elements
-  for (index in addedStandardElems){
+  for (index in addedStandardElems) {
     addedStandardElems[index].remove();
   }
 
@@ -363,7 +376,9 @@ function saveLesson() {
         "notes": editNotes.value,
         "tech-standards": techStandardsData,
         "prof-standards": profStandardsData,
-        "vocab": vocabData
+        "vocab": vocabData,
+        "lab-title": editLabTitle.value,
+        "lab-duration": editLabDuration.value
       }, { merge: true })
         .then(() => {
           // Notify user about success
@@ -373,10 +388,10 @@ function saveLesson() {
           lessonRef = db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum);
           changed = false;
 
-          
+
           addedTechStandards = [];
           addedProfStandards = [];
-          
+
           // Update UI
           document.title = unitNum + "." + lessonNum + " " + editLessonTitle.value + " - Pueblo HS Computer Science";
 
@@ -449,6 +464,8 @@ function hideEditElements() {
   editWorkBased.classList.add("hidden");
   editVocab.classList.add("hidden");
   editAgenda.classList.add("hidden");
+  editLabDuration.classList.add("hidden");
+  editLabTitle.classList.add("hidden");
   editNotes.classList.add("hidden");
 
   var elems = document.getElementsByClassName("small-button");
@@ -490,6 +507,8 @@ function showEditElements() {
   editWorkBased.classList.remove("hidden");
   editVocab.classList.remove("hidden");
   editAgenda.classList.remove("hidden");
+  editLabDuration.classList.remove("hidden");
+  editLabTitle.classList.remove("hidden");
   editNotes.classList.remove("hidden");
 
   var elems = document.getElementsByClassName("small-button");
@@ -512,6 +531,8 @@ function clearDataAndElements() {
   editVocab.value = "";
   editAgenda.value = "";
   editNotes.value = "";
+  editLabDuration.value = "";
+  editLabTitle.value = "";
 
   var views = document.getElementsByClassName("data-view");
   for (var i = 0; i < views.length; i++) {
@@ -639,7 +660,7 @@ function loadTechStandards() {
         profStandards.children[index + 3].classList.remove("highlight-red");
       }, 1000);
       editTechSubStandardSelect.value = 0;
-      return; 
+      return;
     }
     addedTechStandards.push(text);
     const container = document.createElement("div");
@@ -697,42 +718,42 @@ function loadProfStandards() {
       console.log("Error getting documents: ", error);
     });
 
-    editProfStandardSelect.addEventListener("change", (event) => {
-      db.collection("prof-standards").doc(event.target.value)
-        .get()
-        .then((doc) => {
-          // Remove all elements
-          while (editProfSubStandardSelect.firstChild) {
-            editProfSubStandardSelect.removeChild(editProfSubStandardSelect.lastChild);
-          }
-          // Add default option
-          var defaultOption = document.createElement("option");
-          defaultOption.value = 0;
-          defaultOption.text = "Select standard";
-          editProfSubStandardSelect.appendChild(defaultOption);
-          for (var x in doc.data()) {
-            if (x != "title" && x != "number") {
-              var option = document.createElement("option");
-              option.value = doc.data()["number"] + "." + x + " " + doc.data()[x];
-              var truncIndex = option.value.length;
-              var maxLength = 100;
-              if (option.value.length > maxLength) {
-                do {
-                  truncIndex = option.value.indexOf(" ", maxLength);
-                  maxLength -= 1;
-                } while (truncIndex < 1 && maxLength > 20);
-              }
-              option.text = option.value.substring(0, truncIndex);
-              if (option.text.length < option.value.length) option.text += " ...";
-              editProfSubStandardSelect.appendChild(option);
+  editProfStandardSelect.addEventListener("change", (event) => {
+    db.collection("prof-standards").doc(event.target.value)
+      .get()
+      .then((doc) => {
+        // Remove all elements
+        while (editProfSubStandardSelect.firstChild) {
+          editProfSubStandardSelect.removeChild(editProfSubStandardSelect.lastChild);
+        }
+        // Add default option
+        var defaultOption = document.createElement("option");
+        defaultOption.value = 0;
+        defaultOption.text = "Select standard";
+        editProfSubStandardSelect.appendChild(defaultOption);
+        for (var x in doc.data()) {
+          if (x != "title" && x != "number") {
+            var option = document.createElement("option");
+            option.value = doc.data()["number"] + "." + x + " " + doc.data()[x];
+            var truncIndex = option.value.length;
+            var maxLength = 100;
+            if (option.value.length > maxLength) {
+              do {
+                truncIndex = option.value.indexOf(" ", maxLength);
+                maxLength -= 1;
+              } while (truncIndex < 1 && maxLength > 20);
             }
+            option.text = option.value.substring(0, truncIndex);
+            if (option.text.length < option.value.length) option.text += " ...";
+            editProfSubStandardSelect.appendChild(option);
           }
-          editProfSubStandardSelect.classList.remove("hidden");
-  
-        });
-  
-  
-    });
+        }
+        editProfSubStandardSelect.classList.remove("hidden");
+
+      });
+
+
+  });
 
   editProfSubStandardSelect.addEventListener("change", (event) => {
     //console.log(event.target.value);
@@ -745,7 +766,7 @@ function loadProfStandards() {
         profStandards.children[index + 3].classList.remove("highlight-red");
       }, 1000);
       editProfSubStandardSelect.value = 0;
-      return; 
+      return;
     }
     addedProfStandards.push(text);
     const container = document.createElement("div");

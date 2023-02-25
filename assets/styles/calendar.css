@@ -85,33 +85,46 @@ nav {
   }
 }
 
-.lesson, .unit, .no-school {
+.unit, .no-school, .empty-lesson {
   color: white;
   box-sizing: border-box;
   border-radius: 8px;
   margin: 4px;
   margin-top: 33px;
   padding: 4px;
-  padding-left: 10px;
   min-height: calc(20vh - 31px);
 }
 
+.lesson-grid {
+  display: grid;
+}
+
+.lesson, .empty-lesson {
+  color: white;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 4px;
+  min-height: calc(20vh - 62px);
+  margin: 4px;
+}
+
 .lesson {
-  background-color: rgba(128, 128, 128, 0.5);
-  margin: 8px;
-  margin-top: 64px;
-  min-height: calc(20vh - 64px);
+  border: 1px solid;
 }
 
 .no-school {
-  background-color: var(--secondary-bg-color);
+  background-color: inherit;
+}
+
+.empty-lesson {
+  background-color: inherit;
 }
 
 .unit {
   background-color:cornflowerblue;
 }
 
-.unit > a, .unit > a:visited {
+.unit  a, .unit  a:visited {
   color: white;
   text-decoration: none;
 }

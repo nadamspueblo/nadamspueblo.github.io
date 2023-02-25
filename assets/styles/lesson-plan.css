@@ -67,8 +67,15 @@ section, aside {
   padding: 10px 20px;
 }
 
-@media screen and (min-width: 768px) {
+#vocab {
+  display: grid;
+  grid-template-columns: 1fr;
+}
 
+@media screen and (min-width: 768px) {
+  #vocab {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 
