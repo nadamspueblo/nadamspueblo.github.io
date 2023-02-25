@@ -13,6 +13,7 @@ const db = firebase.firestore();
 
 const urlParams = new URL(window.location.toLocaleString()).searchParams;
 var course = urlParams.get('course');
+document.getElementById("heading").innerHTML = course.toUpperCase() + " Calendar";
 
 const calendarContainer = document.getElementById("calendar-container");
 const calendarBg = document.getElementById("month-bg");
