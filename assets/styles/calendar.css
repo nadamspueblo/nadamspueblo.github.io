@@ -6,6 +6,18 @@ header {
   position: sticky;
   top: 0px;
   z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 nav {
@@ -17,35 +29,6 @@ nav {
   margin-left: auto;
   margin-right: auto;
 }
-
-.arrow-up {
-  width: 0; 
-  height: 0; 
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  
-  border-bottom: 15px solid var(--primary-text-color);
-
-  margin: 5px;
-  margin-bottom: 0px;
-  cursor: pointer;
-}
-
-.arrow-down {
-  margin: 5px;
-  margin-bottom: 0px;
-  width: 0; 
-  height: 0; 
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  
-  border-top: 15px solid var(--primary-text-color);
-  
-  margin: 5px;
-  margin-bottom: 0px;
-  cursor: pointer;
-}
-
 
 #calendar-container {
   position: relative;
@@ -85,7 +68,7 @@ nav {
   }
 }
 
-.unit, .no-school, .empty-lesson {
+.unit, .no-school, .empty-lesson, .new-unit-button {
   color: white;
   box-sizing: border-box;
   border-radius: 8px;
@@ -99,17 +82,25 @@ nav {
   display: grid;
 }
 
-.lesson, .empty-lesson {
+.lesson, .empty-lesson, .new-lesson-button {
   color: white;
   box-sizing: border-box;
   border-radius: 8px;
   padding: 4px;
-  min-height: calc(20vh - 62px);
+  /*min-height: calc(20vh - 62px);*/
   margin: 4px;
 }
 
 .lesson {
   border: 1px solid;
+}
+
+.progress-bar {
+  min-height: 12px;
+  background-color: white;
+  color: var(--primary-text-color);
+  max-width: 40%;
+  font-size: small;
 }
 
 .no-school {
@@ -131,6 +122,25 @@ nav {
 
 .unit > a:hover {
   text-decoration: underline;
+}
+
+.new-unit-button, .new-lesson-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: xx-large;
+  color: var(--primary-bg-color);
+  transition: 100ms linear;
+}
+
+.new-lesson-button {
+  color: white;
+}
+
+.new-unit-button:hover {
+  color: white;
+  border: 2px solid ;
+  cursor: pointer;
 }
 
 .date {

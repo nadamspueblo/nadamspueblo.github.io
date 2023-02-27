@@ -1,62 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
+  <link rel="stylesheet" href="assets/styles/account-styles.css">
   <link rel="stylesheet" href="assets/styles/calendar.css">
   <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
   <title>Calendar - Pueblo HS Computer Science</title>
 </head>
+
 <body>
   <header>
-    <h2>PH:\S> Computer Science</h2>
-    <h1 id="heading">CS1-2 Calendar</h1>
+    <div style="width: fit-content;">
+      <h2><a href="index.html">PH:\S> Computer Science</a></h2>
+      <h1 id="heading">CS1-2 Calendar</h1>
+    </div>
+    <form id="account" class="primary-bg-color" onsubmit="return false">
+      <input id="user-email" type="email" placeholder="name@domain.com">
+      <input id="user-password" type="password" placeholder="password">
+      <button id="sign-in-button" class="acct-button" onclick="signIn()">Sign-in</button>
+      <span id="account-info" style="color: var(--light-text-color)"></span>
+      <button id="sign-out-button" class="acct-button hidden" onclick="auth.signOut()">Sign-out</button>
+    </form>
     <nav>
       <div class="arrow-up" onclick="prevMonth()"></div>
       <h2 id="month-name">August</h2>
       <div class="arrow-down" onclick="nextMonth()"></div>
     </nav>
   </header>
-    <section id="calendar-container" >
-      <div id="month-bg" class="month"></div>
-      <div id="unit-container" class="lesson-month">
-        <div class="unit" style="grid-column-start: span 2;">
-          <a href="#">Unit title</a>
-          <div style="display:grid; grid-template-columns: repeat(2, minmax(100px, 1fr));">
-            <div class="lesson">
-              <a href="#">
-              <h4 style="margin: 0px; border-bottom: 1px solid;">3.1 Lesson title</h4>
-              Lab: Final Web Project
-              <div class="progress-bar">10 min</div>
-            </a>
-            </div>
-            <div>
-              Lesson title
-            </div>
-          </div>
-        </div>
-      </div>
-      <style>
-       
-
-        .progress-bar {
-          min-height: 12px;
-          background-color: white;
-          color: var(--primary-text-color);
-          max-width: 40%;
-          font-size: small;
-        }
-      </style>
+  <section id="calendar-container">
+    <div id="month-bg" class="month"></div>
+    <div id="unit-container" class="lesson-month">
       
-    </section>
+    </div>
+
+  </section>
 </body>
 <script src="assets/js/db.js"></script>
 <script src="assets/js/calendar.js"></script>
+
 </html>

@@ -5,11 +5,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  
+
   <link rel="stylesheet" href="assets/styles/account-styles.css">
   <link rel="stylesheet" href="assets/styles/lesson-plan.css">
   <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
@@ -21,17 +21,21 @@
   <header>
     <div>
       <h1 id="unit-title">Unit title</h1>
-      <h2 id="lesson-title">Lesson title</h2>
-      <input id="edit-unit-title" class="header-editbox" type="text" placeholder="Unit title">
-      <div id="edit-header">
-        <input id="edit-unit-num" class="header-editbox" type="number" style="width: 4em;" placeholder="Unit #">
-        <input id="edit-lesson-num" class="header-editbox" type="number" style="width: 5em;" placeholder="Lesson #">
-        <input id="edit-lesson-title" class="header-editbox" type="text" placeholder="Lesson title">
-        <input id="edit-duration" class="header-editbox" type="number" placeholder="Number of 50-min classes">
+      <div style="display: flex; align-items: center;">
+        <div class="arrow-up" onclick="prevLesson()"></div>
+        <h2 id="lesson-title">Lesson title</h2>
+        <input id="edit-unit-title" class="header-editbox" type="text" placeholder="Unit title">
+        <div id="edit-header">
+          <input id="edit-unit-num" class="header-editbox" type="number" style="width: 4em;" placeholder="Unit #">
+          <input id="edit-lesson-num" class="header-editbox" type="number" style="width: 4em;" placeholder="Lesson #">
+          <input id="edit-lesson-title" class="header-editbox" type="text" placeholder="Lesson title">
+          <input id="edit-duration" class="header-editbox" type="number" placeholder="Number of 50-min classes">
+        </div>
+        <div class="arrow-down" onclick="nextLesson()"></div>
       </div>
 
     </div>
-    <p id="header-details">
+    <p id="header-details" style="align-self: flex-end;">
       <span id="lesson-date">August 1</span> SY: <span id="lesson-year">2022-23</span><br>
       Nathan Adams<br>
       Pueblo High School<br>
@@ -39,13 +43,13 @@
     </p>
   </header>
 
-  <section id="account">
+  <form id="account" class="primary-bg-color" style="width:auto;" onsubmit="return false">
     <input id="user-email" type="email" placeholder="name@domain.com">
     <input id="user-password" type="password" placeholder="password">
     <button id="sign-in-button" class="acct-button" onclick="signIn()">Sign-in</button>
     <span id="account-info" style="color: var(--light-text-color)"></span>
     <button id="sign-out-button" class="acct-button hidden" onclick="auth.signOut()">Sign-out</button>
-  </section>
+  </form>
 
   <div id="edit-bar" class="edit-bar" style="display: none;">
     <button id="new-button" class="button" onclick="newLesson()">New</button>
@@ -55,7 +59,7 @@
     <button id="delete-button" class="button hide-button" onclick="deleteLesson()">Delete</button>
   </div>
 
-  <main>
+  <main class="primary-bg-color">
     <section id="objectives">
       <h2>Objectives</h2>
       <textarea id="edit-objectives" rows="3" placeholder="Learning objectives"></textarea>
@@ -112,7 +116,8 @@
 
     <section id="lab">
       <h2>Lab</h2>
-      <input id="edit-lab-duration" type="number" placeholder="Lab min" style="width: 5em;"><input id="edit-lab-title" type="text" placeholder="Lab title" style="width: calc(100% - 6em)">
+      <input id="edit-lab-duration" type="number" placeholder="Lab min" style="width: 5em;"><input id="edit-lab-title"
+        type="text" placeholder="Lab title" style="width: calc(100% - 6em)">
     </section>
 
     <section id="notes">
@@ -127,6 +132,7 @@
   </footer>
 </body>
 
+<script src="assets/js/db.js"></script>
 <script src="assets/js/view-lesson.js"></script>
 
 </html>

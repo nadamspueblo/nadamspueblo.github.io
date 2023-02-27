@@ -13,7 +13,62 @@ const db = firebase.firestore();
 
 const urlParams = new URL(window.location.toLocaleString()).searchParams;
 var course = urlParams.get('course');
+if (!course) course = "cs1-2";
 document.getElementById("heading").innerHTML = course.toUpperCase() + " Calendar";
+
+// Initialize FirebaseUI authentication
+const auth = firebase.auth();
+var user;
+auth.onAuthStateChanged((_user) => {
+  if (_user) {
+    // User is signed in
+    user = _user;
+
+    // Update UI
+    document.getElementById("user-email").classList.add("hidden");
+    document.getElementById("user-password").classList.add("hidden");
+    document.getElementById("sign-in-button").classList.add("hidden");
+    document.getElementById("sign-out-button").classList.remove("hidden");
+    document.getElementById("account-info").innerHTML = user.email;
+
+    createAddUnitButton();
+
+    console.log("User signed in");
+
+  } else {
+    // User is signed out
+    // Update UI
+    document.getElementById("user-email").classList.remove("hidden");
+    document.getElementById("user-password").classList.remove("hidden");
+    document.getElementById("sign-in-button").classList.remove("hidden");
+    document.getElementById("sign-out-button").classList.add("hidden");
+    document.getElementById("account-info").innerHTML = "";
+
+    removeAddUnitButton();
+    var elems = document.getElementsByClassName("new-lesson-button");
+    for (e of elems) {
+      e.remove();
+    }
+    console.log("User signed out");
+  }
+});
+
+function signIn() {
+  email = document.getElementById("user-email");
+  password = document.getElementById("user-password");
+  auth.signInWithEmailAndPassword(email.value, password.value)
+    .then((userCredential) => {
+      // Signed in
+      user = userCredential.user;
+      password.value = "";
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert("Error signing in: ", errorMessage);
+    });
+}
 
 const calendarContainer = document.getElementById("calendar-container");
 const calendarBg = document.getElementById("month-bg");
@@ -174,6 +229,7 @@ calendarContainer.style.minHeight = calendarBg.offsetHeight + "px";
 var colors = ["cornflowerblue", "goldenrod"];
 var unitStartDate;
 var units = new Map(), lessons = [];
+var lastUnitNum = 0;
 
 function nextMonth() {
   displayMonth++;
@@ -215,40 +271,6 @@ function loadCurriculum() {
       console.log(error);
     });
 }
-
-var lessonConverter = {
-  toFirestore: function (lesson) {
-    return {
-      "academic-integration": lesson.academicIntegration,
-      agenda: lesson.agenda,
-      assessment: lesson.assessment,
-      "cte-program": lesson.cteProgram,
-      duration: lesson.duration,
-      "lab-title": lesson.labTitle,
-      "lab-duration": lesson.labDuration,
-      "lesson-num": lesson.lessonNum,
-      "lesson-title": lesson.lessonTitle,
-      notes: lesson.notes,
-      objectives: lesson.objectives,
-      "prof-standards": lesson.profStandards,
-      school: lesson.school,
-      "start-date": lesson.startDate,
-      "teacher-name": lesson.teacherName,
-      "tech-standards": lesson.techStandards,
-      "unit-num": unitNum,
-      "unit-title": lesson.unitTitle,
-      vocab: lesson.vocab,
-      "work-based-learning": workBasedLearning
-    }
-  },
-  fromFirestore: function (snapshot, options) {
-    const data = snapshot.data(options);
-    return new Lesson(data["academic-integration"], data["agenda"], data["assessment"], data["cte-program"],
-      parseInt(data["duration"]), data["lab-title"], parseInt(data["lab-duration"]), parseInt(data["lesson-num"]), data["lesson-title"], data["notes"], data["objectives"],
-      data["prof-standards"], data["school"], data["start-date"], data["teacher-name"], data["tech-standards"], parseInt(data["unit-num"]),
-      data["unit-title"], data["vocab"], data["work-based-learning"]);
-  }
-};
 
 function loadLessons(unit, last = false) {
   db.collection(course + "-curriculum").doc("unit-" + unit).collection("lessons")
@@ -294,10 +316,12 @@ function fillCalendar() {
   setDisplayDates(displayMonth);
   unitStartDate = new Date(nextOpenDate.getTime());
   fillUnitGrid();
+  if (user && totalLessonDays < 25) {
+    createAddUnitButton();
+  }
   // Reset counters
   nextOpenDate = new Date(calendarStartDate.getTime());
   totalLessonDays = 0;
-  //fillLessonGridOld();
   fillLessons();
 }
 
@@ -330,6 +354,9 @@ function fillUnitGrid() {
     if (unitEndDate > nextOpenDate && unitStartDate <= calendarEndDate) {
       // Calc how many days fit on the calendar
       days = getSchoolDaysBetween(nextOpenDate, unitEndDate);
+
+      // Store unit num to use in add unit link
+      lastUnitNum = key;
 
       for (var i = 0; totalLessonDays < 25 && i < days;) {
         var div = document.createElement("div");
@@ -391,6 +418,8 @@ function fillLessons() {
         }
       }
 
+      // Flag is set true when create
+
       // For each unit element add as many lessons as will fit 
       for (e of unit.elements) {
 
@@ -410,7 +439,7 @@ function fillLessons() {
             h4.style.borderBottom = "1px solid";
             h4.innerHTML = lesson.unitNum + "." + lesson.lessonNum + " " + lesson.lessonTitle;
             a.appendChild(h4);
-            if (lesson.labTitle != undefined){
+            if (lesson.labTitle) {
               var p = document.createElement("p");
               p.innerHTML = "Lab: " + lesson.labTitle;
               p.style.marginBottom = "0px";
@@ -429,6 +458,37 @@ function fillLessons() {
             grid.appendChild(div);
           }
           freeSpace -= freeSpace - lesson.duration;
+        }
+
+        // Add new lesson button if still a free space
+        if (freeSpace > 1) {
+          const elem = e;
+          const div = document.createElement("div");
+          div.classList.add("new-lesson-button");
+          div.style.color = elem.style.backgroundColor;
+          div.innerHTML = "+";
+          div.classList.add("hidden");
+          div.addEventListener("click", () => {
+            if (auth.currentUser) {
+              window.location.href = "view-lesson.html?course=" + course + "&unit=" + unit.unitNum + "&lesson=" + (unit.lessons.length + 1);
+            }
+          });
+          div.addEventListener("mouseenter", (ev) => {
+            if (auth.currentUser) {
+              div.style.cursor = "pointer";
+              div.style.color = "white";
+              div.style.border = "2px solid";
+            }
+          });
+          div.addEventListener("mouseleave", (ev) => {
+            if (auth.currentUser) {
+              div.style.color = elem.style.backgroundColor;
+              div.style.border = "2px solid";
+            }
+            div.style.cursor = "arrow";
+          });
+          var grid = e.children[1];
+          grid.appendChild(div);
         }
       }
 
@@ -468,5 +528,31 @@ function clearCalendar() {
     i--;
   }
 
+  views = document.getElementsByClassName("new-unit-button");
+  for (var i = 0; i < views.length; i++) {
+    views[i].remove();
+    i--;
+  }
+
   totalLessonDays = 0;
+}
+
+function createAddUnitButton() {
+  if (document.getElementsByClassName("new-unit-button").length > 0 || totalLessonDays >= 25 || units.size == 0) return;
+  var div = document.createElement("div");
+  div.classList.add("new-unit-button");
+  div.classList.add("has-account");
+  div.innerHTML = "+";
+  div.classList.add("hidden");
+  div.addEventListener("click", () => {
+    window.location.href = "view-lesson.html?course=" + course + "&unit=" + (lastUnitNum + 1) + "&lesson=0";
+  });
+  unitContainer.appendChild(div);
+}
+
+function removeAddUnitButton() {
+  var elems = document.getElementsByClassName("new-unit-button");
+  for (e of elems) {
+    e.remove();
+  }
 }

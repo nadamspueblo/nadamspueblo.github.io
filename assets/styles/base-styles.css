@@ -73,6 +73,37 @@ h2 {
   background-color: var(--dark-bg-color);
 }
 
+/* Shapes */
+
+.arrow-up {
+  width: 0; 
+  height: 0; 
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  
+  border-bottom: 15px solid var(--primary-text-color);
+
+  margin: 5px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+.arrow-down {
+  margin: 5px;
+  margin-bottom: 0px;
+  width: 0; 
+  height: 0; 
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  
+  border-top: 15px solid var(--primary-text-color);
+  
+  margin: 5px;
+  margin-bottom: 0px;
+  cursor: pointer;
+}
+
+
 .data {
   display: none;
   overflow: hidden;

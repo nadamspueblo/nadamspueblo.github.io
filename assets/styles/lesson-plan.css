@@ -30,6 +30,7 @@ header h2 {
 p, pre {
   width: fit-content;
   font-family: "Sofia Sans";
+  font-size: large;
   color: var(--light-text-color);
   padding: 0px 20px;
   transition: 200ms linear;
@@ -59,12 +60,15 @@ ul li {
 
 main {
   display: block;
+  overflow: hidden;
 }
 
 section, aside {
   width: auto;
-  background-color: var(--primary-bg-color);
+  background-color: var(--active-primary-bg-color);
   padding: 10px 20px;
+  margin: 20px 20px;
+  border-radius: 10px;
 }
 
 #vocab {
@@ -81,6 +85,20 @@ section, aside {
 
 section h2, aside h2 {
   border-bottom: 2px solid var(--primary-text-color);
+}
+
+.lesson-link {
+  display: block;
+  width: fit-content;
+  color: var(--light-text-color);
+  text-decoration: none;
+  font-family: "Sofia Sans";
+  font-size: large;
+  margin: 10px;
+}
+
+.lesson-link:hover{
+  text-decoration: underline;
 }
 
 summary, details {
