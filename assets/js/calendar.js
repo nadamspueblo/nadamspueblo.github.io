@@ -474,7 +474,7 @@ function fillLessons() {
               div.appendChild(minBar);
             }
             div.classList.add("lesson");
-            div.style.gridColumnStart = "span " + Math.min(lesson.duration, freeSpace - lesson.duration + 1);
+            div.style.gridColumnStart = "span " + Math.min(lesson.duration, freeSpace);
             
             var grid = e.children[1];
             grid.appendChild(div);
