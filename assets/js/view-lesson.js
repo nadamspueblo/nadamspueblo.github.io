@@ -138,7 +138,10 @@ function showLesson() {
   editUnitTitle.value = openUnit.title;
   lessonTitle.innerHTML = unitNum + "." + lessonNum + " " + lesson.lessonTitle;
   editLessonNum.value = lessonNum;
-  if (lessonNum == 0) editLessonTitle.value = "Unit Plan";
+  if (lessonNum == 0) {
+    editLessonTitle.value = "Unit Plan";
+    lessonTitle.innerHTML = "Unit Plan";
+  }
   else editLessonTitle.value = lesson.lessonTitle;
   editDuration.value = lesson.duration;
 

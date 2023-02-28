@@ -76,6 +76,9 @@ nav {
   margin-top: 31px;
   padding: 4px;
   min-height: calc(20vh - 31px);
+  font-size: small;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .lesson-grid {
@@ -101,6 +104,8 @@ nav {
   color: var(--primary-text-color);
   max-width: 40%;
   font-size: small;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .no-school {
@@ -113,6 +118,8 @@ nav {
 
 .unit {
   background-color:cornflowerblue;
+  display: flex;
+  flex-direction: column;
 }
 
 .unit  a, .unit  a:visited {

@@ -77,6 +77,15 @@ const unitContainer = document.getElementById("unit-container");
 addEventListener("resize", (event) => {
   unitContainer.style.maxWidth = calendarBg.offsetWidth + "px";
   unitContainer.style.minWidth = calendarBg.offsetWidth + "px";
+  
+  var dayElem = document.getElementById("0");
+  dayElemHeight = dayElem.offsetHeight;
+  headingHeight = dayElem.children[0].offsetHeight;
+
+  for (var e of document.getElementsByClassName("unit")) {
+    e.style.height = (dayElemHeight - headingHeight) + "px";
+    e.style.marginTop = (headingHeight + 1) + "px";
+  }
 });
 
 // Set calendar to display dates for the given month 0 = Jan
@@ -93,6 +102,7 @@ if (urlParams.get('month')) {
 }
 let currentState = history.state;
 var totalLessonDays = 0;
+var dayElemHeight, headingHeight;
 setNoSchoolDays();
 loadCurriculum();
 
@@ -127,6 +137,9 @@ function setDisplayDates(month) {
     else day.setDate(day.getDate() + 1);
   }
   calendarEndDate = day;
+  var dayElem = document.getElementById("0");
+  dayElemHeight = dayElem.offsetHeight;
+  headingHeight = dayElem.children[0].offsetHeight;
 }
 
 function getSchoolDaysBetween(date1, date2) {
@@ -240,6 +253,7 @@ function nextMonth() {
     displayMonth = 4;
   urlParams.set("month", displayMonth);
   window.history.replaceState(currentState, "month " + displayMonth, "calendar.html?" + urlParams.toString());
+  window.scrollTo(0, 0);
 }
 
 function prevMonth() {
@@ -252,6 +266,7 @@ function prevMonth() {
     displayMonth = 7;
   urlParams.set("month", displayMonth);
   window.history.replaceState(currentState, "month " + displayMonth, "calendar.html?" + urlParams.toString());
+  window.scrollTo(0, 0);
 }
 
 function loadCurriculum() {
@@ -374,10 +389,13 @@ function fillUnitGrid() {
           div.classList.add("unit");
           var grid = document.createElement("div");
           grid.style.display = "grid";
+          grid.style.height = "100%";
           //grid-template-columns: repeat(2, minmax(100px, 1fr));
           grid.style.gridTemplateColumns = "repeat(" + freeSpace + ", minmax(100px, 1fr))";
           div.appendChild(grid);
           div.style.backgroundColor = colors[unit.unitNum % colors.length];
+          div.style.height = (dayElemHeight - headingHeight) + "px";
+          div.style.marginTop = (headingHeight + 1) + "px";
           unitContainer.appendChild(div);
           unit.elements.push(div);
 
@@ -437,23 +455,27 @@ function fillLessons() {
             var h4 = document.createElement("h4");
             h4.style.margin = "0px";
             h4.style.borderBottom = "1px solid";
-            h4.innerHTML = lesson.unitNum + "." + lesson.lessonNum + " " + lesson.lessonTitle;
-            a.appendChild(h4);
+            h4.style.whiteSpace = "nowrap";
+            h4.style.overflow = "hidden";
+            a.innerHTML = lesson.unitNum + "." + lesson.lessonNum + " " + lesson.lessonTitle;
+            h4.appendChild(a);
+            div.appendChild(h4);
             if (lesson.labTitle) {
               var p = document.createElement("p");
               p.innerHTML = "Lab: " + lesson.labTitle;
               p.style.marginBottom = "0px";
               p.style.marginTop = "4px";
-              a.appendChild(p);
+              div.appendChild(p);
               var minBar = document.createElement("div");
               minBar.classList.add("progress-bar");
-              minBar.style.maxWidth = (100 * lesson.labDuration / 45) + "%";
+              var totalMin = lesson.duration % 2 == 1 ? lesson.duration * 50 : lesson.duration * 45;
+              minBar.style.maxWidth = (100 * lesson.labDuration / totalMin) + "%";
               minBar.innerHTML = lesson.labDuration + " min";
-              a.appendChild(minBar);
+              div.appendChild(minBar);
             }
             div.classList.add("lesson");
             div.style.gridColumnStart = "span " + Math.min(lesson.duration, freeSpace - lesson.duration + 1);
-            div.appendChild(a);
+            
             var grid = e.children[1];
             grid.appendChild(div);
           }
