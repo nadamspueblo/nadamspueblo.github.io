@@ -479,11 +479,11 @@ function fillLessons() {
             var grid = e.children[1];
             grid.appendChild(div);
           }
-          freeSpace -= freeSpace - lesson.duration;
+          freeSpace -= lesson.duration;
         }
 
         // Add new lesson button if still a free space
-        if (freeSpace > 1) {
+        if (freeSpace > 0) {
           const elem = e;
           const div = document.createElement("div");
           div.classList.add("new-lesson-button");
