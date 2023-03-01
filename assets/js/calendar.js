@@ -436,7 +436,8 @@ function fillLessons() {
         }
       }
 
-      // Flag is set true when create
+      // The remainder of days after filling a unit element with a lesson (likely over 2+ days)
+      var remDays = 0;
 
       // For each unit element add as many lessons as will fit 
       for (e of unit.elements) {
@@ -447,7 +448,7 @@ function fillLessons() {
         // Add lessons
         for (; indexToStart < unit.lessons.length && freeSpace > 0; indexToStart++) {
           var lesson = unit.lessons[indexToStart];
-          if (lesson.duration <= freeSpace) {
+          remDays = remDays > 0 ? remDays : lesson.duration;
             var div = document.createElement("div");
             var a = document.createElement("a");
             a.href = "view-lesson.html?course=cs1-2&unit=" + lesson.unitNum + "&lesson=" + lesson.lessonNum;
@@ -468,18 +469,25 @@ function fillLessons() {
               div.appendChild(p);
               var minBar = document.createElement("div");
               minBar.classList.add("progress-bar");
-              var totalMin = lesson.duration % 2 == 1 ? lesson.duration * 50 : lesson.duration * 45;
-              minBar.style.maxWidth = (100 * lesson.labDuration / totalMin) + "%";
+              var totalMin = lesson.duration % 2 == 1 ? Math.min(freeSpace, remDays) * 50 : Math.min(freeSpace, remDays) * 45;
+              minBar.style.maxWidth = (100 * lesson.labDuration / Math.min(freeSpace, remDays) / totalMin) + "%";
               minBar.innerHTML = lesson.labDuration + " min";
               div.appendChild(minBar);
             }
             div.classList.add("lesson");
-            div.style.gridColumnStart = "span " + Math.min(lesson.duration, freeSpace);
+            div.style.gridColumnStart = "span " + Math.min(remDays, freeSpace);
             
             var grid = e.children[1];
             grid.appendChild(div);
+          if (remDays > freeSpace){
+            remDays -= freeSpace;
+            freeSpace = 0;
+            indexToStart--;
           }
-          freeSpace -= lesson.duration;
+          else {
+            freeSpace -= remDays;
+            remDays = 0;
+          }
         }
 
         // Add new lesson button if still a free space
