@@ -132,6 +132,16 @@ function loadUnit() {
 function showLesson() {
   // Lesson number 0 is the unit plan
   var lesson = openUnit.lessons[lessonNum];
+
+  // Check for new lesson
+  if (!lesson) {
+    // Set unit title if this is a new
+    unitTitle.innerHTML = "Unit " + unitNum + " " + openUnit.title;
+    editUnitTitle.value = openUnit.title;
+    // Everything else will have default values
+    return;
+  }
+
   document.title = unitNum + "." + lessonNum + " " + lesson.lessonTitle + " - Pueblo HS Computer Science";
   unitTitle.innerHTML = "Unit " + unitNum + " " + openUnit.title;
   editUnitNum.value = unitNum;
@@ -404,159 +414,6 @@ function prevLesson() {
   lessonNum = Math.max(lessonNum, 0);
   clearDataAndElements();
   showLesson();
-}
-
-function loadLessonOld() {
-  if (lessonRef) {
-    lessonRef.get().then((doc) => {
-      unitNum = doc.data()['unit-num'];
-      lessonNum = doc.data()['lesson-num']
-      document.title = unitNum + "." + lessonNum + " " + doc.data()['lesson-title'] + " - Pueblo HS Computer Science";
-      unitTitle.innerHTML = "Unit " + unitNum + " " + doc.data()['unit-title'];
-      editUnitNum.value = unitNum;
-      editUnitTitle.value = doc.data()['unit-title'];
-      lessonTitle.innerHTML = unitNum + "." + lessonNum + " " + doc.data()['lesson-title'];
-      editLessonNum.value = lessonNum;
-      editLessonTitle.value = doc.data()['lesson-title'];
-      editDuration.value = doc.data()['duration'];
-
-      var pre = document.createElement("pre");
-      pre.innerHTML = doc.data()['objectives'];
-      pre.classList.add("data-view");
-      pre.classList.add("hide-in-edit");
-      objectives.appendChild(pre);
-      editObjectives.value = doc.data()['objectives'];
-
-      pre = document.createElement("pre");
-      pre.classList.add("data-view");
-      pre.classList.add("hide-in-edit");
-      pre.innerHTML = doc.data()['assessment'];
-      assessment.appendChild(pre);
-      editAssessment.value = doc.data()['assessment'];
-
-      pre = document.createElement("pre");
-      pre.classList.add("data-view");
-      pre.classList.add("hide-in-edit");
-      pre.innerHTML = doc.data()['academic-integration'];
-      academic.appendChild(pre);
-      editAcademic.value = doc.data()['academic-integration'];
-
-      pre = document.createElement("pre");
-      pre.classList.add("data-view");
-      pre.classList.add("hide-in-edit");
-      pre.innerHTML = doc.data()['work-based-learning'];
-      workBased.appendChild(pre);
-      editWorkBased.value = doc.data()['work-based-learning'];
-
-      pre = document.createElement("pre");
-      pre.classList.add("data-view");
-      pre.classList.add("hide-in-edit");
-      pre.innerHTML = doc.data()['agenda'];
-      agenda.appendChild(pre);
-      editAgenda.value = doc.data()['agenda'];
-
-      pre = document.createElement("pre");
-      pre.classList.add("data-view");
-      pre.classList.add("hide-in-edit");
-      if (doc.data()["lab-title"]) {
-        pre.innerHTML = doc.data()["lab-duration"] + " min: " + doc.data()["lab-title"];
-        editLabTitle.value = doc.data()["lab-title"];
-        editLabDuration.value = doc.data()["lab-duration"];
-      }
-      lab.appendChild(pre);
-
-      pre = document.createElement("pre");
-      pre.classList.add("data-view");
-      pre.classList.add("hide-in-edit");
-      pre.innerHTML = doc.data()['notes'];
-      notes.appendChild(pre);
-      editNotes.value = doc.data()['notes'];
-
-      techStandardsData = doc.data()['tech-standards'];
-      for (var x in techStandardsData) {
-        const container = document.createElement("div");
-        container.classList.add("edit-container");
-        var button = document.createElement("div");
-        button.classList.add("small-button");
-        button.classList.add("btn-color-red");
-        button.classList.add("hidden");
-        button.innerHTML = "x";
-        const value = techStandardsData[x];
-        button.addEventListener("click", () => {
-          container.remove();
-          var index = techStandardsData.indexOf(value);
-          if (index !== -1) {
-            techStandardsData.splice(index, 1);
-          }
-          console.log(techStandardsData);
-        });
-        container.appendChild(button);
-        pre = document.createElement("pre");
-        pre.classList.add("data-view");
-        pre.innerHTML = techStandardsData[x];
-        container.appendChild(pre);
-        techStandards.appendChild(container);
-      }
-
-      profStandardsData = doc.data()['prof-standards'];
-      for (var x in profStandardsData) {
-        const container = document.createElement("div");
-        container.classList.add("edit-container");
-        var button = document.createElement("div");
-        button.classList.add("small-button");
-        button.classList.add("btn-color-red");
-        button.classList.add("hidden");
-        button.innerHTML = "x";
-        const value = profStandardsData[x];
-        button.addEventListener("click", () => {
-          container.remove();
-          var index = profStandardsData.indexOf(value);
-          if (index !== -1) {
-            profStandardsData.splice(index, 1);
-          }
-          console.log(profStandardsData);
-        });
-        container.appendChild(button);
-        pre = document.createElement("pre");
-        pre.classList.add("data-view");
-        pre.innerHTML = profStandardsData[x];
-        container.appendChild(pre);
-        profStandards.appendChild(container);
-      }
-
-      vocabData = doc.data()['vocab'];
-      for (var x in vocabData) {
-        const container = document.createElement("div");
-        container.classList.add("edit-container");
-        var button = document.createElement("div");
-        button.classList.add("small-button");
-        button.classList.add("btn-color-red");
-        button.classList.add("hidden");
-        button.innerHTML = "x";
-        const value = vocabData[x];
-        button.addEventListener("click", () => {
-          container.remove();
-          var index = vocabData.indexOf(value);
-          if (index !== -1) {
-            vocabData.splice(index, 1);
-          }
-        });
-        container.appendChild(button);
-        var details = document.createElement("details");
-        var summary = document.createElement("summary");
-        var wordData = vocabData[x].split(":");
-        summary.innerHTML = wordData[0];
-        details.innerHTML = wordData[1];
-        details.appendChild(summary);
-        details.classList.add("data-view")
-        container.appendChild(details);
-        vocab.appendChild(container);
-      }
-    })
-      .catch((error) => {
-        console.log("Error getting document: ", error);
-      });
-  }
 }
 
 // Firebase Authentication
