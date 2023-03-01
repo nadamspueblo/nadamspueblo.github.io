@@ -410,7 +410,13 @@ function fillUnitGrid() {
         }
       }
     }
-    unitStartDate = new Date(unitEndDate.getTime() + oneDayMilli);
+    unitStartDate = new Date(unitEndDate.getTime());
+  }
+  // Fill no-school days at end of calendar
+  while (!isSchoolDay(nextOpenDate)) {
+    addNoSchoolDay(noSchoolDays.get(nextOpenDate.toLocaleDateString('en-us', dateKeyOptions)));
+    totalLessonDays++;
+    advanceNextOpenDate();
   }
 }
 
@@ -418,6 +424,7 @@ function fillLessons() {
   for (var [key, unit] of units) {
     // Determine if unit is visible
     var visibleLength = getSchoolDaysBetween(nextOpenDate, new Date(unit.endDate));
+    console.log("Unit end date ", unit.endDate);
 
     // If visible, determine how many days are visible
     if (visibleLength > 0) {
