@@ -281,6 +281,11 @@ function loadCurriculum() {
         var doc = querySnapShot.docs[i];
         loadLessons(parseInt(doc.data()["unit-num"]), i == querySnapShot.docs.length - 1);
       };
+      
+      if (querySnapShot.docs.length == 0){
+        console.log(querySnapShot.docs.length);
+        createAddUnitButton();
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -575,7 +580,7 @@ function clearCalendar() {
 }
 
 function createAddUnitButton() {
-  if (document.getElementsByClassName("new-unit-button").length > 0 || totalLessonDays >= 25 || units.size == 0) return;
+  if (document.getElementsByClassName("new-unit-button").length > 0 || totalLessonDays >= 25/* || units.size == 0*/) return;
   var div = document.createElement("div");
   div.classList.add("new-unit-button");
   div.classList.add("has-account");
