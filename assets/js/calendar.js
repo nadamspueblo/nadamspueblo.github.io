@@ -413,7 +413,7 @@ function fillUnitGrid() {
     unitStartDate = new Date(unitEndDate.getTime());
   }
   // Fill no-school days at end of calendar
-  while (!isSchoolDay(nextOpenDate)) {
+  while (!isSchoolDay(nextOpenDate) && totalLessonDays < 25) {
     addNoSchoolDay(noSchoolDays.get(nextOpenDate.toLocaleDateString('en-us', dateKeyOptions)));
     totalLessonDays++;
     advanceNextOpenDate();
@@ -424,14 +424,15 @@ function fillLessons() {
   for (var [key, unit] of units) {
     // Determine if unit is visible
     var visibleLength = getSchoolDaysBetween(nextOpenDate, new Date(unit.endDate));
-    console.log("Unit end date ", unit.endDate);
 
     // If visible, determine how many days are visible
     if (visibleLength > 0) {
 
       // Determine which lesson corresponds to the first visible day
-      var daysToSkip = unit.duration - visibleLength;
+      var daysToSkip = Math.max(0, unit.duration - visibleLength);
       var indexToStart = 0;
+      // The remainder of days after filling a unit element with a lesson (likely over 2+ days)
+      var remDays = 0;
       for (var i = 0; i < unit.lessons.length && daysToSkip > 0; i++) {
         var lesson = unit.lessons[i];
         if (lesson.duration <= daysToSkip) {
@@ -439,12 +440,11 @@ function fillLessons() {
           daysToSkip -= lesson.duration;
         }
         else {
-          indexToStart = i;// + (lesson.duration - daysToSkip) / lesson.duration;
+          indexToStart = i;
+          remDays = lesson.duration - daysToSkip;
+          daysToSkip = 0;
         }
       }
-
-      // The remainder of days after filling a unit element with a lesson (likely over 2+ days)
-      var remDays = 0;
 
       // For each unit element add as many lessons as will fit 
       for (e of unit.elements) {

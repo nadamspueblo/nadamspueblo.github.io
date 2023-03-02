@@ -96,6 +96,8 @@ nav {
 
 .lesson {
   border: 1px solid;
+  white-space: normal;
+  overflow: hidden;
 }
 
 .progress-bar {
