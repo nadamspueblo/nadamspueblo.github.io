@@ -463,7 +463,7 @@ function fillLessons() {
           remDays = remDays > 0 ? remDays : lesson.duration;
             var div = document.createElement("div");
             var a = document.createElement("a");
-            a.href = "view-lesson.html?course=cs1-2&unit=" + lesson.unitNum + "&lesson=" + lesson.lessonNum;
+            a.href = "view-lesson.html?course=" + course + "&unit=" + lesson.unitNum + "&lesson=" + lesson.lessonNum;
             //a.innerHTML = lesson.unitNum + "." + lesson.lessonNum + " " + lesson.lessonTitle;
             var h4 = document.createElement("h4");
             h4.style.margin = "0px";
