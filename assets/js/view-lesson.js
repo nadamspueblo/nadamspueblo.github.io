@@ -91,9 +91,10 @@ var course = urlParams.get('course');
 var unitNum = urlParams.get('unit');
 var lessonNum = urlParams.get('lesson');
 var unitTitleText = urlParams.get("unit-title");
+var startInEditMode = urlParams.get("edit");
 if (course && unitNum && lessonNum) {
   lessonRef = db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum);
-  if (!unitTitleText) unitTitleText = "Untitled"
+  if (!unitTitleText) unitTitleText = "Untitled";
   unitTitle.innerHTML = "Unit " + unitNum + " " + unitTitleText;
   editUnitNum.value = unitNum;
   editUnitTitle.value = unitTitleText;
@@ -103,6 +104,9 @@ if (course && unitNum && lessonNum) {
   loadUnit();
 }
 hideEditElements();
+if (startInEditMode){
+  editLesson();
+}
 
 // Load unit containing lesson from firebase
 function loadUnit() {
@@ -138,6 +142,7 @@ function showLesson() {
     // Set unit title if this is a new
     unitTitle.innerHTML = "Unit " + unitNum + " " + openUnit.title;
     editUnitTitle.value = openUnit.title;
+    editUnitNum.value = unitNum;
     // Everything else will have default values
     return;
   }
@@ -440,7 +445,8 @@ function signIn() {
 
 // Create new lesson
 function newLesson() {
-  window.location.href = "view-lesson.html?course=cs1-2";
+  var num = openUnit.lessons.length + 1;
+  window.location.href = "view-lesson.html?course=" + course + "&unit=" + unitNum + "&lesson=" + num + "&edit=true";
 }
 
 // Start Edit Mode
