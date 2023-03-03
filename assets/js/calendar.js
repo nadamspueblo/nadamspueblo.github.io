@@ -389,7 +389,7 @@ function fillUnitGrid() {
           div.style.gridColumnStart = "span " + freeSpace;
           var link = document.createElement("a");
           link.innerHTML = "Unit " + unit.unitNum + " " + unit.unitTitle;
-          link.href = "view-lesson.html?course=cs1-2&unit=" + unit.unitNum + "&lesson=0";
+          link.href = "view-lesson.html?course=" + course + "&unit=" + unit.unitNum + "&lesson=0";
           div.appendChild(link);
           div.classList.add("unit");
           var grid = document.createElement("div");
