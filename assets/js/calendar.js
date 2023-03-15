@@ -464,7 +464,6 @@ function fillLessons() {
             var div = document.createElement("div");
             var a = document.createElement("a");
             a.href = "view-lesson.html?course=" + course + "&unit=" + lesson.unitNum + "&lesson=" + lesson.lessonNum;
-            //a.innerHTML = lesson.unitNum + "." + lesson.lessonNum + " " + lesson.lessonTitle;
             var h4 = document.createElement("h4");
             h4.style.margin = "0px";
             h4.style.borderBottom = "1px solid";
@@ -512,7 +511,7 @@ function fillLessons() {
           div.classList.add("hidden");
           div.addEventListener("click", () => {
             if (auth.currentUser) {
-              window.location.href = "view-lesson.html?course=" + course + "&unit=" + unit.unitNum + "&lesson=" + (unit.lessons.length + 1);
+              window.location.href = "view-lesson.html?course=" + course + "&unit=" + unit.unitNum + "&lesson=" + (unit.lessons.length + 1) + "&edit=true";
             }
           });
           div.addEventListener("mouseenter", (ev) => {

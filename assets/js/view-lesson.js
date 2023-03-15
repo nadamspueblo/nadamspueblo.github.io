@@ -104,9 +104,6 @@ if (course && unitNum && lessonNum) {
   loadUnit();
 }
 hideEditElements();
-if (startInEditMode){
-  editLesson();
-}
 
 // Load unit containing lesson from firebase
 function loadUnit() {
@@ -125,7 +122,11 @@ function loadUnit() {
         }
         openUnit.lessons.push(lesson);
       }
+      
       showLesson();
+      if (startInEditMode) {
+        editLesson();
+      }
     })
     .catch((error) => {
       console.log(error);
@@ -451,6 +452,7 @@ function newLesson() {
 
 // Start Edit Mode
 function editLesson() {
+  if (!user.uid) return;
   showEditElements();
   hideViewElements();
   var button = document.getElementById("new-button");
