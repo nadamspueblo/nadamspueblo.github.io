@@ -737,10 +737,11 @@ function clearDataAndElements() {
 const unitObjectives = [];
 
 function parseUnitData() {
-  for (var lesson of openUnit.lessons){
+  for (var lesson of openUnit.lessons) {
     var curr = lesson.objectives.split("\n");
-    for (var s of curr){
-      if (unitObjectives.indexOf(s) < 0 && s.length > 1){
+    // Parse objectives and load option select
+    for (var s of curr) {
+      if (unitObjectives.indexOf(s) < 0 && s.length > 1) {
         unitObjectives.push(s);
         var option = document.createElement("option");
         option.text = s;
@@ -748,6 +749,23 @@ function parseUnitData() {
         unitObjSelect.appendChild(option);
       }
     }
+    unitObjSelect.addEventListener("change", (event) => {
+      editObjectives.value += "\n" + event.target.value;
+      unitObjSelect.value = 0;
+    });
+
+    // Parse assessment and load option select
+
+    // Parse tech standards and load option select
+
+    // Parse academic integration and load option select
+
+    // Parse prof standards and load option select
+
+    // Parse work-based integration and load option select
+
+    // Parse vocab and load option select
+
   }
 }
 
