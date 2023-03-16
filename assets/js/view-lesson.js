@@ -76,6 +76,7 @@ const editAgenda = document.getElementById("edit-agenda");
 const editLabDuration = document.getElementById("edit-lab-duration");
 const editLabTitle = document.getElementById("edit-lab-title");
 const editNotes = document.getElementById("edit-notes");
+const unitObjSelect = document.getElementById("unit-objective-select");
 
 // Arrays hold db data for editing
 var techStandardsData = [], addedTechStandards = [], addedStandardElems = [];
@@ -122,7 +123,7 @@ function loadUnit() {
         }
         openUnit.lessons.push(lesson);
       }
-      
+      parseUnitData();
       showLesson();
       if (startInEditMode) {
         editLesson();
@@ -635,8 +636,13 @@ function hideEditElements() {
   editLabDuration.classList.add("hidden");
   editLabTitle.classList.add("hidden");
   editNotes.classList.add("hidden");
+  unitObjSelect.classList.add("hidden");
 
   var elems = document.getElementsByClassName("small-button");
+  for (var i = 0; i < elems.length; i++) {
+    elems[i].classList.add("hidden");
+  }
+  var elems = document.getElementsByClassName("edit-label");
   for (var i = 0; i < elems.length; i++) {
     elems[i].classList.add("hidden");
   }
@@ -663,25 +669,29 @@ function showViewElements() {
 function showEditElements() {
   if (lessonNum == 0) {
     editUnitTitle.classList.remove("hidden");
+    document.getElementById("unit-num-label").classList.remove("hidden");
     editUnitNum.classList.remove("hidden");
   }
   else {
     editLessonNum.classList.remove("hidden");
+    document.getElementById("lesson-num-label").classList.remove("hidden");
     editLessonTitle.classList.remove("hidden");
-    editObjectives.classList.remove("hidden");
-    editAssessment.classList.remove("hidden");
-    editTechStandardSelect.classList.remove("hidden");
-    //editTechSubStandardSelect.classList.remove("hidden");
-    editAcademic.classList.remove("hidden");
-    editProfStandardSelect.classList.remove("hidden");
-    editWorkBased.classList.remove("hidden");
-    editVocab.classList.remove("hidden");
-    editAgenda.classList.remove("hidden");
-    editLabDuration.classList.remove("hidden");
-    editLabTitle.classList.remove("hidden");
   }
+  editObjectives.classList.remove("hidden");
+  editAssessment.classList.remove("hidden");
+  editTechStandardSelect.classList.remove("hidden");
+  //editTechSubStandardSelect.classList.remove("hidden");
+  editAcademic.classList.remove("hidden");
+  editProfStandardSelect.classList.remove("hidden");
+  editWorkBased.classList.remove("hidden");
+  editVocab.classList.remove("hidden");
+  editAgenda.classList.remove("hidden");
+  editLabDuration.classList.remove("hidden");
+  editLabTitle.classList.remove("hidden");
+  document.getElementById("duration-label").classList.remove("hidden");
   editDuration.classList.remove("hidden");
   editNotes.classList.remove("hidden");
+  unitObjSelect.classList.remove("hidden");
 
   var elems = document.getElementsByClassName("small-button");
   for (var i = 0; i < elems.length; i++) {
@@ -721,6 +731,24 @@ function clearDataAndElements() {
   unitTitle.innerHTML = "Untitled unit";
   lessonTitle.innerHTML = "Unititled lesson";
 
+}
+
+// Organize data from the unit into lists
+const unitObjectives = [];
+
+function parseUnitData() {
+  for (var lesson of openUnit.lessons){
+    var curr = lesson.objectives.split("\n");
+    for (var s of curr){
+      if (unitObjectives.indexOf(s) < 0 && s.length > 1){
+        unitObjectives.push(s);
+        var option = document.createElement("option");
+        option.text = s;
+        option.value = s;
+        unitObjSelect.appendChild(option);
+      }
+    }
+  }
 }
 
 // Add vocab word to the list

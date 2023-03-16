@@ -24,14 +24,19 @@
       <div style="display: flex; align-items: center;">
         <div class="arrow-up" onclick="prevLesson()"></div>
         <h2 id="lesson-title">Lesson title</h2>
-        <input id="edit-unit-title" class="header-editbox" type="text" placeholder="Unit title">
-        <div id="edit-header">
-          <input id="edit-unit-num" class="header-editbox" type="number" style="width: 4em;" placeholder="Unit #">
-          <input id="edit-lesson-num" class="header-editbox" type="number" style="width: 4em;" placeholder="Lesson #">
-          <input id="edit-lesson-title" class="header-editbox" type="text" placeholder="Lesson title">
-          <input id="edit-duration" class="header-editbox" type="number" placeholder="Number of 50-min classes">
-        </div>
         <div class="arrow-down" onclick="nextLesson()"></div>
+      </div>
+      
+      <div id="edit-header">
+        <input id="edit-lesson-title" class="header-editbox" style="width:100%;" type="text" placeholder="Lesson title">
+        <input id="edit-unit-title" class="header-editbox" type="text" placeholder="Unit title">
+        <br>
+        <label id="unit-num-label" for="edit-unit-num" class="header-editbox edit-label">Unit Number</label>
+        <input id="edit-unit-num" class="header-editbox" type="number" style="width: 4em;" placeholder="Unit #">
+        <label id="lesson-num-label" for="edit-lesson-num" class="header-editbox edit-label">Lesson Number</label>
+        <input id="edit-lesson-num" class="header-editbox" type="number" style="width: 4em;" placeholder="Lesson #">
+        <label id="duration-label" for="edit-duration" class="header-editbox edit-label">Duration</label>
+        <input id="edit-duration" class="header-editbox" type="number" style="width: 4em;" placeholder="school days">
       </div>
 
     </div>
@@ -63,6 +68,10 @@
     <section id="objectives">
       <h2>Objectives</h2>
       <textarea id="edit-objectives" rows="3" placeholder="Learning objectives"></textarea>
+      
+      <select id="unit-objective-select">
+        <option value="0">Unit objectives</option>
+      </select>
     </section>
 
     <section id="assessment">
