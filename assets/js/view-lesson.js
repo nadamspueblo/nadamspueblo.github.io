@@ -77,6 +77,8 @@ const editLabDuration = document.getElementById("edit-lab-duration");
 const editLabTitle = document.getElementById("edit-lab-title");
 const editNotes = document.getElementById("edit-notes");
 const unitObjSelect = document.getElementById("unit-objective-select");
+const unitAssessSelect = document.getElementById("unit-assessment-select");
+const unitTechSelect = document.getElementById("unit-tech-select");
 
 // Arrays hold db data for editing
 var techStandardsData = [], addedTechStandards = [], addedStandardElems = [];
@@ -637,6 +639,8 @@ function hideEditElements() {
   editLabTitle.classList.add("hidden");
   editNotes.classList.add("hidden");
   unitObjSelect.classList.add("hidden");
+  unitAssessSelect.classList.add("hidden");
+  unitTechSelect.classList.add("hidden");
 
   var elems = document.getElementsByClassName("small-button");
   for (var i = 0; i < elems.length; i++) {
@@ -692,6 +696,8 @@ function showEditElements() {
   editDuration.classList.remove("hidden");
   editNotes.classList.remove("hidden");
   unitObjSelect.classList.remove("hidden");
+  unitAssessSelect.classList.remove("hidden");
+  unitTechSelect.classList.remove("hidden");
 
   var elems = document.getElementsByClassName("small-button");
   for (var i = 0; i < elems.length; i++) {
@@ -734,11 +740,16 @@ function clearDataAndElements() {
 }
 
 // Organize data from the unit into lists
-const unitObjectives = [];
+var unitObjectives = [];
+var unitAssessments = [];
 
 function parseUnitData() {
+  if (lessonNum == 0){
+    editObjectives.value = "";
+  }
   for (var lesson of openUnit.lessons) {
     var curr = lesson.objectives.split("\n");
+
     // Parse objectives and load option select
     for (var s of curr) {
       if (unitObjectives.indexOf(s) < 0 && s.length > 1) {
@@ -750,11 +761,32 @@ function parseUnitData() {
       }
     }
     unitObjSelect.addEventListener("change", (event) => {
-      editObjectives.value += "\n" + event.target.value;
+      if (event.target.value.length > 10) {
+        if (editObjectives.value.length > 0) editObjectives.value += "\n";
+        editObjectives.value += event.target.value;
+      }
       unitObjSelect.value = 0;
     });
 
     // Parse assessment and load option select
+    curr = lesson.assessment.split("\n");
+    for (var s of curr) {
+      s = s.trim();
+      if (unitAssessments.indexOf(s) < 0 && s.length > 1) {
+        unitAssessments.push(s);
+        var option = document.createElement("option");
+        option.text = s;
+        option.value = s;
+        unitAssessSelect.appendChild(option);
+      }
+    }
+    unitAssessSelect.addEventListener("change", (event) => {
+      if (event.target.value.length > 10) {
+        if (editAssessment.value.length > 0) editAssessment.value += "\n";
+        editAssessment.value += event.target.value;
+      }
+      unitAssessSelect.value = 0;
+    });
 
     // Parse tech standards and load option select
 
