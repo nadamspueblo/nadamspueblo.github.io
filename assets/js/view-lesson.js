@@ -79,11 +79,14 @@ const editNotes = document.getElementById("edit-notes");
 const unitObjSelect = document.getElementById("unit-objective-select");
 const unitAssessSelect = document.getElementById("unit-assessment-select");
 const unitTechSelect = document.getElementById("unit-tech-select");
+const unitAcademSelect = document.getElementById("unit-academic-int-select");
+const unitProfSelect = document.getElementById("unit-prof-select");
+const unitVocabSelect = document.getElementById("unit-vocab-select");
 
 // Arrays hold db data for editing
 var techStandardsData = [], addedTechStandards = [], addedStandardElems = [];
 var profStandardsData = [], addedProfStandards = [];
-var vocabData = [];
+var vocabData = [], addedVocab = [];
 var openUnit = {};
 
 var changed = false;
@@ -294,7 +297,6 @@ function showLesson() {
       if (index !== -1) {
         techStandardsData.splice(index, 1);
       }
-      console.log(techStandardsData);
     });
     container.appendChild(button);
     pre = document.createElement("pre");
@@ -336,7 +338,6 @@ function showLesson() {
       if (index !== -1) {
         profStandardsData.splice(index, 1);
       }
-      console.log(profStandardsData);
     });
     container.appendChild(button);
     pre = document.createElement("pre");
@@ -416,6 +417,9 @@ function nextLesson() {
   lessonNum = Math.min(lessonNum, openUnit.lessons.length - 1);
   clearDataAndElements();
   showLesson();
+  urlParams.set("lesson", lessonNum);
+  var currentState = history.state;
+  window.history.replaceState(currentState, "", "view-lesson.html?" + urlParams.toString());
 }
 
 function prevLesson() {
@@ -423,6 +427,9 @@ function prevLesson() {
   lessonNum = Math.max(lessonNum, 0);
   clearDataAndElements();
   showLesson();
+  urlParams.set("lesson", lessonNum);
+  var currentState = history.state;
+  window.history.replaceState(currentState, "", "view-lesson.html?" + urlParams.toString());
 }
 
 // Firebase Authentication
@@ -488,6 +495,9 @@ function cancelEdit() {
   for (index in addedStandardElems) {
     addedStandardElems[index].remove();
   }
+  addedProfStandards = [];
+  addedTechStandards = [];
+  addedVocab = [];
 
   var button = document.getElementById("new-button");
   button.classList.remove("hide-button");
@@ -528,6 +538,7 @@ function saveLesson() {
       // add new standards to data
       techStandardsData = techStandardsData.concat(addedTechStandards);
       profStandardsData = profStandardsData.concat(addedProfStandards);
+      vocabData = vocabData.concat(addedVocab);
       // Write lesson to database
       db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum).set({
         "teacher-name": "Nathan Adams",
@@ -641,6 +652,9 @@ function hideEditElements() {
   unitObjSelect.classList.add("hidden");
   unitAssessSelect.classList.add("hidden");
   unitTechSelect.classList.add("hidden");
+  unitAcademSelect.classList.add("hidden");
+  unitProfSelect.classList.add("hidden");
+  unitVocabSelect.classList.add("hidden");
 
   var elems = document.getElementsByClassName("small-button");
   for (var i = 0; i < elems.length; i++) {
@@ -698,6 +712,9 @@ function showEditElements() {
   unitObjSelect.classList.remove("hidden");
   unitAssessSelect.classList.remove("hidden");
   unitTechSelect.classList.remove("hidden");
+  unitAcademSelect.classList.remove("hidden");
+  unitProfSelect.classList.remove("hidden");
+  unitVocabSelect.classList.remove("hidden");
 
   var elems = document.getElementsByClassName("small-button");
   for (var i = 0; i < elems.length; i++) {
@@ -742,11 +759,20 @@ function clearDataAndElements() {
 // Organize data from the unit into lists
 var unitObjectives = [];
 var unitAssessments = [];
+var unitTechStandards = [];
+var unitAcademicInt = [];
+var unitProfStandards = [];
+var unitVocab = [];
 
 function parseUnitData() {
-  if (lessonNum == 0){
-    editObjectives.value = "";
-  }
+  // Clear previous data
+  unitObjectives = [];
+  unitAssessments = [];
+  unitTechStandards = [];
+  unitAcademicInt = [];
+  unitProfStandards = [];
+  unitVocab = [];
+
   for (var lesson of openUnit.lessons) {
     var curr = lesson.objectives.split("\n");
 
@@ -755,7 +781,7 @@ function parseUnitData() {
       if (unitObjectives.indexOf(s) < 0 && s.length > 1) {
         unitObjectives.push(s);
         var option = document.createElement("option");
-        option.text = s;
+        option.text = truncateText(s);
         option.value = s;
         unitObjSelect.appendChild(option);
       }
@@ -775,7 +801,7 @@ function parseUnitData() {
       if (unitAssessments.indexOf(s) < 0 && s.length > 1) {
         unitAssessments.push(s);
         var option = document.createElement("option");
-        option.text = s;
+        option.text = truncateText(s);
         option.value = s;
         unitAssessSelect.appendChild(option);
       }
@@ -789,48 +815,124 @@ function parseUnitData() {
     });
 
     // Parse tech standards and load option select
+    curr = lesson.techStandards;
+    for (var s of curr) {
+      if (unitTechStandards.indexOf(s) < 0 && s.length > 1) {
+        unitTechStandards.push(s);
+        var option = document.createElement("option");
+        option.text = truncateText(s);
+        option.value = s;
+        unitTechSelect.appendChild(option);
+      }
+    }
+    unitTechSelect.addEventListener("change", (event) => {
+      if (event.target.value.length > 10) {
+        //
+        handleTechOptionSelect(event);
+      }
+      unitTechSelect.value = 0;
+    });
 
     // Parse academic integration and load option select
+    curr = lesson.academicIntegration.split("\n");
+    for (var s of curr) {
+      s = s.trim();
+      if (unitAcademicInt.indexOf(s) < 0 && s.length > 1) {
+        unitAcademicInt.push(s);
+        var option = document.createElement("option");
+        option.text = truncateText(s);
+        option.value = s;
+        unitAcademSelect.appendChild(option);
+      }
+    }
+    unitAcademSelect.addEventListener("change", (event) => {
+      if (event.target.value.length > 10) {
+        if (editAcademic.value.length > 0) editAcademic.value += "\n";
+        editAcademic.value += event.target.value;
+      }
+      unitAcademSelect.value = 0;
+    });
 
     // Parse prof standards and load option select
+    curr = lesson.profStandards;
+    for (var s of curr) {
+      if (unitProfStandards.indexOf(s) < 0 && s.length > 1) {
+        unitProfStandards.push(s);
+        var option = document.createElement("option");
+        option.text = truncateText(s);
+        option.value = s;
+        unitProfSelect.appendChild(option);
+      }
+    }
+    unitProfSelect.addEventListener("change", (event) => {
+      if (event.target.value.length > 10) {
+        handleProfOptionSelect(event);
+      }
+      unitProfSelect.value = 0;
+    });
 
     // Parse work-based integration and load option select
 
     // Parse vocab and load option select
+    curr = lesson.vocab;
+    for (var s of curr) {
+      if (unitVocab.indexOf(s) < 0 && s.length > 1) {
+        unitVocab.push(s);
+        var option = document.createElement("option");
+        option.text = truncateText(s);
+        option.value = s;
+        unitVocabSelect.appendChild(option);
+      }
+    }
+    unitVocabSelect.addEventListener("change", (event) => {
+      if (event.target.value.length > 10) {
+        addVocab(event.target.value);
+      }
+      unitVocabSelect.value = 0;
+    });
 
   }
 }
 
 // Add vocab word to the list
-function addVocab() {
+function addVocabClick() {
   const value = editVocab.value;
   if (value != undefined && value != "") {
     editVocab.value = "";
-    vocabData.push(value);
-    const container = document.createElement("div");
-    container.classList.add("edit-container");
-    var button = document.createElement("div");
-    button.classList.add("small-button");
-    button.classList.add("btn-color-red");
-    button.innerHTML = "x";
-    button.addEventListener("click", (event) => {
-      container.remove();
-      var index = vocabData.indexOf(value);
-      if (index !== -1) {
-        vocabData.splice(index, 1);
-      }
-    });
-    container.appendChild(button);
-    var details = document.createElement("details");
-    var summary = document.createElement("summary");
-    var wordData = value.split(":");
-    summary.innerHTML = wordData[0];
-    details.innerHTML = wordData[1];
-    details.appendChild(summary);
-    details.classList.add("data-view")
-    container.appendChild(details);
-    vocab.appendChild(container);
+    addVocab(value);
   }
+}
+
+function addVocab(value) {
+  vocabData.push(value);
+  const container = document.createElement("div");
+  container.classList.add("edit-container");
+  var button = document.createElement("div");
+  button.classList.add("small-button");
+  button.classList.add("btn-color-red");
+  button.innerHTML = "x";
+  button.addEventListener("click", (event) => {
+    container.remove();
+    var index = vocabData.indexOf(value);
+    if (index !== -1) {
+      vocabData.splice(index, 1);
+    }
+  });
+  container.appendChild(button);
+  var details = document.createElement("details");
+  var summary = document.createElement("summary");
+  var wordData = value.split(":");
+  summary.innerHTML = wordData[0];
+  details.innerHTML = wordData[1];
+  details.appendChild(summary);
+  details.classList.add("data-view")
+  container.appendChild(details);
+  vocab.appendChild(container);
+
+  // Track added vocab/elements to remove if edit is canceled
+  addedStandardElems.push(container);
+  addedVocab.push(value);
+
 }
 
 // Load tech standards from db
@@ -872,16 +974,7 @@ function loadTechStandards() {
           if (x != "title" && x != "number") {
             var option = document.createElement("option");
             option.value = doc.data()["number"] + "." + x + " " + doc.data()[x];
-            var truncIndex = option.value.length;
-            var maxLength = 100;
-            if (option.value.length > maxLength) {
-              do {
-                truncIndex = option.value.indexOf(" ", maxLength);
-                maxLength -= 1;
-              } while (truncIndex < 1 && maxLength > 20);
-            }
-            option.text = option.value.substring(0, truncIndex);
-            if (option.text.length < option.value.length) option.text += " ...";
+            option.text = truncateText(option.value);
             editTechSubStandardSelect.appendChild(option);
           }
         }
@@ -892,52 +985,55 @@ function loadTechStandards() {
 
   });
 
-  editTechSubStandardSelect.addEventListener("change", (event) => {
-    //console.log(event.target.value);
-    var text = event.target.value;
-    // don't add if already on the list
-    var index = techStandardsData.concat(addedTechStandards).indexOf(text);
-    if (index > -1) {
-      techStandards.children[index + 3].classList.add("highlight-red");
-      setTimeout(() => {
-        profStandards.children[index + 3].classList.remove("highlight-red");
-      }, 1000);
-      editTechSubStandardSelect.value = 0;
-      return;
-    }
-    addedTechStandards.push(text);
-    const container = document.createElement("div");
-    addedStandardElems.push(container);
-    container.classList.add("edit-container");
-    var button = document.createElement("div");
-    button.classList.add("small-button");
-    button.classList.add("btn-color-red");
-    button.innerHTML = "x";
-    const value = text;
-    button.addEventListener("click", () => {
-      container.remove();
-      var index = techStandardsData.indexOf(value);
-      if (index !== -1) {
-        techStandardsData.splice(index, 1);
-      }
-      index = addedTechStandards.indexOf(value);
-      if (index !== -1) {
-        addedTechStandards.splice(index, 1);
-      }
-      console.log(techStandardsData);
-    });
-    container.appendChild(button);
-    pre = document.createElement("pre");
-    pre.classList.add("data-view");
-    pre.innerHTML = text;
-    container.appendChild(pre);
-    techStandards.appendChild(container);
-    container.classList.add("highlight-green");
+  editTechSubStandardSelect.addEventListener("change", handleTechOptionSelect);
+}
+
+// handle tech standard option change
+function handleTechOptionSelect(event) {
+  //console.log(event.target.value);
+  var text = event.target.value;
+  // don't add if already on the list
+  var index = techStandardsData.concat(addedTechStandards).indexOf(text);
+  if (index > -1) {
+    techStandards.children[index + 4].classList.add("highlight-red");
     setTimeout(() => {
-      techStandards.children[profStandards.children.length - 1].classList.remove("highlight-green");
+      techStandards.children[index + 4].classList.remove("highlight-red");
     }, 1000);
     editTechSubStandardSelect.value = 0;
+    return;
+  }
+  addedTechStandards.push(text);
+  const container = document.createElement("div");
+  addedStandardElems.push(container);
+  container.classList.add("edit-container");
+  var button = document.createElement("div");
+  button.classList.add("small-button");
+  button.classList.add("btn-color-red");
+  button.innerHTML = "x";
+  const value = text;
+  button.addEventListener("click", () => {
+    container.remove();
+    var index = techStandardsData.indexOf(value);
+    if (index !== -1) {
+      techStandardsData.splice(index, 1);
+    }
+    index = addedTechStandards.indexOf(value);
+    if (index !== -1) {
+      addedTechStandards.splice(index, 1);
+    }
+    console.log(techStandardsData);
   });
+  container.appendChild(button);
+  pre = document.createElement("pre");
+  pre.classList.add("data-view");
+  pre.innerHTML = text;
+  container.appendChild(pre);
+  techStandards.appendChild(container);
+  container.classList.add("highlight-green");
+  setTimeout(() => {
+    techStandards.children[profStandards.children.length - 1].classList.remove("highlight-green");
+  }, 1000);
+  editTechSubStandardSelect.value = 0;
 }
 
 // Load prof standards from db
@@ -978,16 +1074,7 @@ function loadProfStandards() {
           if (x != "title" && x != "number") {
             var option = document.createElement("option");
             option.value = doc.data()["number"] + "." + x + " " + doc.data()[x];
-            var truncIndex = option.value.length;
-            var maxLength = 100;
-            if (option.value.length > maxLength) {
-              do {
-                truncIndex = option.value.indexOf(" ", maxLength);
-                maxLength -= 1;
-              } while (truncIndex < 1 && maxLength > 20);
-            }
-            option.text = option.value.substring(0, truncIndex);
-            if (option.text.length < option.value.length) option.text += " ...";
+            option.text = truncateText(option.value);
             editProfSubStandardSelect.appendChild(option);
           }
         }
@@ -998,49 +1085,62 @@ function loadProfStandards() {
 
   });
 
-  editProfSubStandardSelect.addEventListener("change", (event) => {
-    //console.log(event.target.value);
-    var text = event.target.value;
-    // don't add if already on the list
-    const index = profStandardsData.concat(addedProfStandards).indexOf(text);
-    if (index > -1) {
-      profStandards.children[index + 3].classList.add("highlight-red");
-      setTimeout(() => {
-        profStandards.children[index + 3].classList.remove("highlight-red");
-      }, 1000);
-      editProfSubStandardSelect.value = 0;
-      return;
-    }
-    addedProfStandards.push(text);
-    const container = document.createElement("div");
-    addedStandardElems.push(container);
-    container.classList.add("edit-container");
-    var button = document.createElement("div");
-    button.classList.add("small-button");
-    button.classList.add("btn-color-red");
-    button.innerHTML = "x";
-    const value = text;
-    button.addEventListener("click", () => {
-      container.remove();
-      var index = profStandardsData.indexOf(value);
-      if (index !== -1) {
-        profStandardsData.splice(index, 1);
-      }
-      index = addedProfStandards.indexOf(value);
-      if (index !== -1) {
-        addedProfStandards.splice(index, 1);
-      }
-    });
-    container.appendChild(button);
-    pre = document.createElement("pre");
-    pre.classList.add("data-view");
-    pre.innerHTML = text;
-    container.appendChild(pre);
-    profStandards.appendChild(container);
-    container.classList.add("highlight-green");
+  editProfSubStandardSelect.addEventListener("change", handleProfOptionSelect);
+}
+
+function handleProfOptionSelect(event) {
+  //console.log(event.target.value);
+  var text = event.target.value;
+  // don't add if already on the list
+  const index = profStandardsData.concat(addedProfStandards).indexOf(text);
+  if (index > -1) {
+    profStandards.children[index + 4].classList.add("highlight-red");
     setTimeout(() => {
-      profStandards.children[profStandards.children.length - 1].classList.remove("highlight-green");
+      profStandards.children[index + 4].classList.remove("highlight-red");
     }, 1000);
     editProfSubStandardSelect.value = 0;
+    return;
+  }
+  addedProfStandards.push(text);
+  const container = document.createElement("div");
+  addedStandardElems.push(container);
+  container.classList.add("edit-container");
+  var button = document.createElement("div");
+  button.classList.add("small-button");
+  button.classList.add("btn-color-red");
+  button.innerHTML = "x";
+  const value = text;
+  button.addEventListener("click", () => {
+    container.remove();
+    var index = profStandardsData.indexOf(value);
+    if (index !== -1) {
+      profStandardsData.splice(index, 1);
+    }
+    index = addedProfStandards.indexOf(value);
+    if (index !== -1) {
+      addedProfStandards.splice(index, 1);
+    }
   });
+  container.appendChild(button);
+  pre = document.createElement("pre");
+  pre.classList.add("data-view");
+  pre.innerHTML = text;
+  container.appendChild(pre);
+  profStandards.appendChild(container);
+  container.classList.add("highlight-green");
+  setTimeout(() => {
+    profStandards.children[profStandards.children.length - 1].classList.remove("highlight-green");
+  }, 1000);
+  editProfSubStandardSelect.value = 0;
+}
+
+function truncateText(text, maxLength = 100) {
+  if (text.length > maxLength) {
+    var result = text.substring(0, maxLength);
+    var truncIndex = result.lastIndexOf(" ");
+    result = result.substring(0, truncIndex);
+    if (result.length < text.length) result += " ...";
+    return result;
+  }
+  return text;
 }

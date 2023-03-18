@@ -101,6 +101,10 @@
     <section id="academic-integration">
       <h2>Academic Integration</h2>
       <textarea id="edit-academic-integration" rows="3" placeholder="Academic integration"></textarea>
+    
+      <select id="unit-academic-int-select">
+        <option value="0">Previously used</option>
+      </select>
     </section>
 
     <section id="prof-standards">
@@ -108,8 +112,13 @@
       <select id="edit-prof-standard-select">
         <option value="0">Select standard</option>
       </select>
+
       <select id="edit-prof-substandard-select">
         <option value="0">Select standard</option>
+      </select>
+
+      <select id="unit-prof-select">
+        <option value="0">Previously used</option>
       </select>
     </section>
 
@@ -123,8 +132,11 @@
       <div id="vocab"></div>
       <div style="display: flex;">
         <textarea id="edit-vocab" rows="1" placeholder="Vocab word : definition" style="min-width: 0px;"></textarea>
-        <div class="small-button" onclick="addVocab()">+</div>
+        <div class="small-button" onclick="addVocabClick()">+</div>
       </div>
+      <select id="unit-vocab-select">
+        <option value="0">Previously used</option>
+      </select>
     </aside>
 
     <section id="agenda">
