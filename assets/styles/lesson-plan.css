@@ -15,7 +15,7 @@ header {
   }
 }
 
-header > * {
+header > div {
   flex-grow: 1;
 }
 

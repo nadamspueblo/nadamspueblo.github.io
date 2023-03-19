@@ -155,7 +155,7 @@ function showLesson() {
   }
 
   document.title = unitNum + "." + lessonNum + " " + lesson.lessonTitle + " - Pueblo HS Computer Science";
-  unitTitle.innerHTML = "Unit " + unitNum + " " + openUnit.title;
+  unitTitle.innerHTML = course.toUpperCase() + " Unit " + unitNum + " " + openUnit.title;
   editUnitNum.value = unitNum;
   editUnitTitle.value = openUnit.title;
   lessonTitle.innerHTML = unitNum + "." + lessonNum + " " + lesson.lessonTitle;
