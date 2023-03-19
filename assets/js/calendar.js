@@ -389,6 +389,7 @@ function fillUnitGrid() {
           div.style.gridColumnStart = "span " + freeSpace;
           var link = document.createElement("a");
           link.innerHTML = "Unit " + unit.unitNum + " " + unit.unitTitle;
+          link.target = "_blank";
           link.href = "view-lesson.html?course=" + course + "&unit=" + unit.unitNum + "&lesson=0";
           div.appendChild(link);
           div.classList.add("unit");
@@ -463,6 +464,7 @@ function fillLessons() {
           remDays = remDays > 0 ? remDays : lesson.duration;
             var div = document.createElement("div");
             var a = document.createElement("a");
+            a.target = "_blank";
             a.href = "view-lesson.html?course=" + course + "&unit=" + lesson.unitNum + "&lesson=" + lesson.lessonNum;
             var h4 = document.createElement("h4");
             h4.style.margin = "0px";
