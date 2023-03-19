@@ -170,7 +170,7 @@ function showLesson() {
   // Load objectives
   if (lesson.objectives) {
     var pre = document.createElement("pre");
-    pre.innerHTML = lesson.objectives
+    pre.innerHTML = lesson.objectives;
     pre.classList.add("data-view");
     pre.classList.add("hide-in-edit");
     objectives.appendChild(pre);
@@ -179,21 +179,20 @@ function showLesson() {
 
   // If unit plan, load objectives from all lessons
   if (lessonNum == 0) {
-    for (var i = 1; i < openUnit.lessons.length; i++) {
-      var l = openUnit.lessons[i];
-      if (l.objectives) {
-        var pre = document.createElement("pre");
-        pre.innerHTML = l.objectives
-        pre.classList.add("data-view");
-        pre.classList.add("hide-in-edit");
-        objectives.appendChild(pre);
-      }
+    var p = document.createElement("p");
+    for (var i = 0; i < unitObjectives.length; i++){
+      p.innerHTML += unitObjectives[i];
+      if (i < unitObjectives.length - 1) p.innerHTML += "<br>";
     }
+    p.classList.add("data-view");
+    p.classList.add("hide-in-edit");
+    console.log(p);
+    objectives.appendChild(p);
   }
 
   // Load lesson assessment
   if (lesson.assessment) {
-    pre = document.createElement("pre");
+    var pre = document.createElement("pre");
     pre.classList.add("data-view");
     pre.classList.add("hide-in-edit");
     pre.innerHTML = lesson.assessment;
@@ -203,7 +202,7 @@ function showLesson() {
 
   // Load academic integration
   if (lesson.academicIntegration) {
-    pre = document.createElement("pre");
+    var pre = document.createElement("pre");
     pre.classList.add("data-view");
     pre.classList.add("hide-in-edit");
     pre.innerHTML = lesson.academicIntegration;
@@ -213,7 +212,7 @@ function showLesson() {
 
   // Load work based learning
   if (lesson.workBasedLearning) {
-    pre = document.createElement("pre");
+    var pre = document.createElement("pre");
     pre.classList.add("data-view");
     pre.classList.add("hide-in-edit");
     pre.innerHTML = lesson.workBasedLearning;
@@ -231,7 +230,7 @@ function showLesson() {
       a.classList.add("hide-in-edit");
       a.innerHTML = "Day " + i;
       if (l.duration > 1) {
-        pre.innerHTML += "-" + (i + l.duration - 1);
+        a.innerHTML += "-" + (i + l.duration - 1);
       }
       a.innerHTML += ": " + l.lessonTitle;
       a.href = "view-lesson.html?course=" + course + "&unit=" + unitNum + "&lesson=" + i;
@@ -239,7 +238,7 @@ function showLesson() {
     }
   }
   else if (lesson.agenda) {
-    pre = document.createElement("pre");
+    var pre = document.createElement("pre");
     pre.classList.add("data-view");
     pre.classList.add("hide-in-edit");
     pre.innerHTML = lesson.agenda;
@@ -261,7 +260,7 @@ function showLesson() {
     }
   }
   else if (lesson.labTitle) {
-    pre = document.createElement("pre");
+    var pre = document.createElement("pre");
     pre.classList.add("data-view");
     pre.classList.add("hide-in-edit");
     pre.innerHTML = lesson.labDuration + " min: " + lesson.labTitle;
@@ -272,7 +271,7 @@ function showLesson() {
 
   // Load notes
   if (lesson.notes) {
-    pre = document.createElement("pre");
+    var pre = document.createElement("pre");
     pre.classList.add("data-view");
     pre.classList.add("hide-in-edit");
     pre.innerHTML = lesson.notes;
@@ -299,7 +298,7 @@ function showLesson() {
       }
     });
     container.appendChild(button);
-    pre = document.createElement("pre");
+    var pre = document.createElement("pre");
     pre.classList.add("data-view");
     pre.innerHTML = techStandardsData[x];
     container.appendChild(pre);
@@ -312,7 +311,7 @@ function showLesson() {
       for (s of l.techStandards) {
         if (temp.indexOf(s) < 0) {
           temp.push(s);
-          pre = document.createElement("pre");
+          var pre = document.createElement("pre");
           pre.classList.add("data-view");
           pre.innerHTML = s;
           techStandards.appendChild(pre);
@@ -340,7 +339,7 @@ function showLesson() {
       }
     });
     container.appendChild(button);
-    pre = document.createElement("pre");
+    var pre = document.createElement("pre");
     pre.classList.add("data-view");
     pre.innerHTML = profStandardsData[x];
     container.appendChild(pre);
@@ -353,7 +352,7 @@ function showLesson() {
       for (s of l.profStandards) {
         if (temp.indexOf(s) < 0) {
           temp.push(s);
-          pre = document.createElement("pre");
+          var pre = document.createElement("pre");
           pre.classList.add("data-view");
           pre.innerHTML = s;
           profStandards.appendChild(pre);
