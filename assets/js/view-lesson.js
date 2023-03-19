@@ -210,6 +210,19 @@ function showLesson() {
     editAcademic.value = lesson.academicIntegration;
   }
 
+  // If unit plan load academic integration from all lessons
+  if (lessonNum == 0){
+    var p = document.createElement("p");
+    for (var i = 0; i < unitAcademicInt.length; i++){
+      p.innerHTML += unitAcademicInt[i];
+      if (i < unitAcademicInt.length - 1) p.innerHTML += "<br>";
+    }
+    p.classList.add("data-view");
+    p.classList.add("hide-in-edit");
+    console.log(p);
+    academic.appendChild(p);
+  }
+
   // Load work based learning
   if (lesson.workBasedLearning) {
     var pre = document.createElement("pre");
