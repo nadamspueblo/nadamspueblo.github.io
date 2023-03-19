@@ -574,16 +574,20 @@ function saveLesson() {
         "lab-duration": editLabDuration.value
       }, { merge: true })
         .then(() => {
-          // Notify user about success
-          //alert("Unit " + unitNum + " lesson " + lessonNum + " saved");
-
           // Update db reference
           lessonRef = db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum);
           changed = false;
 
-
+          // Clear lists of added items
           addedTechStandards = [];
           addedProfStandards = [];
+          addedVocab = [];
+
+          // Update URL params
+          urlParams.delete('edit')
+          var currentState = history.state;
+          window.history.replaceState(currentState, "", "view-lesson.html?" + urlParams.toString());
+          startInEditMode = false;
 
           // Update UI
           document.title = unitNum + "." + lessonNum + " " + editLessonTitle.value + " - Pueblo HS Computer Science";
@@ -609,6 +613,8 @@ function saveLesson() {
 
           button = document.getElementById("cancel-button");
           button.classList.add("hide-button");
+
+          editBar.classList.remove("edit-bar-active");
         });
 
     })
