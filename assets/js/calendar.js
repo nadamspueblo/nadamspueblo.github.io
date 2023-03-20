@@ -444,6 +444,9 @@ function fillLessons() {
         if (lesson.duration <= daysToSkip) {
           indexToStart = i;
           daysToSkip -= lesson.duration;
+          if (i == unit.lessons.length - 1 && daysToSkip == 0){
+            indexToStart++;
+          }
         }
         else {
           indexToStart = i;
