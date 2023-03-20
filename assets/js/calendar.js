@@ -516,7 +516,8 @@ function fillLessons() {
           div.classList.add("hidden");
           div.addEventListener("click", () => {
             if (auth.currentUser) {
-              window.location.href = "view-lesson.html?course=" + course + "&unit=" + unit.unitNum + "&lesson=" + (unit.lessons.length + 1) + "&edit=true";
+              var url = "view-lesson.html?course=" + course + "&unit=" + unit.unitNum + "&lesson=" + (unit.lessons.length + 1) + "&edit=true";
+              window.open(url, '_blank');
             }
           });
           div.addEventListener("mouseenter", (ev) => {
@@ -591,7 +592,9 @@ function createAddUnitButton() {
   div.innerHTML = "+";
   div.classList.add("hidden");
   div.addEventListener("click", () => {
-    window.location.href = "view-lesson.html?course=" + course + "&unit=" + (lastUnitNum + 1) + "&lesson=0";
+    var url = "view-lesson.html?course=" + course + "&unit=" + (lastUnitNum + 1) + "&lesson=0&edit=true";
+    window.open(url, '_blank');
+    //window.location.href = "view-lesson.html?course=" + course + "&unit=" + (lastUnitNum + 1) + "&lesson=0";
   });
   unitContainer.appendChild(div);
 }

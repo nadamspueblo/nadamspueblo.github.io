@@ -141,6 +141,7 @@ function loadUnit() {
 
 // Loads lesson from to display
 function showLesson() {
+  if (!openUnit || !openUnit.lessons) return;
   // Lesson number 0 is the unit plan
   var lesson = openUnit.lessons[lessonNum];
 
@@ -783,6 +784,7 @@ var unitProfStandards = [];
 var unitVocab = [];
 
 function parseUnitData() {
+  if (!openUnit.lessons) return;
   // Clear previous data
   unitObjectives = [];
   unitAssessments = [];
