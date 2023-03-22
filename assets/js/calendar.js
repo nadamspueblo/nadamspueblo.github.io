@@ -77,7 +77,7 @@ const unitContainer = document.getElementById("unit-container");
 addEventListener("resize", (event) => {
   unitContainer.style.maxWidth = calendarBg.offsetWidth + "px";
   unitContainer.style.minWidth = calendarBg.offsetWidth + "px";
-  
+
   var dayElem = document.getElementById("0");
   dayElemHeight = dayElem.offsetHeight;
   headingHeight = dayElem.children[0].offsetHeight;
@@ -90,10 +90,8 @@ addEventListener("resize", (event) => {
 
 // Set calendar to display dates for the given month 0 = Jan
 const monthDiv = document.getElementById("month-bg");
-const firstDayOfSchool = new Date("August 4, 2022");
-const noSchoolDays = new Map();
-const oneDayMilli = 24 * 60 * 60 * 1000;
-const dateKeyOptions = { year: 'numeric', month: 'numeric', day: 'numeric' }
+const firstDayOfSchool = getFirstDayOfSchool();//new Date("August 4, 2022");
+
 var calendarStartDate, calendarEndDate, nextOpenDate;
 var now = new Date(Date.now());
 var displayMonth = now.getMonth();
@@ -105,7 +103,6 @@ var totalLessonDays = 0;
 var dayElemHeight, headingHeight;
 setNoSchoolDays();
 loadCurriculum();
-
 
 
 function setDisplayDates(month) {
@@ -140,87 +137,6 @@ function setDisplayDates(month) {
   var dayElem = document.getElementById("0");
   dayElemHeight = dayElem.offsetHeight;
   headingHeight = dayElem.children[0].offsetHeight;
-}
-
-function getSchoolDaysBetween(date1, date2) {
-  var days = 0;
-  for (var d = new Date(date1.getTime()); d < date2; d.setMilliseconds(d.getMilliseconds() + oneDayMilli)) {
-    if (isSchoolDay(d)) days++;
-  }
-  //console.log("Total school days ", days);
-  return days;
-}
-
-function setNoSchoolDays() {
-  noSchoolDays.set(new Date("8/3/2022").toLocaleDateString('en-us', dateKeyOptions), "Teacher Prep Day")
-  noSchoolDays.set(new Date("8/25/2022").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
-  noSchoolDays.set(new Date("9/5/2022").toLocaleDateString('en-us', dateKeyOptions), "Labor Day");
-  noSchoolDays.set(new Date("10/7/2022").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
-  noSchoolDays.set(new Date("10/10/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("10/11/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("10/12/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("10/13/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("10/14/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("11/3/2022").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
-  noSchoolDays.set(new Date("11/11/2022").toLocaleDateString('en-us', dateKeyOptions), "Veteran's Day");
-  noSchoolDays.set(new Date("11/24/2022").toLocaleDateString('en-us', dateKeyOptions), "Thanksgiving Break");
-  noSchoolDays.set(new Date("11/25/2022").toLocaleDateString('en-us', dateKeyOptions), "Thanksgiving Break");
-  noSchoolDays.set(new Date("12/23/2022").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
-  noSchoolDays.set(new Date("12/26/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("12/27/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("12/28/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("12/29/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("12/30/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/2/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/3/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/4/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/5/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/6/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/16/2023").toLocaleDateString('en-us', dateKeyOptions), "MLK Day");
-  noSchoolDays.set(new Date("1/26/2022").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
-  noSchoolDays.set(new Date("2/23/2023").toLocaleDateString('en-us', dateKeyOptions), "Rodeo Break");
-  noSchoolDays.set(new Date("2/24/2023").toLocaleDateString('en-us', dateKeyOptions), "Rodeo Break");
-  noSchoolDays.set(new Date("3/17/2023").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
-  noSchoolDays.set(new Date("3/20/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/21/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/22/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/23/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/24/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/30/2023").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
-  noSchoolDays.set(new Date("4/7/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Holiday");
-  noSchoolDays.set(new Date("5/26/2023").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
-}
-
-function isSchoolDay(date) {
-  var dayOfWeek = date.getDay();//date.toLocaleDateString('en-us', { weekday: 'long' });
-  var firstDay = new Date(noSchoolDays.keys().next().value);
-  //console.log(firstDay);
-  var lastDay = new Date(Array.from(noSchoolDays.keys()).pop());
-  //console.log(lastDay);
-  if (date < firstDay) return false;
-  if (date > lastDay) return false;
-  return !noSchoolDays.has(date.toLocaleDateString('en-us', dateKeyOptions))
-    && dayOfWeek != 0 && dayOfWeek != 6;
-}
-
-function getEndDateFromSchoolDays(startDate, numDays) {
-  var endDate = new Date(startDate.getTime());
-  for (var d = 0; d < numDays; d++) {
-    endDate.setMilliseconds(endDate.getMilliseconds() + oneDayMilli);
-    //console.log(endDate);
-    if (!isSchoolDay(endDate)) d--;
-  }
-  //console.log(endDate);
-  return endDate;
-}
-
-function getSchoolDaysUntilNextBreak(date) {
-  var days = 0;
-  for (var d = new Date(date); !noSchoolDays.has(d.toLocaleDateString('en-us', dateKeyOptions)) && days < 60; d.setMilliseconds(d.getMilliseconds() + oneDayMilli)) {
-    if (isSchoolDay(d)) days++;
-  }
-  //console.log("Days until next break: ", days);
-  return days;
 }
 
 function advanceNextOpenDate(days = 1) {
@@ -281,8 +197,8 @@ function loadCurriculum() {
         var doc = querySnapShot.docs[i];
         loadLessons(parseInt(doc.data()["unit-num"]), i == querySnapShot.docs.length - 1);
       };
-      
-      if (querySnapShot.docs.length == 0){
+
+      if (querySnapShot.docs.length == 0) {
         console.log(querySnapShot.docs.length);
         createAddUnitButton();
       }
@@ -299,7 +215,6 @@ function loadLessons(unit, last = false) {
     .then((querySnapShot) => {
       for (var i = 0; i < querySnapShot.docs.length; i++) {
         var lesson = querySnapShot.docs[i].data();
-        //unitStartDate = new Date(unitEndDate.getTime() + oneDayMilli);
         if (lesson.lessonNum == 0) {
           units.set(unit, lesson);
         }
@@ -336,8 +251,14 @@ function fillCalendar() {
   setDisplayDates(displayMonth);
   unitStartDate = new Date(nextOpenDate.getTime());
   fillUnitGrid();
-  if (user && totalLessonDays < 25) {
-    createAddUnitButton();
+  while (user && totalLessonDays < 25) {
+    if (!isSchoolDay(nextOpenDate)) {
+      addNoSchoolDay(noSchoolDays.get(nextOpenDate.toLocaleDateString('en-us', dateKeyOptions)));
+    } else {
+      createAddUnitButton();
+    }
+    advanceNextOpenDate();
+    totalLessonDays++;
   }
   // Reset counters
   nextOpenDate = new Date(calendarStartDate.getTime());
@@ -372,6 +293,13 @@ function fillUnitGrid() {
     unit.endDate = unitEndDate.toLocaleDateString('en-us', dateKeyOptions);
     unit.elements = [];
     if (unitEndDate > nextOpenDate && unitStartDate <= calendarEndDate) {
+      // Fill dates with no unit data before the current unit starts
+      while (nextOpenDate < unitStartDate){
+        createAddUnitButton();
+        totalLessonDays++;
+        advanceNextOpenDate();
+      }
+
       // Calc how many days fit on the calendar
       days = getSchoolDaysBetween(nextOpenDate, unitEndDate);
 
@@ -444,7 +372,7 @@ function fillLessons() {
         if (lesson.duration <= daysToSkip) {
           indexToStart = i;
           daysToSkip -= lesson.duration;
-          if (i == unit.lessons.length - 1 && daysToSkip == 0){
+          if (i == unit.lessons.length - 1 && daysToSkip == 0) {
             indexToStart++;
           }
         }
@@ -465,37 +393,37 @@ function fillLessons() {
         for (; indexToStart < unit.lessons.length && freeSpace > 0; indexToStart++) {
           var lesson = unit.lessons[indexToStart];
           remDays = remDays > 0 ? remDays : lesson.duration;
-            var div = document.createElement("div");
-            var a = document.createElement("a");
-            a.target = "_blank";
-            a.href = "view-lesson.html?course=" + course + "&unit=" + lesson.unitNum + "&lesson=" + lesson.lessonNum;
-            var h4 = document.createElement("h4");
-            h4.style.margin = "0px";
-            h4.style.borderBottom = "1px solid";
-            h4.style.whiteSpace = "nowrap";
-            h4.style.overflow = "hidden";
-            a.innerHTML = lesson.unitNum + "." + lesson.lessonNum + " " + lesson.lessonTitle;
-            h4.appendChild(a);
-            div.appendChild(h4);
-            if (lesson.labTitle) {
-              var p = document.createElement("p");
-              p.innerHTML = "Lab: " + lesson.labTitle;
-              p.style.marginBottom = "0px";
-              p.style.marginTop = "4px";
-              div.appendChild(p);
-              var minBar = document.createElement("div");
-              minBar.classList.add("progress-bar");
-              var totalMin = lesson.duration % 2 == 1 ? Math.min(freeSpace, remDays) * 50 : Math.min(freeSpace, remDays) * 45;
-              minBar.style.maxWidth = (100 * lesson.labDuration / Math.min(freeSpace, remDays) / totalMin) + "%";
-              minBar.innerHTML = lesson.labDuration + " min";
-              div.appendChild(minBar);
-            }
-            div.classList.add("lesson");
-            div.style.gridColumnStart = "span " + Math.min(remDays, freeSpace);
-            
-            var grid = e.children[1];
-            grid.appendChild(div);
-          if (remDays > freeSpace){
+          var div = document.createElement("div");
+          var a = document.createElement("a");
+          a.target = "_blank";
+          a.href = "view-lesson.html?course=" + course + "&unit=" + lesson.unitNum + "&lesson=" + lesson.lessonNum;
+          var h4 = document.createElement("h4");
+          h4.style.margin = "0px";
+          h4.style.borderBottom = "1px solid";
+          h4.style.whiteSpace = "nowrap";
+          h4.style.overflow = "hidden";
+          a.innerHTML = lesson.unitNum + "." + lesson.lessonNum + " " + lesson.lessonTitle;
+          h4.appendChild(a);
+          div.appendChild(h4);
+          if (lesson.labTitle) {
+            var p = document.createElement("p");
+            p.innerHTML = "Lab: " + lesson.labTitle;
+            p.style.marginBottom = "0px";
+            p.style.marginTop = "4px";
+            div.appendChild(p);
+            var minBar = document.createElement("div");
+            minBar.classList.add("progress-bar");
+            var totalMin = lesson.duration % 2 == 1 ? Math.min(freeSpace, remDays) * 50 : Math.min(freeSpace, remDays) * 45;
+            minBar.style.maxWidth = (100 * lesson.labDuration / Math.min(freeSpace, remDays) / totalMin) + "%";
+            minBar.innerHTML = lesson.labDuration + " min";
+            div.appendChild(minBar);
+          }
+          div.classList.add("lesson");
+          div.style.gridColumnStart = "span " + Math.min(remDays, freeSpace);
+
+          var grid = e.children[1];
+          grid.appendChild(div);
+          if (remDays > freeSpace) {
             remDays -= freeSpace;
             freeSpace = 0;
             indexToStart--;
@@ -585,16 +513,16 @@ function clearCalendar() {
 }
 
 function createAddUnitButton() {
-  if (document.getElementsByClassName("new-unit-button").length > 0 || totalLessonDays >= 25/* || units.size == 0*/) return;
+  if (totalLessonDays >= 25/* || units.size == 0*/) return;
   var div = document.createElement("div");
   div.classList.add("new-unit-button");
   div.classList.add("has-account");
   div.innerHTML = "+";
   div.classList.add("hidden");
+  const date = nextOpenDate.getTime();
   div.addEventListener("click", () => {
-    var url = "view-lesson.html?course=" + course + "&unit=" + (lastUnitNum + 1) + "&lesson=0&edit=true";
+    var url = "view-lesson.html?course=" + course + "&unit=" + (lastUnitNum + 1) + "&lesson=0&edit=true&date=" + date;
     window.open(url, '_blank');
-    //window.location.href = "view-lesson.html?course=" + course + "&unit=" + (lastUnitNum + 1) + "&lesson=0";
   });
   unitContainer.appendChild(div);
 }

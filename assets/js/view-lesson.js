@@ -46,6 +46,7 @@ auth.onAuthStateChanged((_user) => {
 // Element references
 const unitTitle = document.getElementById("unit-title");
 const lessonTitle = document.getElementById("lesson-title");
+const dateSpan = document.getElementById("lesson-date");
 const objectives = document.getElementById("objectives");
 const assessment = document.getElementById("assessment");
 const techStandards = document.getElementById("tech-standards");
@@ -98,10 +99,18 @@ var unitNum = urlParams.get('unit');
 var lessonNum = urlParams.get('lesson');
 var unitTitleText = urlParams.get("unit-title");
 var startInEditMode = urlParams.get("edit");
+var dateParam = urlParams.get("date");
+var lessonDate;
+const displayDateKeyOptions = { year: 'numeric', month: 'long', day: 'numeric' }
+if (dateParam) {
+  lessonDate = new Date();
+  lessonDate.setTime(dateParam);
+  dateSpan.innerHTML = lessonDate.toLocaleDateString('en-us', displayDateKeyOptions);
+}
 if (course && unitNum && lessonNum) {
   lessonRef = db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum);
   if (!unitTitleText) unitTitleText = "Untitled";
-  unitTitle.innerHTML = "Unit " + unitNum + " " + unitTitleText;
+  unitTitle.innerHTML = course.toUpperCase() + " Unit " + unitNum + " " + unitTitleText;
   editUnitNum.value = unitNum;
   editUnitTitle.value = unitTitleText;
   lessonTitle.innerHTML = unitNum + "." + lessonNum + " Untitled";
@@ -118,6 +127,7 @@ function loadUnit() {
     .withConverter(lessonConverter)
     .get()
     .then((querySnapShot) => {
+      var totalDuration = 0;
       for (var i = 0; i < querySnapShot.docs.length; i++) {
         var lesson = querySnapShot.docs[i].data();
         if (lesson.lessonNum == 0) {
@@ -125,6 +135,14 @@ function loadUnit() {
           openUnit.num = lesson.unitNum;
           openUnit.duration = lesson.duration;
           openUnit.lessons = [];
+          if (lesson.startDate){
+            lesson.startDate = getDateThisSchoolYear(new Date(lesson.startDate));
+            openUnit.startDate = lesson.startDate;
+          }
+        }
+        else {
+          lesson.startDate = getEndDateFromSchoolDays(openUnit.startDate, totalDuration);
+          totalDuration += lesson.duration;
         }
         openUnit.lessons.push(lesson);
       }
@@ -151,10 +169,20 @@ function showLesson() {
     unitTitle.innerHTML = "Unit " + unitNum + " " + openUnit.title;
     editUnitTitle.value = openUnit.title;
     editUnitNum.value = unitNum;
+    if (openUnit.lessons.length > 1){
+      lesson = openUnit.lessons[openUnit.lessons.length - 1];
+      lessonDate = getEndDateFromSchoolDays(lesson.startDate, lesson.duration);
+    }
+    else {
+      lessonDate = openUnit.startDate;
+    }
+    dateSpan.innerHTML = lessonDate.toLocaleDateString('en-us', displayDateKeyOptions);
+    
     // Everything else will have default values
     return;
   }
 
+  // Load lesson header
   document.title = unitNum + "." + lessonNum + " " + lesson.lessonTitle + " - Pueblo HS Computer Science";
   unitTitle.innerHTML = course.toUpperCase() + " Unit " + unitNum + " " + openUnit.title;
   editUnitNum.value = unitNum;
@@ -167,6 +195,7 @@ function showLesson() {
   }
   else editLessonTitle.value = lesson.lessonTitle;
   editDuration.value = lesson.duration;
+  dateSpan.innerHTML = lesson.startDate.toLocaleDateString('en-us', displayDateKeyOptions);
 
   // Load objectives
   if (lesson.objectives) {
@@ -540,6 +569,10 @@ function saveLesson() {
     alert("You must enter a lesson number");
     return;
   }
+  else if (editDuration.value == "" || editDuration.value == "0"){
+    alert("Lesson duration must be at least 1 day");
+    return;
+  }
   unitNum = editUnitNum.value;
   lessonNum = editLessonNum.value;
   //
@@ -572,7 +605,8 @@ function saveLesson() {
         "prof-standards": profStandardsData,
         "vocab": vocabData,
         "lab-title": editLabTitle.value,
-        "lab-duration": editLabDuration.value
+        "lab-duration": editLabDuration.value,
+        "start-date": lessonNum == 0 ? lessonDate.toLocaleDateString('en-us', dateKeyOptions) : ""
       }, { merge: true })
         .then(() => {
           // Update db reference
