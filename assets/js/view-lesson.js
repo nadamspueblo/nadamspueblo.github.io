@@ -198,7 +198,19 @@ function showLesson() {
   }
   else editLessonTitle.value = lesson.lessonTitle;
   editDuration.value = lesson.duration;
-  dateSpan.innerHTML = lesson.startDate.toLocaleDateString('en-us', displayDateKeyOptions);
+  if (lesson.duration > 1){
+    dateSpan.innerHTML = lesson.startDate.toLocaleDateString('en-us', {month: 'long', day: 'numeric'});
+    dateSpan.innerHTML += " - ";
+    var lessonEndDate = getEndDateFromSchoolDays(lesson.startDate, lesson.duration - 1);
+    if (lesson.startDate.getMonth() == lessonEndDate.getMonth()){
+      dateSpan.innerHTML += (lessonEndDate.getDate()) + ", " + lessonEndDate.getFullYear();
+    }
+    else
+      dateSpan.innerHTML += lessonEndDate.toLocaleDateString('en-us', displayDateKeyOptions);
+  }
+  else{
+    dateSpan.innerHTML = lesson.startDate.toLocaleDateString('en-us', displayDateKeyOptions);
+  }
 
   // Load objectives
   if (lesson.objectives) {
@@ -268,19 +280,21 @@ function showLesson() {
 
   // Load agenda, unit plan agenda is each lesson
   if (lessonNum == 0) {
+    var totalDays = 1;
     for (var i = 1; i < openUnit.lessons.length; i++) {
       var l = openUnit.lessons[i];
       var a = document.createElement("a");
       a.classList.add("lesson-link");
       a.classList.add("data-view");
       a.classList.add("hide-in-edit");
-      a.innerHTML = "Day " + i;
+      a.innerHTML = "Day " + totalDays;
       if (l.duration > 1) {
-        a.innerHTML += "-" + (i + l.duration - 1);
+        a.innerHTML += "-" + (totalDays + l.duration - 1);
       }
       a.innerHTML += ": " + l.lessonTitle;
       a.href = "view-lesson.html?course=" + course + "&unit=" + unitNum + "&lesson=" + i;
       agenda.appendChild(a);
+      totalDays += l.duration;
     }
   }
   else if (lesson.agenda) {
@@ -504,7 +518,6 @@ function newLesson() {
   var num = openUnit.lessons.length;
   var url = "view-lesson.html?course=" + course + "&unit=" + unitNum + "&lesson=" + num + "&edit=true";
   window.open(url, '_blank');
-  //window.location.href = "view-lesson.html?course=" + course + "&unit=" + unitNum + "&lesson=" + num + "&edit=true";
 }
 
 // Start Edit Mode
