@@ -91,6 +91,7 @@ var vocabData = [], addedVocab = [];
 var openUnit = {};
 
 var changed = false;
+var isBlank = true;
 
 // If url params, load based on that
 const urlParams = new URL(window.location.toLocaleString()).searchParams;
@@ -181,6 +182,8 @@ function showLesson() {
     // Everything else will have default values
     return;
   }
+  
+  isBlank = false;
 
   // Load lesson header
   document.title = unitNum + "." + lessonNum + " " + lesson.lessonTitle + " - Pueblo HS Computer Science";
@@ -498,8 +501,10 @@ function signIn() {
 
 // Create new lesson
 function newLesson() {
-  var num = openUnit.lessons.length + 1;
-  window.location.href = "view-lesson.html?course=" + course + "&unit=" + unitNum + "&lesson=" + num + "&edit=true";
+  var num = openUnit.lessons.length;
+  var url = "view-lesson.html?course=" + course + "&unit=" + unitNum + "&lesson=" + num + "&edit=true";
+  window.open(url, '_blank');
+  //window.location.href = "view-lesson.html?course=" + course + "&unit=" + unitNum + "&lesson=" + num + "&edit=true";
 }
 
 // Start Edit Mode
@@ -530,6 +535,9 @@ function editLesson() {
 
 // Cancel edit mode
 function cancelEdit() {
+  console.log(isBlank);
+  if (isBlank) window.close();
+  
   hideEditElements();
   showViewElements();
 
