@@ -413,8 +413,8 @@ function fillLessons() {
             div.appendChild(p);
             var minBar = document.createElement("div");
             minBar.classList.add("progress-bar");
-            var totalMin = lesson.duration % 2 == 1 ? Math.min(freeSpace, remDays) * 50 : Math.min(freeSpace, remDays) * 45;
-            minBar.style.maxWidth = (100 * lesson.labDuration / Math.min(freeSpace, remDays) / totalMin) + "%";
+            var totalMin = Math.min(freeSpace, remDays) * 45;
+            minBar.style.maxWidth = Math.min(100, 100 * lesson.labDuration / totalMin) + "%";
             minBar.innerHTML = lesson.labDuration + " min";
             div.appendChild(minBar);
           }
