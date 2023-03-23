@@ -139,6 +139,7 @@ function loadUnit() {
           if (lesson.startDate){
             lesson.startDate = getDateThisSchoolYear(new Date(lesson.startDate));
             openUnit.startDate = lesson.startDate;
+            lessonDate = openUnit.startDate;
           }
         }
         else {
@@ -675,7 +676,7 @@ function saveLesson() {
 
     })
     .catch((error) => {
-      alert("Error saving Unit " + unitNum + " lesson " + lessonNum, error);
+      alert("Error saving Unit " + unitNum + " lesson " + lessonNum + error);
     });
 }
 
