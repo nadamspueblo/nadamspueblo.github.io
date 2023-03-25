@@ -980,7 +980,7 @@ function addVocabClick() {
 }
 
 function addVocab(value) {
-  vocabData.push(value);
+  if (vocabData.indexOf(value) >= 0 || addedVocab.indexOf(value) >= 0) return;
   const container = document.createElement("div");
   container.classList.add("edit-container");
   var button = document.createElement("div");
