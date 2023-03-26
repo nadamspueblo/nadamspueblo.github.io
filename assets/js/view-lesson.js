@@ -109,6 +109,8 @@ if (dateParam) {
   dateSpan.innerHTML = lessonDate.toLocaleDateString('en-us', displayDateKeyOptions);
 }
 if (course && unitNum && lessonNum) {
+  unitNum = parseInt(unitNum);
+  lessonNum = parseInt(lessonNum);
   lessonRef = db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum);
   if (!unitTitleText) unitTitleText = "Untitled";
   unitTitle.innerHTML = course.toUpperCase() + " Unit " + unitNum + " " + unitTitleText;
@@ -136,7 +138,7 @@ function loadUnit() {
           openUnit.num = lesson.unitNum;
           openUnit.duration = lesson.duration;
           openUnit.lessons = [];
-          if (lesson.startDate){
+          if (lesson.startDate) {
             lesson.startDate = getDateThisSchoolYear(new Date(lesson.startDate));
             openUnit.startDate = lesson.startDate;
             lessonDate = openUnit.startDate;
@@ -171,7 +173,7 @@ function showLesson() {
     unitTitle.innerHTML = "Unit " + unitNum + " " + openUnit.title;
     editUnitTitle.value = openUnit.title;
     editUnitNum.value = unitNum;
-    if (openUnit.lessons.length > 1){
+    if (openUnit.lessons.length > 1) {
       lesson = openUnit.lessons[openUnit.lessons.length - 1];
       lessonDate = getEndDateFromSchoolDays(lesson.startDate, lesson.duration);
     }
@@ -179,11 +181,11 @@ function showLesson() {
       lessonDate = openUnit.startDate;
     }
     dateSpan.innerHTML = lessonDate.toLocaleDateString('en-us', displayDateKeyOptions);
-    
+
     // Everything else will have default values
     return;
   }
-  
+
   isBlank = false;
 
   // Load lesson header
@@ -199,17 +201,17 @@ function showLesson() {
   }
   else editLessonTitle.value = lesson.lessonTitle;
   editDuration.value = lesson.duration;
-  if (lesson.duration > 1){
-    dateSpan.innerHTML = lesson.startDate.toLocaleDateString('en-us', {month: 'long', day: 'numeric'});
+  if (lesson.duration > 1) {
+    dateSpan.innerHTML = lesson.startDate.toLocaleDateString('en-us', { month: 'long', day: 'numeric' });
     dateSpan.innerHTML += " - ";
     var lessonEndDate = getEndDateFromSchoolDays(lesson.startDate, lesson.duration - 1);
-    if (lesson.startDate.getMonth() == lessonEndDate.getMonth()){
+    if (lesson.startDate.getMonth() == lessonEndDate.getMonth()) {
       dateSpan.innerHTML += (lessonEndDate.getDate()) + ", " + lessonEndDate.getFullYear();
     }
     else
       dateSpan.innerHTML += lessonEndDate.toLocaleDateString('en-us', displayDateKeyOptions);
   }
-  else{
+  else {
     dateSpan.innerHTML = lesson.startDate.toLocaleDateString('en-us', displayDateKeyOptions);
   }
 
@@ -226,9 +228,12 @@ function showLesson() {
   // If unit plan, load objectives from all lessons
   if (lessonNum == 0) {
     var p = document.createElement("p");
-    for (var i = 0; i < unitObjectives.length; i++){
-      p.innerHTML += unitObjectives[i];
-      if (i < unitObjectives.length - 1) p.innerHTML += "<br>";
+    var lessonObjs = lesson.objectives.split("\n");
+    for (var i = 0; i < unitObjectives.length; i++) {
+      if (lessonObjs.indexOf(unitObjectives[i]) < 0) {
+        p.innerHTML += unitObjectives[i];
+        if (i < unitObjectives.length - 1) p.innerHTML += "<br>";
+      }
     }
     p.classList.add("data-view");
     p.classList.add("hide-in-edit");
@@ -257,9 +262,9 @@ function showLesson() {
   }
 
   // If unit plan load academic integration from all lessons
-  if (lessonNum == 0){
+  if (lessonNum == 0) {
     var p = document.createElement("p");
-    for (var i = 0; i < unitAcademicInt.length; i++){
+    for (var i = 0; i < unitAcademicInt.length; i++) {
       p.innerHTML += unitAcademicInt[i];
       if (i < unitAcademicInt.length - 1) p.innerHTML += "<br>";
     }
@@ -551,7 +556,7 @@ function editLesson() {
 function cancelEdit() {
   console.log(isBlank);
   if (isBlank) window.close();
-  
+
   hideEditElements();
   showViewElements();
 
@@ -591,15 +596,15 @@ function saveLesson() {
     alert("You must enter a lesson number");
     return;
   }
-  else if (editDuration.value == "" || editDuration.value == "0"){
+  else if (editDuration.value == "" || editDuration.value == "0") {
     alert("Lesson duration must be at least 1 day");
     return;
   }
-  unitNum = editUnitNum.value;
-  lessonNum = editLessonNum.value;
+  unitNum = parseInt(editUnitNum.value);
+  lessonNum = parseInt(editLessonNum.value);
   //
   db.collection(course + "-curriculum").doc("unit-" + unitNum).set({
-    "unit-num": editUnitNum.value,
+    "unit-num": parseInt(editUnitNum.value),
     "unit-title": editUnitTitle.value
   }, { merge: true })
     .then(() => {
