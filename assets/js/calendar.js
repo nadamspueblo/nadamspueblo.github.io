@@ -294,7 +294,7 @@ function fillUnitGrid() {
     unit.elements = [];
     if (unitEndDate > nextOpenDate && unitStartDate <= calendarEndDate) {
       // Fill dates with no unit data before the current unit starts
-      while (nextOpenDate < unitStartDate){
+      while (nextOpenDate < unitStartDate && isSchoolDay(nextOpenDate)){
         createAddUnitButton();
         totalLessonDays++;
         advanceNextOpenDate();
