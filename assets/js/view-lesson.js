@@ -28,6 +28,9 @@ auth.onAuthStateChanged((_user) => {
     document.getElementById("sign-out-button").classList.remove("hidden");
     document.getElementById("account-info").innerHTML = user.email;
     console.log("User signed in");
+    if (startInEditMode) {
+      editLesson();
+    }
 
   } else {
     // User is signed out
@@ -39,7 +42,10 @@ auth.onAuthStateChanged((_user) => {
     document.getElementById("sign-out-button").classList.add("hidden");
     document.getElementById("account-info").innerHTML = "";
     console.log("User signed out");
-    cancelEdit();
+    if (user) {
+      user = undefined;
+      cancelEdit();
+    }
   }
 });
 
@@ -152,7 +158,7 @@ function loadUnit() {
       }
       parseUnitData();
       showLesson();
-      if (startInEditMode) {
+      if (user && startInEditMode) {
         editLesson();
       }
     })
