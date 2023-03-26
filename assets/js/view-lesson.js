@@ -118,7 +118,7 @@ if (course && unitNum && lessonNum) {
   editUnitTitle.value = unitTitleText;
   lessonTitle.innerHTML = unitNum + "." + lessonNum + " Untitled";
   editLessonNum.value = lessonNum;
-  document.title = unitNum + "." + lessonNum + " " + unitTitleText + " - Pueblo HS Computer Science";
+  document.title = course.toUpperCase() + " - " + unitNum + "." + lessonNum + " " + unitTitleText + " - Pueblo HS Computer Science";
   loadUnit();
 }
 hideEditElements();
@@ -189,7 +189,7 @@ function showLesson() {
   isBlank = false;
 
   // Load lesson header
-  document.title = unitNum + "." + lessonNum + " " + lesson.lessonTitle + " - Pueblo HS Computer Science";
+  document.title = course.toUpperCase() + " - " + unitNum + "." + lessonNum + " " + lesson.lessonTitle + " - Pueblo HS Computer Science";
   unitTitle.innerHTML = course.toUpperCase() + " Unit " + unitNum + " " + openUnit.title;
   editUnitNum.value = unitNum;
   editUnitTitle.value = openUnit.title;
@@ -652,7 +652,7 @@ function saveLesson() {
           startInEditMode = false;
 
           // Update UI
-          document.title = unitNum + "." + lessonNum + " " + editLessonTitle.value + " - Pueblo HS Computer Science";
+          document.title = course.toUpperCase() + " - " + unitNum + "." + lessonNum + " " + editLessonTitle.value + " - Pueblo HS Computer Science";
 
           // Remove dynamically created data views
           clearDataAndElements();

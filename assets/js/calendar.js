@@ -14,6 +14,7 @@ const db = firebase.firestore();
 const urlParams = new URL(window.location.toLocaleString()).searchParams;
 var course = urlParams.get('course');
 if (!course) course = "cs1-2";
+document.title = course.toUpperCase() + " - Calendar - Pueblo HS Computer Science";
 document.getElementById("heading").innerHTML = course.toUpperCase() + " Calendar";
 
 // Initialize FirebaseUI authentication
@@ -101,7 +102,6 @@ if (urlParams.get('month')) {
 let currentState = history.state;
 var totalLessonDays = 0;
 var dayElemHeight, headingHeight;
-setNoSchoolDays();
 loadCurriculum();
 
 
