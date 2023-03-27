@@ -190,8 +190,8 @@ function loadCurriculum() {
   setDisplayDates(displayMonth);
   db.collection(course + "-curriculum")
     .orderBy("unit-num")
-    .get()
-    .then((querySnapShot) => {
+    .onSnapshot((querySnapShot) => {
+      units = new Map();
       unitStartDate = new Date(firstDayOfSchool.getTime());
       for (var i = 0; i < querySnapShot.docs.length; i++) {
         var doc = querySnapShot.docs[i];
@@ -202,7 +202,11 @@ function loadCurriculum() {
         console.log(querySnapShot.docs.length);
         createAddUnitButton();
       }
-    })
+    });
+
+    db.collection(course + "-curriculum")
+    .orderBy("unit-num")
+    .get()
     .catch((error) => {
       console.log(error);
     });
@@ -211,21 +215,48 @@ function loadCurriculum() {
 function loadLessons(unit, last = false) {
   db.collection(course + "-curriculum").doc("unit-" + unit).collection("lessons")
     .orderBy("lesson-num").withConverter(lessonConverter)
-    .get()
-    .then((querySnapShot) => {
-      for (var i = 0; i < querySnapShot.docs.length; i++) {
-        var lesson = querySnapShot.docs[i].data();
-        if (lesson.lessonNum == 0) {
-          units.set(unit, lesson);
+    .onSnapshot((querySnapShot) => {
+      querySnapShot.docChanges().forEach((change) => {
+        if (change.type === "added" || change.type === "removed"){
+          var lesson = querySnapShot.docs[0].data();
+          var firstLoad = true;
+          if (units.has(lesson.unitNum)){
+            firstLoad = false;
+            units.get(lesson.unitNum).lessons = [];
+          }
+          for (var i = 0; i < querySnapShot.docs.length; i++) {
+            var lesson = querySnapShot.docs[i].data();
+            if (lesson.lessonNum == 0) {
+              units.set(unit, lesson);
+            }
+            else {
+              units.get(unit).lessons.push(lesson);
+            }
+            if (i == querySnapShot.docs.length - 1 && (last || !firstLoad)) {
+              fillCalendar();
+            }
+          }
         }
-        else {
-          units.get(unit).lessons.push(lesson);
-        }
-        if (last && i == querySnapShot.docs.length - 1) {
+
+        if (change.type === "modified"){
+          for (var i = 0; i < querySnapShot.docs.length; i++) {
+            var lesson = querySnapShot.docs[i].data();
+            units.get(lesson.unitNum).lessons[lesson.lessonNum - 1] = lesson;
+          }
           fillCalendar();
         }
-      }
-    })
+
+        if (change.type === "removed"){
+          console.log(querySnapShot.docs.length);
+        }
+
+      });
+      
+    });
+
+    db.collection(course + "-curriculum").doc("unit-" + unit).collection("lessons")
+    .orderBy("lesson-num").withConverter(lessonConverter)
+    .get()
     .catch((error) => {
       console.log(error);
     });
@@ -442,9 +473,11 @@ function fillLessons() {
           div.style.color = elem.style.backgroundColor;
           div.innerHTML = "+";
           div.classList.add("hidden");
+          const linkUnitNum = unit.unitNum; 
+          const linkLessonNum = (unit.lessons.length + 1);
           div.addEventListener("click", () => {
             if (auth.currentUser) {
-              var url = "view-lesson.html?course=" + course + "&unit=" + unit.unitNum + "&lesson=" + (unit.lessons.length + 1) + "&edit=true";
+              var url = "view-lesson.html?course=" + course + "&unit=" + linkUnitNum + "&lesson=" + linkLessonNum + "&edit=true";
               window.open(url, '_blank');
             }
           });
