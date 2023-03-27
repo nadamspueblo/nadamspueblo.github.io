@@ -696,18 +696,7 @@ function deleteLesson() {
   if (confirm("Delete lesson?")) {
     db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum).delete()
       .then(() => {
-        db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").get()
-          .then((querySnapshot) => {
-            if (querySnapshot.size <= 1) {
-              db.collection(course + "-curriculum").doc("unit-" + unitNum).delete()
-                .then(() => {
-                  window.location.href = "view-curriculum.html?course=cs1-2";
-                });
-            }
-            else {
-              window.location.href = "view-curriculum.html?course=cs1-2";
-            }
-          });
+        window.close();
       })
       .catch((error) => {
         alert("Error removing document: ", error);
