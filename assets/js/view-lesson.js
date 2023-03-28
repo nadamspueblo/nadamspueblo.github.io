@@ -83,6 +83,7 @@ const editAgenda = document.getElementById("edit-agenda");
 const editLabDuration = document.getElementById("edit-lab-duration");
 const editLabTitle = document.getElementById("edit-lab-title");
 const editNotes = document.getElementById("edit-notes");
+const editDate = document.getElementById("edit-date");
 const unitObjSelect = document.getElementById("unit-objective-select");
 const unitAssessSelect = document.getElementById("unit-assessment-select");
 const unitTechSelect = document.getElementById("unit-tech-select");
@@ -204,6 +205,12 @@ function showLesson() {
   if (lessonNum == 0) {
     editLessonTitle.value = "Unit Plan";
     lessonTitle.innerHTML = "Unit Plan";
+    // Convert local date to yyyy-mm-dd formate to set date input value
+    const offset = lesson.startDate.getTimezoneOffset()
+    var date = new Date(lesson.startDate.getTime() - (offset*60*1000))
+    var dateString = date.toISOString().split('T')[0];
+    console.log(dateString);
+    editDate.value = dateString;
   }
   else editLessonTitle.value = lesson.lessonTitle;
   editDuration.value = lesson.duration;
@@ -618,6 +625,11 @@ function saveLesson() {
       techStandardsData = techStandardsData.concat(addedTechStandards);
       profStandardsData = profStandardsData.concat(addedProfStandards);
       vocabData = vocabData.concat(addedVocab);
+      // Update date
+      if (lessonNum == 0){
+        console.log(editDate.value + "T00:00");
+        lessonDate = new Date(editDate.value + "T00:00");
+      }
       // Write lesson to database
       db.collection(course + "-curriculum").doc("unit-" + unitNum).collection("lessons").doc("lesson-" + lessonNum).set({
         "teacher-name": "Nathan Adams",
@@ -724,6 +736,7 @@ function hideEditElements() {
   editLabDuration.classList.add("hidden");
   editLabTitle.classList.add("hidden");
   editNotes.classList.add("hidden");
+  editDate.classList.add("hidden");
   unitObjSelect.classList.add("hidden");
   unitAssessSelect.classList.add("hidden");
   unitTechSelect.classList.add("hidden");
@@ -742,7 +755,10 @@ function hideEditElements() {
 }
 
 function hideViewElements() {
-  if (lessonNum == 0) unitTitle.classList.add("hidden");
+  if (lessonNum == 0) {
+    unitTitle.classList.add("hidden");
+    dateSpan.classList.add("hidden");
+  }
   lessonTitle.classList.add("hidden");
   var views = document.getElementsByClassName("hide-in-edit");
   for (var i = 0; i < views.length; i++) {
@@ -752,6 +768,7 @@ function hideViewElements() {
 
 function showViewElements() {
   unitTitle.classList.remove("hidden");
+  dateSpan.classList.remove("hidden");
   lessonTitle.classList.remove("hidden");
   var views = document.getElementsByClassName("data-view");
   for (var i = 0; i < views.length; i++) {
@@ -764,6 +781,7 @@ function showEditElements() {
     editUnitTitle.classList.remove("hidden");
     document.getElementById("unit-num-label").classList.remove("hidden");
     editUnitNum.classList.remove("hidden");
+    editDate.classList.remove("hidden");
   }
   else {
     editLessonNum.classList.remove("hidden");
