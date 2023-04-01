@@ -83,13 +83,14 @@ function getFirstDayOfSchool() {
 
 function getDateThisSchoolYear(date = new Date(Date.now())){
   var now = new Date(Date.now());
-  var currMonth = date.getMonth();
+  var currMonth = now.getMonth();
   var year = now.getFullYear();
   if (currMonth < 6 && date.getMonth() >= 6) {
     year--;
   }
   
   var result = new Date();
+  result.setTime(date.getTime())
   result.setMonth(date.getMonth());
   result.setDate(date.getDate());
   result.setFullYear(year);
