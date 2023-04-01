@@ -148,6 +148,12 @@ function setNoSchoolDays() {
   noSchoolDays.set(new Date("5/26/2023").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
 }
 
+function getLastDayOfSchool() {
+  var lastDay = new Date(Array.from(noSchoolDays.keys()).pop());
+  lastDay.setMilliseconds(lastDay.getMilliseconds() - oneDayMilli);
+  return lastDay;
+}
+
 function isSchoolDay(date) {
   var dayOfWeek = date.getDay();//date.toLocaleDateString('en-us', { weekday: 'long' });
   var firstDay = new Date(noSchoolDays.keys().next().value);
@@ -166,6 +172,9 @@ function getEndDateFromSchoolDays(startDate, numDays) {
     endDate.setMilliseconds(endDate.getMilliseconds() + oneDayMilli);
     //console.log(endDate);
     if (!isSchoolDay(endDate)) d--;
+    if (endDate.getTime() >= getLastDayOfSchool().getTime()){
+      return endDate;
+    }
   }
   //console.log(endDate);
   return endDate;
