@@ -1,0 +1,27 @@
+.jskeyword {
+  color: cornflowerblue;
+}
+
+.jsoperator {
+  color: white;
+}
+
+.jsbracket {
+  color: gold;
+}
+
+.jscontrol {
+  color: blueviolet;
+}
+
+.jscomment {
+  color: limegreen;
+}
+
+.jsstring {
+  color: rgb(255, 166, 103);
+}
+
+.jsnumber {
+  color:lemonchiffon;
+}
