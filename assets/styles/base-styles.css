@@ -104,25 +104,7 @@ h2 {
 }
 
 
-.data {
-  display: none;
-  overflow: hidden;
-}
-
-.button {
-  box-sizing: border-box;
-  width: fit-content;
-  height: fit-content;
-  padding: 10px 20px;
-  border: 2px solid var(--primary-text-color);
-  border-radius: 4px;
-  text-decoration: none;
-}
-
-.button:hover {
-  background-color: var(--primary-text-color);
-  color: var(--primary-bg-color);
-}
+/* Header */
 
 header {
   display: flex;
@@ -141,6 +123,8 @@ header h1 {
 header h2 {
   font-size: 30px;
 }
+
+/* Footer */
 
 footer {
   display: flex;
@@ -162,6 +146,27 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+/* Specialty */
+.data {
+  display: none;
+  overflow: hidden;
+}
+
+.button {
+  box-sizing: border-box;
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 20px;
+  border: 2px solid var(--primary-text-color);
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: var(--primary-text-color);
+  color: var(--primary-bg-color);
 }
 
 .social-media-box {
