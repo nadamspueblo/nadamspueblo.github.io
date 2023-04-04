@@ -76,8 +76,6 @@ const jsOperators = [" < ", " > ", " <= ", " >= ", "++", " - ", " + ", "--", " /
 const codeElements = document.getElementsByClassName("jscode");
 //const isNumeric = n => !isNaN(n);
 const isNumeric = n => /\d|\./.test(n);
-let sub = " 250";
-console.log(sub.search(/\d/) + 18);
 console.log(lint("let x = 0, y = 250, width = 300, height = 400;"));
 
 for (let e of codeElements) {
@@ -171,14 +169,22 @@ function lintNumbers(code) {
   while (startIndex >= 0 && startIndex >= endIndex && endIndex < code.length) {
     result += lintKeywords(code.substring(endIndex, startIndex));
     endIndex = startIndex;
+    console.log("char at end ", code.charAt(endIndex));
     while (endIndex < code.length && isNumeric(code.charAt(endIndex))) {
       endIndex++;
+      console.log("endIndex ", endIndex);
     }
-    if (endIndex > startIndex){
+    if (endIndex >= startIndex){
       console.log("start ", startIndex, "end ", endIndex);
       result += "<span class='jsnumber'>";
       result += code.substring(startIndex, endIndex) + "</span>";
       startIndex += code.substring(endIndex).search(/\d/);
+      console.log(code.substring(endIndex));
+      console.log("start ", startIndex);
+      console.log("char at start ", code.charAt(startIndex));
+      if (code.charAt(startIndex) == " "){
+        startIndex++;
+      }
     }
     else {
       break;
