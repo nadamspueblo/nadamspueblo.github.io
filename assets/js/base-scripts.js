@@ -110,7 +110,7 @@ function lintComments(code) {
     startIndex = code.indexOf("/*", endIndex);
   }
   if (code.lastIndexOf("*/") >= 0) {
-    startIndex = code.lastIndexOf("*/") + 3;
+    startIndex = code.lastIndexOf("*/") + 2;
   }
   else {
     startIndex = 0;
@@ -131,7 +131,7 @@ function lintInlineComments(code) {
     startIndex = code.indexOf("//", endIndex);
   }
   if (code.lastIndexOf("//") >= 0) {
-    startIndex = code.lastIndexOf("//") + 1;
+    startIndex = code.lastIndexOf("//") + 2;
     startIndex = code.indexOf("\n", startIndex);
   }
   else {
@@ -162,7 +162,6 @@ function lintStrings(code) {
   return result;
 }
 
-console.log(" i < 10".search(/\d/))
 function lintNumbers(code) {
   let result = "";
   let startIndex = code.search(/\d/);
@@ -173,10 +172,10 @@ function lintNumbers(code) {
     while (endIndex < code.length && isNumeric(code.charAt(endIndex))) {
       endIndex++;
     }
-    if (endIndex >= startIndex){
+    if (endIndex > startIndex){
       result += "<span class='jsnumber'>";
       result += code.substring(startIndex, endIndex) + "</span>";
-      startIndex += code.substring(endIndex).search(/\d/);
+      startIndex += code.substring(endIndex).search(/\d/) + 1;
     }
     else {
       break;
