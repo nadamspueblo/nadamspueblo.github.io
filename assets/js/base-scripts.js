@@ -72,11 +72,13 @@ for (let i = 0; i < expandTabs.length; i++) {
 const jsKeyWords = ["var", "let", "const", "function"];
 const jsBrackets = ["[", "]", "{", "}", "(", ")"];
 const jsControl = ["if ", "for ", "while "];
-const jsOperators = [" < ", " > ", " <= ", " >= ", "++", " - ", " + ", "--", " / ", " % ", " * ", ";"];
+const jsOperators = [" < ", " > ", " <= ", " >= ", "++", " - ", " + ", "--", " / ", " % ", " * ", ";", ","];
 const codeElements = document.getElementsByClassName("jscode");
 //const isNumeric = n => !isNaN(n);
 const isNumeric = n => /\d|\./.test(n);
-console.log(lint("for (let i = 0; i < 10; i++){"));
+let sub = " 250";
+console.log(sub.search(/\d/) + 18);
+console.log(lint("let x = 0, y = 250, width = 300, height = 400;"));
 
 for (let e of codeElements) {
   e.innerHTML = lint(e.innerHTML);
@@ -173,9 +175,10 @@ function lintNumbers(code) {
       endIndex++;
     }
     if (endIndex > startIndex){
+      console.log("start ", startIndex, "end ", endIndex);
       result += "<span class='jsnumber'>";
       result += code.substring(startIndex, endIndex) + "</span>";
-      startIndex += code.substring(endIndex).search(/\d/) + 1;
+      startIndex += code.substring(endIndex).search(/\d/);
     }
     else {
       break;
