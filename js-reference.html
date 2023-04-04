@@ -52,7 +52,7 @@
             <b>Variables</b> can be "reused" by assigning new values.
           </p>
           <pre class="jscode">
-var userName = "unspecified";
+let userName = "unspecified";
 userName = "Rick";
 userName = "Morty";</pre>
           <p>
@@ -63,19 +63,36 @@ const pi = 3.14159;</pre>
         </div>
 
         <div class="resource-card">
-          <h3>Declaring</h3>
+          <div class="preview-expand">
+            <h3>Declaring</h3>
           <p>
             <i>Declare</i> or create a variable before you use it and give a descriptive, camelCase name and appropriate
             intial value.
           </p>
           <pre class="jscode">
-var num = 25;
-var myList = [];
+let num = 25;
+const myList = [];
 var userName = "";</pre>
           <p>
             Often, it is good to use the zero/empty value for the data type: <code class="jscode">0</code> for numbers,
-            <code class="jscode">""</code> for strings, <code class="jscode">[]</code> for arrays, <code class="jscode">{}</code> for objects.
+            <code class="jscode">""</code> for strings, <code class="jscode">[]</code> for arrays, <code
+              class="jscode">{}</code> for objects.
           </p>
+          <p>Variables declared with <code class="jscode">let</code> or <code class="jscode">const</code> <b>cannot</b>
+            be
+            re-declared (which is normal in most languages). Additionally, declaring with <code
+              class="jscode">const</code> is
+            technically declaring a <i>constant</i> and not a variable and it <b>must</b> be declared with an initial
+            value. The value of a constant cannot be changed after is has been declared.</p>
+          <p>Variables declared with <code class="jscode">var</code> <b>can</b> be re-declared. This is not normal in
+            most languages and is best to be avoided as a beginner. Use <code class="jscode">let</code> instead.</p>
+          <p>
+            You can declare multiple variables in one statement.
+            <pre class="jscode">
+let x = 0, y = 250, width = 300, height = 400;</pre>
+          </p>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
         </div>
 
         <div class="resource-card">
@@ -84,11 +101,12 @@ var userName = "";</pre>
             To <i>access</i> a value means to retrieve the value stored in a variable. To access a value, just use the
             variable in place of a hard-coded value.<br>
             <br>
-            The value stored in <code class="jscode">num</code> is <b>accessed</b> and stored into the variable <code class="jscode">num2</code>.
+            The value stored in <code class="jscode">num</code> is <b>accessed</b> and stored into the variable <code
+              class="jscode">numTwo</code>.
           </p>
           <pre class="jscode">
-var num = 25;
-var numTwo = num;</pre>
+let num = 25;
+let numTwo = num;</pre>
         </div>
 
         <div class="resource-card">
@@ -101,11 +119,14 @@ var numTwo = num;</pre>
             <ul>
               <li><i>Global</i> - exists everywhere in the script</li>
               <li><i>Local</i> - exist only in the function where declared</li>
-              <li><i>Block</i> - exist only in the block where declared. (block is current set of <code class="jscode">{}</code>)</li>
+              <li><i>Block</i> - exist only in the block where declared. (block is current set of <code
+                  class="jscode">{}</code>)</li>
             </ul>
             <p>
-              Variables declared with <code class="jscode">var</code> or <code class="jscode">const</code> will have either global or local scope.<br>
-              Variables declared with <code class="jscode">let</code> have block level scope (which could be equivalent to global or
+              Variables declared with <code class="jscode">var</code> or <code class="jscode">const</code> will have
+              either global or local scope.<br>
+              Variables declared with <code class="jscode">let</code> have block level scope (which could be equivalent
+              to global or
               local)
             </p>
             <pre class="jscode">
@@ -221,4 +242,5 @@ function myFunction() {
 </style>
 
 <script src="assets/js/base-scripts.js"></script>
+
 </html>
