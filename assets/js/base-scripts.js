@@ -68,10 +68,10 @@ for (let i = 0; i < expandTabs.length; i++) {
 }
 
 /** Linting of code elements */
-const jsKeyWords = ["var", "let", "const", "function", "true", "false"];
+const jsKeyWords = ["var", "let", "const", "function", "true", "false", "return"];
 const jsBrackets = ["[", "]", "{", "}", "(", ")"];
 const jsControl = ["if ", "for ", "while "];
-const jsOperators = [" < ", " > ", " <= ", " >= ", "++", " - ", " + ", "--", " / ", " % ", " * ", ";", ","];
+const jsOperators = [" < ", " > ", " <= ", " >= ", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ","];
 const codeElements = document.getElementsByClassName("jscode");
 //const isNumeric = n => !isNaN(n);
 const isNumeric = n => /\d|\./.test(n);
@@ -187,21 +187,50 @@ function lintNumbers(code) {
 }
 
 function lintKeywords(code) {
+  // Operators
   // = must come first because of = in html attribs
   code = code.replaceAll("=", "<span class='jsoperator'>=</span>");
   for (let k of jsOperators) {
     code = code.replaceAll(k, "<span class='jsoperator'>" + k + "</span>");
   }
+  // Keywords
   for (let k of jsKeyWords) {
     code = code.replaceAll(k, "<span class='jskeyword'>" + k + "</span>");
   }
+  // Brackets and parentheses
   for (let k of jsBrackets) {
     code = code.replaceAll(k, "<span class='jsbracket'>" + k + "</span>");
   }
+  // Control keywords
   for (let k of jsControl) {
     code = code.replaceAll(k, "<span class='jscontrol'>" + k + "</span>");
   }
   return code;
+}
+
+//console.log(lintFunctions("function myFunc() {"))
+function lintFunctions(code){
+  let result = "";
+  let endIndex = code.search(/\w\(/);
+  let startIndex = 0;
+  while (endIndex > startIndex) {
+    result += lintKeywords(code.substring(endIndex, startIndex));
+    // Calculate start index
+    while (startIndex >= 0 && code.charAt(startIndex) != " "){
+      startIndex--;
+    }
+    result += "<span class='jsbracket'>";
+    result += code.substring(startIndex, endIndex) + "</span>";
+    endIndex += code.substring(endIndex).search(/\d/);
+  }
+  if (code.lastIndexOf("\"") >= 0) {
+    startIndex = code.lastIndexOf("\"") + 1;
+  }
+  else {
+    startIndex = 0;
+  }
+  result += lintKeywords(code.substring(startIndex));
+  return result;
 }
 
 console.log("Script loaded");
