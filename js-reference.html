@@ -40,7 +40,6 @@
   <main>
     <section>
       <h2>Variables</h2>
-
       <div class="item-box">
 
         <div class="resource-card">
@@ -65,32 +64,36 @@ const pi = 3.14159;</pre>
         <div class="resource-card">
           <div class="preview-expand">
             <h3>Declaring</h3>
-          <p>
-            <i>Declare</i> or create a variable before you use it and give a descriptive, camelCase name and appropriate
-            intial value.
-          </p>
-          <pre class="jscode">
+            <p>
+              <i>Declare</i> or create a variable before you use it and give a descriptive, camelCase name and
+              appropriate
+              intial value.
+            </p>
+            <pre class="jscode">
 let num = 25;
 const myList = [];
 var userName = "";</pre>
-          <p>
-            Often, it is good to use the zero/empty value for the data type: <code class="jscode">0</code> for numbers,
-            <code class="jscode">""</code> for strings, <code class="jscode">[]</code> for arrays, <code
-              class="jscode">{}</code> for objects.
-          </p>
-          <p>Variables declared with <code class="jscode">let</code> or <code class="jscode">const</code> <b>cannot</b>
-            be
-            re-declared (which is normal in most languages). Additionally, declaring with <code
-              class="jscode">const</code> is
-            technically declaring a <i>constant</i> and not a variable and it <b>must</b> be declared with an initial
-            value. The value of a constant cannot be changed after is has been declared.</p>
-          <p>Variables declared with <code class="jscode">var</code> <b>can</b> be re-declared. This is not normal in
-            most languages and is best to be avoided as a beginner. Use <code class="jscode">let</code> instead.</p>
-          <p>
-            You can declare multiple variables in one statement.
+            <p>
+              Often, it is good to use the zero/empty value for the data type: <code class="jscode">0</code> for
+              numbers,
+              <code class="jscode">""</code> for strings, <code class="jscode">[]</code> for arrays, <code
+                class="jscode">{}</code> for objects.
+            </p>
+            <p>Variables declared with <code class="jscode">let</code> or <code class="jscode">const</code>
+              <b>cannot</b>
+              be
+              re-declared (which is normal in most languages). Additionally, declaring with <code
+                class="jscode">const</code> is
+              technically declaring a <i>constant</i> and not a variable and it <b>must</b> be declared with an initial
+              value. The value of a constant cannot be changed after is has been declared.
+            </p>
+            <p>Variables declared with <code class="jscode">var</code> <b>can</b> be re-declared. This is not normal in
+              most languages and is best to be avoided as a beginner. Use <code class="jscode">let</code> instead.</p>
+            <p>
+              You can declare multiple variables in one statement.
             <pre class="jscode">
 let x = 0, y = 250, width = 300, height = 400;</pre>
-          </p>
+            </p>
           </div>
           <div class="preview-expand-tab">More [+]</div>
         </div>
@@ -154,6 +157,80 @@ function myFunction() {
 
       </div>
 
+    </section>
+
+    <section>
+      <h2>Datatypes</h2>
+      <div class="item-box">
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Strings</h3>
+            <p>
+              In JavaScript, as in most languages, a <i>string</i> is any characters inside double or single quotes.
+              Best practice is to use double quotes.<code class="jscode">"This is a string"</code>.
+              This can be confusing at first when a string "looks like" another datatype.
+            </p>
+            <ul>
+              <li><code class="jscode">0</code> is an integer, <code class="jscode">"0"</code> is a string.</li>
+              <li><code class="jscode">0.0</code> is a float, <code class="jscode">"0.0"</code> is a string.</li>
+              <li><code class="jscode">true</code> is a boolean, <code class="jscode">"true"</code> is a string.</li>
+              <li><code class="jscode">"Anything in quotes is a string"</code></li>
+            </ul>
+            <p>
+              Data is often stored in databases and HTML elements as strings, so JavaScript has some built-in functions
+              to
+              convert strings containing integers and floats to actual integer and float datatypes.
+            </p>
+            <pre class="jscode">
+let myInt = parseInt("10");
+let myFloat = parseFloat("3.14");</pre>
+            <p>
+              There is no pre-made "parseBool" function, but it's simple enough to write one.
+            </p>
+            <pre class="jscode">
+function parseBool(value) {
+  return value == "true";
+}</pre>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Numbers</h3>
+            <p>
+              The two most common datatypes for numbers are <i>integers</i> and <i>floats</i> (floating point
+              numbers)<br>
+              <br>
+              <b>Integers</b> are positive and negative whole numbers and zero. Same as in math class. Integers have
+              <b>no
+                decimal point</b>, also like math class. <code class="jscode">10, 0, -1, 255</code> are all
+              integers.<br>
+              <br>
+              <b>Floats</b> are any number <b>with a decimal point</b> including whole numbers with a decimal point.
+              <code class="jscode">2.73</code>, <code class="jscode">0.0</code>, <code class="jscode">12.0</code> are
+              all
+              floats.<br>
+              <br>
+              If your numbers are in strings you can use the functions below to convert them.
+            </p>
+            <pre class="jscode">
+let myInt = parseInt("10");
+let myFloat = parseFloat("3.14");</pre>
+            <p>
+              In JavaScript, if the division of two integers would result in a fractional part (a decimal number), it is
+              automatically converted to a float.
+            </p>
+            <pre class="jscode">
+let num = 2 / 3;
+// num contains the float value 0.6666666666666666
+</pre>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+      </div>
     </section>
   </main>
 
