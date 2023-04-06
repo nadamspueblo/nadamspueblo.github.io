@@ -232,6 +232,39 @@ let num = 2 / 3;
 
       </div>
     </section>
+
+    <section>
+      <h2>Document Object Model (DOM)</h2>
+      <div class="item-box">
+
+        <div class="resource-card">
+          <h3>Finding elements</h3>
+          <p>
+            Give the element you want to find in JS an id in HTML.<br>
+            <code class="htmlcode">&lt;p id="my-paragraph"&gt;&lt;/p&gt;</code><br>
+            In JavaScript, you can use <code class="jscode">document.getElementById()</code> to find and access the
+            element.
+          </p>
+          <pre class="jscode">
+let p = document.getElementById("my-paragraph");</pre>
+        </div>
+
+        <div class="resource-card">
+          <h3>Creating elements</h3>
+          <p>
+            To create a new HTML element in JS, use the <code class="jscode">document.createElement(<i>tag</i>)</code>
+            method where <i>tag</i> is a string containing the name of an HTML tag. Then, use <code
+              class="jscode">element.appendChild()</code> to add the new element as a child of another container element.
+            element.
+          </p>
+          <pre class="jscode">
+let a = document.createElement("a");
+let body = document.findElementById("body");
+body.appendChild(a);</pre>
+        </div>
+
+      </div>
+    </section>
   </main>
 
   <footer>
@@ -277,6 +310,19 @@ let num = 2 / 3;
   .jscode {
     margin: 0;
     color: lightskyblue;
+    background-color: var(--dark-bg-color);
+    padding: 4px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .htmlcode {
+    margin: 0;
+    color: cornflowerblue;
     background-color: var(--dark-bg-color);
     padding: 4px;
     overflow-x: auto;
