@@ -207,12 +207,10 @@ function lintKeywords(code) {
   }
   return code;
 }
-console.log("function myFunc(param) {");
-console.log(lintFunctions("function myFunc(param) { } function myOther() { var"))
+
 function lintFunctions(code){
   let result = "";
   let startIndex = code.search(/\w+\(/);
-  console.log(startIndex);
   let endIndex = code.indexOf("(", startIndex);
   //if (endIndex > 0) endIndex++;
   while (startIndex >= 0 && endIndex > startIndex) {
