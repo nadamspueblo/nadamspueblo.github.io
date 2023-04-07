@@ -71,7 +71,7 @@ for (let i = 0; i < expandTabs.length; i++) {
 const jsKeyWords = ["var", "let", "const", "function", "true", "false", "return"];
 const jsBrackets = ["[", "]", "{", "}", "(", ")"];
 const jsControl = ["if ", "for ", "while "];
-const jsOperators = [" < ", " > ", " <= ", " >= ", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ","];
+const jsOperators = [" < ", " > ", " <= ", " >= ", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", "."];
 const codeElements = document.getElementsByClassName("jscode");
 //const isNumeric = n => !isNaN(n);
 const isNumeric = n => /\d|\./.test(n);
@@ -165,7 +165,7 @@ function lintNumbers(code) {
   let startIndex = code.search(/\d/);
   let endIndex = 0;
   while (startIndex >= 0 && startIndex >= endIndex && endIndex < code.length) {
-    result += lintKeywords(code.substring(endIndex, startIndex));
+    result += lintFunctions(code.substring(endIndex, startIndex));
     endIndex = startIndex;
     while (endIndex < code.length && isNumeric(code.charAt(endIndex))) {
       endIndex++;
@@ -182,7 +182,7 @@ function lintNumbers(code) {
       break;
     }
   }
-  result += lintKeywords(code.substring(endIndex));
+  result += lintFunctions(code.substring(endIndex));
   return result;
 }
 
@@ -207,29 +207,26 @@ function lintKeywords(code) {
   }
   return code;
 }
-
-//console.log(lintFunctions("function myFunc() {"))
+console.log("function myFunc(param) {");
+console.log(lintFunctions("function myFunc(param) { } function myOther() { var"))
 function lintFunctions(code){
   let result = "";
-  let endIndex = code.search(/\w\(/);
-  let startIndex = 0;
-  while (endIndex > startIndex) {
-    result += lintKeywords(code.substring(endIndex, startIndex));
-    // Calculate start index
-    while (startIndex >= 0 && code.charAt(startIndex) != " "){
-      startIndex--;
-    }
-    result += "<span class='jsbracket'>";
+  let startIndex = code.search(/\w+\(/);
+  console.log(startIndex);
+  let endIndex = code.indexOf("(", startIndex);
+  //if (endIndex > 0) endIndex++;
+  while (startIndex >= 0 && endIndex > startIndex) {
+    if (startIndex > 0)
+      result += lintKeywords(code.substring(0, startIndex));
+    result += "<span class='jsfunction'>";
     result += code.substring(startIndex, endIndex) + "</span>";
-    endIndex += code.substring(endIndex).search(/\d/);
+
+    code = code.substring(endIndex);
+    startIndex = code.search(/\w+\(/);
+    endIndex = code.indexOf("(", startIndex);
+    //if (endIndex > 0) endIndex++;
   }
-  if (code.lastIndexOf("\"") >= 0) {
-    startIndex = code.lastIndexOf("\"") + 1;
-  }
-  else {
-    startIndex = 0;
-  }
-  result += lintKeywords(code.substring(startIndex));
+  result += lintKeywords(code);
   return result;
 }
 
