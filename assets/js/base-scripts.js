@@ -179,6 +179,9 @@ function lintComments(code) {
 function lintInlineComments(code) {
   let result = "";
   let startIndex = code.indexOf("//");
+  if (code.charAt(startIndex - 1) == ":") {
+    return lintStrings(code);
+  }
   let endIndex = 0;
   while (startIndex >= 0 && endIndex < code.length) {
     result += lintStrings(code.substring(endIndex, startIndex));
