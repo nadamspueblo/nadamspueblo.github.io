@@ -72,15 +72,74 @@ const jsKeyWords = ["var", "let", "const", "function", "true", "false", "return"
 const jsBrackets = ["[", "]", "{", "}", "(", ")"];
 const jsControl = ["if ", "for ", "while "];
 const jsOperators = [" < ", " > ", " <= ", " >= ", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", "."];
-const codeElements = document.getElementsByClassName("jscode");
-//const isNumeric = n => !isNaN(n);
 const isNumeric = n => /\d|\./.test(n);
 
+let codeElements = document.getElementsByClassName("jscode");
 for (let e of codeElements) {
-  e.innerHTML = lint(e.innerHTML);
+  e.innerHTML = lintJS(e.innerHTML);
 }
 
-function lint(code) {
+codeElements = document.getElementsByClassName("htmlcode");
+for (let e of codeElements) {
+  e.innerHTML = lintHTML(e.innerHTML);
+}
+
+function lintHTML(code) {
+  //code = code.replaceAll("=", "<span class='htmlbracket'>=</span>");
+  //code = lintHTMLStrings(code);
+  code = lintHTMLAttrib(code);
+  code = code.replaceAll("&lt;/", "<span class='htmlbracket'>&lt;/</span>");
+  code = code.replaceAll("&lt;", "<span class='htmlbracket'>&lt;</span>");
+  code = code.replaceAll("&gt;", "<span class='htmlbracket'>&gt;</span>");
+  return code;
+}
+
+function lintHTMLAttrib(code) {
+  let result = "";
+  let startIndex = code.search(/\w+="/);
+  if (startIndex > 0) result += code.substring(0, startIndex);
+  let endIndex = code.indexOf("=", startIndex);
+  while (startIndex >= 0 && endIndex > startIndex) {
+    // keyword
+    result += "<span class='htmlattrib'>" + code.substring(startIndex, endIndex) + "</span>";
+    // equal sign
+    result += "<span class='jsoperator'>=</span>";
+    // value
+    startIndex = endIndex + 2;
+    endIndex = code.indexOf("\"", startIndex);
+    result += "<span class='jsstring'>" + code.substring(startIndex - 1, endIndex + 1) + "</span>";
+
+    code = code.substring(endIndex + 1);
+    startIndex = code.search(/\w+="/);
+    if (startIndex >= 0) endIndex = code.indexOf("=", startIndex);
+  }
+
+  result += code;
+  return result;
+}
+
+function lintHTMLStrings(code) {
+  let result = "";
+  let startIndex = code.indexOf("\"");
+  let endIndex = 0;
+  while (startIndex >= 0 && endIndex < code.length) {
+    result += code.substring(endIndex, startIndex);
+    result += "<span class='jsstring'>";
+    endIndex = code.indexOf("\"", startIndex + 1) + 1;
+    result += code.substring(startIndex, endIndex) + "</span>";
+    startIndex = code.indexOf("\"", endIndex);
+  }
+  if (code.lastIndexOf("\"") >= 0) {
+    startIndex = code.lastIndexOf("\"") + 1;
+  }
+  else {
+    startIndex = 0;
+  }
+  result += code.substring(startIndex);
+  return result;
+}
+
+function lintJS(code) {
   // Remove html escape chars
   code = code.replaceAll("&lt;", "<");
   code = code.replaceAll("&gt;", ">");
@@ -170,11 +229,11 @@ function lintNumbers(code) {
     while (endIndex < code.length && isNumeric(code.charAt(endIndex))) {
       endIndex++;
     }
-    if (endIndex >= startIndex){
+    if (endIndex >= startIndex) {
       result += "<span class='jsnumber'>";
       result += code.substring(startIndex, endIndex) + "</span>";
       startIndex += code.substring(endIndex).search(/\d/);
-      if (code.charAt(startIndex) == " "){
+      if (code.charAt(startIndex) == " ") {
         startIndex++;
       }
     }
@@ -208,7 +267,7 @@ function lintKeywords(code) {
   return code;
 }
 
-function lintFunctions(code){
+function lintFunctions(code) {
   let result = "";
   let startIndex = code.search(/\w+\(/);
   let endIndex = code.indexOf("(", startIndex);
