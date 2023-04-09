@@ -31,7 +31,7 @@
 <body>
   <header>
     <div>
-      <h2>&lt;CS3-4&gt;</h2>
+      <h2>&lt;CS1-2&gt;</h2>
       <h1>JavaScript Reference</h1>
       <h2 style="align-self: flex-end;">&lt;/CS3-4&gt;</h2>
     </div>
@@ -234,11 +234,84 @@ let num = 2 / 3;
     </section>
 
     <section>
+      <h2>Math and Logic</h2>
+      <div class="item-box">
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Basic math operations</h3>
+            <p>
+              JavaScript follows the same order of operations as math class <b>PEMDAS</b>. 
+            </p>
+            <ul>
+              <li>Parentheses <code class="jscode"> () </code></li>
+              <li>Exponents <code class="jscode"> ** </code></li>
+              <li>Multiplication <code class="jscode"> * </code></li>
+              <li>Division <code class="jscode"> / </code></li>
+              <li>Modulus <code class="jscode"> % </code></li>
+              <li>Addition <code class="jscode"> + </code></li>
+              <li>Subtraction <code class="jscode"> - </code></li>
+            </ul>
+            <pre class="jscode">
+let ans = 100 - 5 ** 2 * (1 + 2) + 25 % 3;
+/* ans = 26 */</pre>
+            <ol>
+              <li>100 - 5 ** 2 * <span style="color: blue;">(1 + 2)</span> + 25 % 3</li>
+              <li>100 - <span style="color: blue;">5 ** 2</span> * 3 + 25 % 3</li>
+              <li>100 - <span style="color: blue;">25 * 3</span> + 25 % 3</li>
+              <li>100 - 75 + <span style="color: blue;">25 % 3</span></li>
+              <li><span style="color: blue;">100 - 75</span> + 1</span></li>
+              <li><span style="color: blue;">25 + 1</span></li>
+              <li>26</li>
+            </ol>
+            <p>
+              <i>Modulus</i> calculates the remainder after division which is surprisingly useful in programming. 
+            </p>
+            <pre class="jscode">
+/* Check if a number is even (or divisible by any number) */
+if (num % 2 == 0) {
+ // Do something 
+}
+
+/* Have a value "loop" within a range */ 
+red = (red + 1) % 256;
+/* The above increments red by 1. When it goes past 255, the max value for rgb colors, it begins again at 0 */</pre>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Comparison Operators</h3>
+          <p>Comparison operators result in a <i>boolean</i> value used in conditions for control structures such as if blocks, for loops, and while loops.</p>
+          <ul>
+            <li><code class="jscode"> == </code> <i>equal to</i>: true when the values are equal</li>
+            <li><code class="jscode"> != </code> <i>not equal to</i>: true when the values are NOT equal</li>
+            <li><code class="jscode"> &lt; </code> <i>less than</i>: true when the value on the left is <i>less than</i> the value on the right, otherwise false</li>
+            <li><code class="jscode"> &gt; </code> <i>greater than</i>: true when the value on the left is <i>greater than</i> the value on the right, otherwise false</li>
+            <li><code class="jscode"> &lt;= </code> <i>less than or equal to</i>: true when the value on the left is <i>less than or equal to</i> the value on the right, otherwise false (when greater)</li>
+            <li><code class="jscode"> &gt;= </code> <i>greater than or equal to</i>: true when the value on the left is <i>greater than or equal to</i> the value on the right, otherwise false (when less)</li>
+          </ul>
+          <pre class="jscode">
+let response = "";
+let code = "7727";
+do {
+  response = prompt("Enter the 4-digit code");
+} while (response != code);
+  </pre>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
       <h2>Document Object Model (DOM)</h2>
       <div class="item-box">
 
         <div class="resource-card">
-          <h3>Finding elements</h3>
+          <h3>Finding elements by id</h3>
           <p>
             Give the element you want to find in JS an id in HTML.<br>
             <code class="htmlcode">&lt;p id="my-paragraph"&gt;&lt;/p&gt;</code><br>
@@ -256,13 +329,59 @@ p.style.color = "red";</pre>
           <p>
             To create a new HTML element in JS, use the <code class="jscode">document.createElement(<i>tag</i>)</code>
             method where <i>tag</i> is a string containing the name of an HTML tag. Then, use <code
-              class="jscode">element.appendChild()</code> to add the new element as a child of another container element.
+              class="jscode">element.appendChild()</code> to add the new element as a child of another container
             element.
           </p>
           <pre class="jscode">
 let a = document.createElement("a");
+a.innerHTML = "Pueblo CS Website";
+a.href = "https://www.pueblocs.org";
 let body = document.findElementById("body");
 body.appendChild(a);</pre>
+        </div>
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>CSS styles</h3>
+            <p>
+              CSS properties can be read and assigned to using <code class="jscode">element.style.propertyName</code>.
+              Where <code class="jscode">propertyName</code> is the camelCase equivalent of a CSS property with the
+              hypen removed. The value of the property is a <b>string</b> datatype.
+            </p>
+            <pre class="jscode">
+let div = document.getElementById("my-div");
+div.style.width = "200px";
+div.style.color = "blue";</pre>
+          </div>
+        </div>
+
+        <div class="resource-card">
+          <h3>HTML attributes</h3>
+          <p>
+            <code class="jscode">element.attributName</code><br>
+            All HTML attributes can be read and assigned to using the corresponding property. The value is a
+            <b>string</b> data type.
+          </p>
+          <pre class="jscode">
+let img = document.createElement("img");
+img.src = "goose.png";
+img.id = "goose-pic";</pre>
+
+        </div>
+
+        <div class="resource-card">
+          <h3>.innerHTML</h3>
+          <p>
+            <code class="jscode">element.innerHTML</code><br>
+            The inner HTML is what would be between the opening and closing tags of the element. If you're new,
+            it's probably best to only use this when the only content of the element will be plaintext.
+          </p>
+          <pre class="jscode">
+let button = document.createElement("button");
+button.innerHTML = "Cancel";</pre>
+          <p>
+            You can use this to create HTML elements by assigning a string containing HTML code too.
+          </p>
         </div>
 
       </div>
@@ -284,6 +403,8 @@ body.appendChild(a);</pre>
 </body>
 
 <style>
+  
+
   .resource-card p {
     margin: 10px 0px;
     color: var(--light-text-color);
@@ -360,7 +481,7 @@ body.appendChild(a);</pre>
     margin: 5px 0px;
   }
 
-  ul {
+  ul, ol {
     font-family: 'Sofia Sans', sans-serif;
     color: var(--light-text-color);
   }
