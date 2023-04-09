@@ -71,7 +71,7 @@ for (let i = 0; i < expandTabs.length; i++) {
 const jsKeyWords = ["var", "let", "const", "function", "true", "false", "return"];
 const jsBrackets = ["[", "]", "{", "}", "(", ")"];
 const jsControl = ["if ", "for ", "while "];
-const jsOperators = [" < ", " > ", " <= ", " >= ", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", "."];
+const jsOperators = [" < ", " > ", " <= ", " >= ", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", ".", "**"];
 const isNumeric = n => /\d|\./.test(n);
 
 let codeElements = document.getElementsByClassName("jscode");
