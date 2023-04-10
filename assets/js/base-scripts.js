@@ -70,7 +70,7 @@ for (let i = 0; i < expandTabs.length; i++) {
 /** Linting of code elements */
 const jsKeyWords = ["var", "let", "const", "function", "true", "false", "return"];
 const jsBrackets = ["[", "]", "{", "}", "(", ")"];
-const jsControl = ["if ", "for ", "while ", "do "];
+const jsControl = ["if ", "else ", "for ", "while ", "do "];
 const jsOperators = [" < ", " > ", " <= ", " >= ", "!", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", ".", "**", "%"];
 const isNumeric = n => /\d|\./.test(n);
 
