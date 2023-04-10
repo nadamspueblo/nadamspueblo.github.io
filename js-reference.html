@@ -241,7 +241,7 @@ let num = 2 / 3;
           <div class="preview-expand">
             <h3>Basic math operations</h3>
             <p>
-              JavaScript follows the same order of operations as math class <b>PEMDAS</b>. 
+              JavaScript follows the same order of operations as math class <b>PEMDAS</b>.
             </p>
             <ul>
               <li>Parentheses <code class="jscode"> () </code></li>
@@ -265,7 +265,7 @@ let ans = 100 - 5 ** 2 * (1 + 2) + 25 % 3;
               <li>26</li>
             </ol>
             <p>
-              <i>Modulus</i> calculates the remainder after division which is surprisingly useful in programming. 
+              <i>Modulus</i> calculates the remainder after division which is surprisingly useful in programming.
             </p>
             <pre class="jscode">
 /* Check if a number is even (or divisible by any number) */
@@ -283,22 +283,132 @@ red = (red + 1) % 256;
         <div class="resource-card">
           <div class="preview-expand">
             <h3>Comparison Operators</h3>
-          <p>Comparison operators result in a <i>boolean</i> value used in conditions for control structures such as if blocks, for loops, and while loops.</p>
-          <ul>
-            <li><code class="jscode"> == </code> <i>equal to</i>: true when the values are equal</li>
-            <li><code class="jscode"> != </code> <i>not equal to</i>: true when the values are NOT equal</li>
-            <li><code class="jscode"> &lt; </code> <i>less than</i>: true when the value on the left is <i>less than</i> the value on the right, otherwise false</li>
-            <li><code class="jscode"> &gt; </code> <i>greater than</i>: true when the value on the left is <i>greater than</i> the value on the right, otherwise false</li>
-            <li><code class="jscode"> &lt;= </code> <i>less than or equal to</i>: true when the value on the left is <i>less than or equal to</i> the value on the right, otherwise false (when greater)</li>
-            <li><code class="jscode"> &gt;= </code> <i>greater than or equal to</i>: true when the value on the left is <i>greater than or equal to</i> the value on the right, otherwise false (when less)</li>
-          </ul>
-          <pre class="jscode">
+            <p>Comparison operators result in a <i>boolean</i> value which is can then be used as conditions for control
+              structures such as if blocks, for loops, and while loops.<br>
+              <b>Make sure the values being compared are both the same datatype</b> i.e. string with string, int with
+              int, etc.
+            </p>
+            <ul>
+              <li><code class="jscode"> == </code> <i>equal to</i>: true when the values are equal</li>
+              <li><code class="jscode"> != </code> <i>not equal to</i>: true when the values are NOT equal</li>
+              <li><code class="jscode"> &lt; </code> <i>less than</i>: true when the value on the left is <i>less
+                  than</i> the value on the right, otherwise false</li>
+              <li><code class="jscode"> &gt; </code> <i>greater than</i>: true when the value on the left is <i>greater
+                  than</i> the value on the right, otherwise false</li>
+              <li><code class="jscode"> &lt;= </code> <i>less than or equal to</i>: true when the value on the left is
+                <i>less than or equal to</i> the value on the right, otherwise false (when greater)
+              </li>
+              <li><code class="jscode"> &gt;= </code> <i>greater than or equal to</i>: true when the value on the left
+                is <i>greater than or equal to</i> the value on the right, otherwise false (when less)</li>
+            </ul>
+            <pre class="jscode">
 let response = "";
 let code = "7727";
 do {
   response = prompt("Enter the 4-digit code");
 } while (response != code);
   </pre>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <h2>Control Structures</h2>
+      <div class="item-box">
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>If, else if, and else blocks</h3>
+            <p>
+              if, else if, and else blocks are the basic elements of logic that decide which blocks of code run
+              depending of
+              whether a Boolean value is <i>true</i> or <i>false</i>.<br>
+            </p>
+            <pre class="jscode">
+if (condition) { 
+  // Do this when true
+} /* skip when false */</pre>
+            <p>
+              If the condition is true, the code in the <code class="jscode">{}</code> will run. Otherwise, it will be
+              skipped.
+            </p>
+            <pre class="jscode">
+if (condition) { 
+  // Do this when true
+} 
+else {
+  // Do this when false 
+}</pre>
+            <p>
+              Run one set of statements when the condition is true or another set when it is false.
+            </p>
+            <pre class="jscode">
+if (conditionOne) { 
+  // Do this when one condition is true
+} 
+else if (conditionTwo) {
+  // Do this when another condition is true 
+} 
+else if (conditionThree) {
+  // Do this when yet another condition is true 
+}
+else {
+  // Do this when all other conditions are false
+}</pre>
+            <p>
+              Run different sets of code based on different conditions. You can have any number of <code
+                class="jscode">else if ()</code> sections, but
+              must start with <code class="jscode">if ()</code>, and if there is an <code class="jscode">else </code>,
+              it must be last.
+            </p>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>While loops</h3>
+            <p>
+              Repeat a set of statements <i>while</i> a condition is true.
+            </p>
+            <pre class="jscode">
+let myString = "Hello there";
+let count = 1;
+let index = myString.indexOf(" ");
+while (index >= 0) {
+  count++;
+  index++;
+  index = myString.indexOf(" ", index);
+}</pre>
+            <p>
+              The code above counts words by searching for space <code class="jscode">" "</code> characters. When the
+              character isn't found, the <code class="jscode">.indexOf()</code> function returns <code
+                class="jscode">-1</code> making the condition false.
+            </p>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>For loops</h3>
+            <p>
+              A for loop is short-hand for declaring a counter, checking a condition, and updating the counter to use with a block of code.
+            </p>
+            <pre class="jscode">
+let myString = "Once upon a time";
+let count = 0;
+for (let i = 0; i &lt; myString.length; i++){
+  if (myString.charAt(i) == "a"){
+    count++;
+  }
+}</pre>
+          <p>
+            The code above counts the number of <code class="jscode">"a"</code> characters in the string by accessing each char in order by index.
+          </p>
           </div>
           <div class="preview-expand-tab">More [+]</div>
         </div>
@@ -403,8 +513,6 @@ button.innerHTML = "Cancel";</pre>
 </body>
 
 <style>
-  
-
   .resource-card p {
     margin: 10px 0px;
     color: var(--light-text-color);
@@ -481,7 +589,8 @@ button.innerHTML = "Cancel";</pre>
     margin: 5px 0px;
   }
 
-  ul, ol {
+  ul,
+  ol {
     font-family: 'Sofia Sans', sans-serif;
     color: var(--light-text-color);
   }
