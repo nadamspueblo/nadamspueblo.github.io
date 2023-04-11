@@ -396,7 +396,8 @@ while (index >= 0) {
           <div class="preview-expand">
             <h3>For loops</h3>
             <p>
-              A for loop is short-hand for declaring a counter, checking a condition, and updating the counter to use with a block of code.
+              A for loop is short-hand for declaring a counter, checking a condition, and updating the counter to use
+              with a block of code.
             </p>
             <pre class="jscode">
 let myString = "Once upon a time";
@@ -406,9 +407,86 @@ for (let i = 0; i &lt; myString.length; i++){
     count++;
   }
 }</pre>
-          <p>
-            The code above counts the number of <code class="jscode">"a"</code> characters in the string by accessing each char in order by index.
-          </p>
+            <p>
+              The code above counts the number of <code class="jscode">"a"</code> characters in the string by accessing
+              each char in order by index.<br>
+              <code class="jscode">let i = 0</code> declares and initializes a new counter variable to zero which is
+              used to increment through each index in the string in order, starting with the first character<br>
+              <code class="jscode">i &lt; myString.length</code> continues the loop while the counter is less than the
+              length of the string, which will end after the last index<br>
+              <code class="jscode">i++</code> increments the counter by one each <i>iteration</i>
+            </p>
+            <p>
+              For loops are frequently used with operations on strings and arrays
+            </p>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <h2>Functions</h2>
+      <div class="item-box">
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Basics</h3>
+            <p>
+              Functions are a way to break programs and algorithms into logical pieces, re-use common algorithms with
+              out re-writing them, and make your program more understandable by grouping sets of statements together and
+              giving them a name
+            </p>
+            <pre class="jscode">
+/* Declare global variables first */
+let secretWord = "";
+let wrongGuesses = 0;
+
+/* Initializes/resets the game */
+function init() {
+  secretWord = getSecretWord();
+  wrongGuesses = 0;
+  // TODO: clearHangMan();
+}
+
+/* Check what letter the player picks */ 
+function checkGuess(event) { // Called from click event
+  let char = event.target.value;
+  if (secretWord.indexOf(char) >= 0){
+    // TODO: revealLetters();
+  }
+  else {
+    wrongGuesses++;
+    // TODO: addNextPart();
+  }
+}</pre>
+            <p>
+              Using comments and pseudo-code and following the top-down design process and decomposition can help you determine what functions to create
+              and what to name them which will greatly enhance your ability to create complex programs
+            </p>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Function definitions</h3>
+            <p>
+              Before a function can be used, it must be defined somewhere. Define your own functions using the syntax below
+            </p>
+            <pre class="jscode">
+function myFunction() {
+  // Statements 
+}</pre>
+            <p>
+              The function below logs that there was an error and shows a popup alert
+            </p>
+            <pre class="jscode">
+function errorAlert() {
+  console.log("Error");
+  alert("Error, please refresh the page");
+}</pre>
           </div>
           <div class="preview-expand-tab">More [+]</div>
         </div>
