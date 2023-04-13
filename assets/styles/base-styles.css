@@ -19,6 +19,7 @@
   scroll-behavior: smooth;
 }
 
+/* Base element styles */
 body, h1, h2 {
     margin: 0;
 }
@@ -50,6 +51,12 @@ p {
 
 h2 {
   font-size: medium;
+}
+
+ul,
+ol {
+  font-family: 'Sofia Sans', sans-serif;
+  color: var(--light-text-color);
 }
 
 /* Color classes */
