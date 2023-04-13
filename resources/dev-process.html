@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/assets/styles/base-styles.css">
+  <link rel="stylesheet" href="/assets/styles/code-styles.css">
+  <link rel="icon" type="image/png" href="/assets/images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon-16x16.png" sizes="16x16" />
+
+  <title>Development Process - Pueblo HS Computer Science</title>
+</head>
+
+<!-- Google tag (gtag.js) ********************* Uncomment when published *******************************
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-85Z0RPVRNR"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'G-85Z0RPVRNR'); -->
+</script>
+
+<body>
+  <header>
+    <div>
+      <h2>PH:S\Computer Science\&gt; ...</h2>
+      <h1>Design and decomposition</h1>
+    </div>
+  </header>
+
+  <main class="primary-bg-color">
+    <section>
+      <h2>Top-down design and decomposition</h2>
+      <p>
+        Top-down design and decomposition is a simple and effective development strategy for projects of any size from a
+        single algorithms to full applications.
+        Start with the ultimate goal and keep breaking it down (decomposing it) into smaller problems until you can
+        solve the small problems and combine them to complete the ultimate goal
+      </p>
+      <ol>
+        <li>Clearly state the problem (or objective or project)</li>
+        <li>Break the problem into the next largest logical pieces
+          <ul>
+            <li>This could be a list for simpler problems or a diagram for complex problems</li>
+            <li>When working in code, these should become comments, functions, objects, and classes</li>
+          </ul>
+        </li>
+        <li>Repeat for each of those pieces, and the next pieces, until the problems are small enough to code a solution
+        </li>
+        <li>Work your way back up completing each of the pieces</li>
+      </ol>
+      <p>It's very much analagous to building something out of legos where you also get to design the pieces. </p>
+
+      <p>
+        Below is an example of using this process to build a web-based War card game.
+      </p>
+
+    </section>
+
+    <section>
+      <h2>War Card Game Example - 1st iteration of process</h2>
+      <p>
+        <b>Goal: </b>A web-based War card game player vs. computer
+      </p>
+      <h3>Features and requirements (logical pieces)</h3>
+      <ul>
+        <li>Graphic UI</li>
+        <li>Game works and follows War rules</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>War Card Game Example - 2nd iteration</h2>
+      <p>
+        <b>Goal: </b>Game works and follows War rules (this is one of the first two pieces)
+      </p>
+      <h3>Requirements</h3>
+      <ul>
+        <li>Simulate deck of shuffled cards</li>
+        <li>Simulate the player's hand</li>
+        <li>Simulate computer's hand</li>
+        <li>Player can play their next card</li>
+        <li>Computer automatically plays next card after player</li>
+        <li>Determine winner of round</li>
+        <li>Cards added to deck of loser</li>
+        <li>Track points</li>
+        <li>Determine winner of game</li>
+      </ul>
+      <p>At this point, I'm ready to move to coding. To do that, I will start by outlining these requirements with
+        comments and naming functions to actually carry out the steps. These are just initial ideas and may need to
+        change as the project progresses and I develop a better understanding of how it should work</p>
+      <pre class="jscode">
+/** War game */
+
+// Simulate deck of shuffled cards
+function shuffle() {
+
+}
+
+// Split deck into player and computer hands
+function splitDeck() {
+
+}
+
+// Player plays a card
+function playerPick() {
+
+}
+
+// Computer plays a card automatically after player
+function computerPick() {
+
+}
+
+// Check who won the round
+function getRoundWinner() {
+
+}
+
+// Add cards to the loser's deck
+function giveCardsToLoser() {
+
+}
+
+// Add points to winner's score
+function addPoints() {
+
+}
+
+// Determine winner of game
+function getGameWinner() {
+
+}
+      </pre>
+    </section>
+
+    <section>
+      <h2>War Card Game Example - 3rd iteration</h2>
+      <p>
+        <b>Goal: </b> Simulate a deck of cards (seems like the most logical place to start)<br>
+      </p>
+      <h3>Requirements</h3>
+      <ul>
+        <li>A way to represent each card</li>
+        <li>A place to store the deck</li>
+        <li>A way to randomize a the deck</li>
+        <li>A way to get the next card from the deck</li>
+      </ul>
+      <p>These are small enough that I can see how to solve them. I will use comments and try to give things descriptive
+        names.</p>
+      <h3>Solution to first two requirements</h3>
+      <pre class="jscode">
+/** War game */
+
+/*** Simulate deck of shuffled cards */
+// Each card will be a string like "2H" for 2 of hearts
+// A global array is a good way to store the shuffled deck
+let deck = [];
+
+// Rather than list all 52 cards, I will combine values from two arrays to make each card string
+// card = values[i] + suits[j]
+const suits = ["H", "C", "S", "D"];
+const values = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];</pre>
+      <h3>Solution to third requirement</h3>
+      <p>After testing, I realized that this algorithm puts duplicate cards in the array so I put a TODO comment to remind me to fix that</p>
+      <pre class="jscode">
+// Shuffle deck
+function shuffle() {
+  // Generate 52 random cards and add to the deck
+  for (let n = 0; n &lt; 52; n++) {
+    // Pick rand num from 0 to 3 for suit index and pick random suit
+    let rand = Math.floor(Math.random() * 4);
+    let suit = suits[rand];
+
+    // Pick rand num from 0 to 13 for value index and pick random value
+    rand = Math.floor(Math.random() * 4);
+    value = values[rand];
+
+    // Concatenate strings to make a card like "QD"
+    let card = value + suit;
+
+    // Add card to deck list
+    deck.push(card); // TODO: check for duplicates, don't want two of the same card
+
+    // repeat 52 times for full deck
+  }
+}
+
+// Test by printing deck to console after calling shuffle()
+shuffle();
+console.log(deck);</pre>
+    </section>
+  </main>
+
+  <footer>
+    <div class="social-media-box">
+      <div><a href="#" class="donate-links">volunteer</a></div>
+      <div class="soc-media-placeholder"></div>
+      <div class="soc-media-placeholder"></div>
+      <div class="soc-media-placeholder"></div>
+      <div><a href="#" class="donate-links">donate</a></div>
+    </div>
+    <p style="text-align:center;">
+      Copyright (C) 2023 Nathan Adams<br> <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a>
+    </p>
+  </footer>
+</body>
+
+<style>
+  section {
+    color: var(--light-text-color);
+    background-color: var(--secondary-text-color);
+    padding: 20px;
+    margin: 20px 0px;
+  }
+
+  section h2 {
+    border-bottom: 2px solid var(--primary-text-color);
+    font-size: larger;
+  }
+
+  section h3 {
+    font-size: medium;
+  }
+
+  section p {
+    margin: 10px 0px;
+  }
+
+  main {
+    padding: 10px 20px;
+  }
+</style>
+
+<script src="/assets/js/base-scripts.js"></script>
+
+</html>
