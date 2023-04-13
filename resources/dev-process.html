@@ -194,6 +194,49 @@ function shuffle() {
 shuffle();
 console.log(deck);</pre>
     </section>
+
+    <section>
+      <h2>War Card Game - 4th iteration</h2>
+      <p>
+        <b>Goal: </b>To fill deck with random cards without duplicates
+      </p>
+      <pre class="jscode">
+// Shuffle deck
+function shuffle() {
+  // Generate 52 random cards and add to the deck
+  // Clear the deck
+  deck = [];
+  for (let n = 0; n &lt; 52; n++) {
+    // Pick rand num from 0 to 3 for suit index and pick random suit
+    let rand = Math.floor(Math.random() * 4);
+    let suit = suits[rand];
+
+    // Pick rand num from 0 to 13 for value index and pick random value
+    rand = Math.floor(Math.random() * 13);
+    value = values[rand];
+
+    // Concatenate strings to make a card like "QD"
+    let card = value + suit;
+
+    // Add card to deck list
+    // Only add card to deck if it isn't already there
+    if (deck.indexOf(card) >= 0) {
+      // Card is on the list already
+      // Decrement n because the card shouldn't be counted
+      n--;
+    }
+    else {
+      deck.push(card);
+    }
+
+    // repeat 52 times for full deck
+  }
+}
+
+// Test by printing deck to console after calling shuffle()
+shuffle();
+console.log(deck);</pre>
+    </section>
   </main>
 
   <footer>
