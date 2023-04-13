@@ -266,3 +266,13 @@ footer a:hover {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.preview-expand {
+  max-height: 200px;
+  overflow: hidden;
+}
+
+.preview-expand-tab {
+  cursor: pointer;
+  text-align: end;
+}
