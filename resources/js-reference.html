@@ -530,7 +530,9 @@ let arr = [];</pre>
             <p>
               An array is a list of values stored in one variable. Each element in the array has an ordered position or
               index. To <i>access</i> individual elements in the array, use square bracket or subscript notation with
-              the index of the element you want to access <code class="jscode">arr[index]</code>.
+              the index of the element you want to access <code class="jscode">arr[index]</code>. To access elements by
+              index, the array must already contain elements. You cannot add more elements to array this way, only
+              change elements at positions that already exist.
             </p>
             <pre class="jscode">
 let colors = ["red", "blue", "yellow", "orange", "green"];
@@ -545,6 +547,20 @@ let color = colors[3];</pre>
 colors[1] = "purple";</pre>
           </div>
           <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Adding elements to an array</h3>
+            <p>
+              Add elements to the end of an array using the <code class="jscode">arr.push(element)</code> method.
+            </p>
+            <pre class="jscode">
+let foods = [];
+foods.push("Ice cream");
+foods.push("Hamburger");
+/* Now, foods = ["Ice cream", "Hamburger"] */ </pre>
+          </div>
         </div>
 
       </div>
