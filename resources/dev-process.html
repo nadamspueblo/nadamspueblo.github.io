@@ -73,7 +73,7 @@
       </ul>
     </section>
 
-    <section>
+    <section class="preview-expand">
       <h2>War Card Game Example - 2nd iteration</h2>
       <p>
         <b>Goal: </b>Game works and follows War rules (this is one of the first two pieces)
@@ -137,8 +137,9 @@ function getGameWinner() {
 }
       </pre>
     </section>
+    <div class="preview-expand-tab">More [+]</div>
 
-    <section>
+    <section class="preview-expand">
       <h2>War Card Game Example - 3rd iteration</h2>
       <p>
         <b>Goal: </b> Simulate a deck of cards (seems like the most logical place to start)<br>
@@ -177,7 +178,7 @@ function shuffle() {
     let suit = suits[rand];
 
     // Pick rand num from 0 to 13 for value index and pick random value
-    rand = Math.floor(Math.random() * 4);
+    rand = Math.floor(Math.random() * 13);
     value = values[rand];
 
     // Concatenate strings to make a card like "QD"
@@ -194,8 +195,9 @@ function shuffle() {
 shuffle();
 console.log(deck);</pre>
     </section>
+    <div class="preview-expand-tab">More [+]</div>
 
-    <section>
+    <section class="preview-expand">
       <h2>War Card Game - 4th iteration</h2>
       <p>
         <b>Goal: </b>To fill deck with random cards without duplicates
@@ -237,6 +239,54 @@ function shuffle() {
 shuffle();
 console.log(deck);</pre>
     </section>
+    <div class="preview-expand-tab">More [+]</div>
+
+    <section class="preview-expand">
+      <h2>War Card Game - 5th iteration</h2>
+      <p>
+        <b>Goals: </b>1. Simulate the player's hand, 2. Simulate computer's hand, 3. Simulate discard pile
+      </p>
+      <h3>Requirements</h3>
+      <ul>
+        <li>A place (variable) to store the deck for each hand</li>
+        <li>A way to split the shuffled deck between the player and computer hands to start the game</li>
+      </ul>
+      <pre class="jscode">
+// Global arrays representing the different decks to hold the strings representing the cards
+let playerHand = [];
+let compHand = [];
+let discardPile = [];</pre>
+<p>
+  This algorithm to split the cards is equivalent to "cutting" the deck exactly in half
+</p>
+      <pre class="jscode">
+// Split deck into player and computer hands
+function splitDeck() {
+  // Clear the player's hand to start clean
+  playerHand = [];
+  
+  // Put the first half of the deck in the player's hand
+  for (let i = 0; i &lt; deck.length / 2; i++){
+    playerHand.push(deck[i]);
+  }
+
+  // Clear the computer's hand
+  compHand = [];
+
+  // Put the second half in the computer's hand
+  for (let i = deck.length / 2; i &lt; deck.length; i++){
+    compHand.push(deck[i]);
+  }
+}
+
+// Test split deck
+shuffle();
+splitDeck();
+console.log(playerHand);
+console.log(compHand);
+      </pre>
+    </section>
+    <div class="preview-expand-tab">More [+]</div>
   </main>
 
   <footer>
@@ -258,7 +308,12 @@ console.log(deck);</pre>
     color: var(--light-text-color);
     background-color: var(--secondary-text-color);
     padding: 20px;
-    margin: 20px 0px;
+    margin: 20px 0px 0px 0px;
+  }
+
+  .preview-expand-tab {
+    background-color: var(--secondary-text-color);
+    padding: 10px 20px;    
   }
 
   section h2 {
