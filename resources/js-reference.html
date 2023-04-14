@@ -26,9 +26,8 @@
 <body>
   <header>
     <div>
-      <h2>&lt;CS1-2&gt;</h2>
+      <h2><a href="https://www.pueblocs.org">PH:S\Computer Science\&gt;</a></h2>
       <h1>JavaScript Reference</h1>
-      <h2 style="align-self: flex-end;">&lt;/CS3-4&gt;</h2>
     </div>
   </header>
 
@@ -457,7 +456,8 @@ function checkGuess(event) { // Called from click event
   }
 }</pre>
             <p>
-              Using comments and pseudo-code and following the top-down design process and decomposition can help you determine what functions to create
+              Using comments and pseudo-code and following the top-down design process and decomposition can help you
+              determine what functions to create
               and what to name them which will greatly enhance your ability to create complex programs
             </p>
           </div>
@@ -468,7 +468,8 @@ function checkGuess(event) { // Called from click event
           <div class="preview-expand">
             <h3>Function definitions</h3>
             <p>
-              Before a function can be used, it must be defined somewhere. Define your own functions using the syntax below
+              Before a function can be used, it must be defined somewhere. Define your own functions using the syntax
+              below
             </p>
             <pre class="jscode">
 function myFunction() {
@@ -482,6 +483,66 @@ function errorAlert() {
   console.log("Error");
   alert("Error, please refresh the page");
 }</pre>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <h2>Arrays and Collections</h2>
+      <div class="item-box">
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Array basics</h3>
+            <p>
+              An array is a datatype that represents an ordered collection of items. Each item is referred to as an
+              <i>element</i> and has an
+              ordered position or <i>index</i> in the array. Array indices start at zero. Array elements can be of any
+              datatype, including arrays, and unlike many programming languages, JavaScript arrays can contain more than
+              one datatype.
+            </p>
+            <p>
+              Create an array with some initial string values.
+            </p>
+            <pre class="jscode">
+let weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];</pre>
+            <p>
+              The index of the first element, <code class="jscode">"Monday"</code> is the integer value <code
+                class="jscode">0</code>, <code class="jscode">"Tuesday"</code> is <code class="jscode">1</code> and so
+              forth
+            </p>
+            <p>
+              Often it can be useful to declare an initially empty array, and then use the <code
+                class="jscode">.push()</code> method to add elements at another point in the script.
+            </p>
+            <pre class="jscode">
+let arr = [];</pre>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Accessing array values (getting and setting)</h3>
+            <p>
+              An array is a list of values stored in one variable. Each element in the array has an ordered position or
+              index. To <i>access</i> individual elements in the array, use square bracket or subscript notation with
+              the index of the element you want to access <code class="jscode">arr[index]</code>.
+            </p>
+            <pre class="jscode">
+let colors = ["red", "blue", "yellow", "orange", "green"];
+/* Print the first element, red, to the console */ 
+console.log(colors[0]);
+
+/* Store the 4th element in another variable */ 
+let color = colors[3];</pre>
+            <p>Change values in the array</p>
+            <pre class="jscode">
+/* Change the second element (index = 1) from blue to purple */ 
+colors[1] = "purple";</pre>
           </div>
           <div class="preview-expand-tab">More [+]</div>
         </div>
@@ -624,7 +685,6 @@ button.innerHTML = "Cancel";</pre>
   h3 {
     margin: 5px 0px;
   }
-
 </style>
 
 <script src="/assets/js/base-scripts.js"></script>
