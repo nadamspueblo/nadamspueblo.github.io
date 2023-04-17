@@ -71,7 +71,7 @@ for (let i = 0; i < expandTabs.length; i++) {
 const jsKeyWords = ["var", "let", "const", "function", "true", "false", "return"];
 const jsBrackets = ["[", "]", "{", "}", "(", ")"];
 const jsControl = ["if ", "else ", "for ", "while ", "do "];
-const jsOperators = [" < ", " > ", " <= ", " >= ", "!", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", ".", "**", "%"];
+const jsOperators = [" < ", " > ", " <= ", " >= ", "!", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", ".", "**", "%", "&#61;"];
 const isNumeric = n => /\d|\./.test(n);
 
 let codeElements = document.getElementsByClassName("jscode");
@@ -84,9 +84,16 @@ for (let e of codeElements) {
   e.innerHTML = lintHTML(e.innerHTML);
 }
 
+codeElements = document.getElementsByClassName("csscode");
+for (let e of codeElements) {
+  e.innerHTML = lintCSS(e.innerHTML);
+}
+
+// HTML lint functions
+
 function lintHTML(code) {
-  //code = code.replaceAll("=", "<span class='htmlbracket'>=</span>");
-  //code = lintHTMLStrings(code);
+  code = code.replaceAll("=", "&#61;");
+  code = lintHTMLTags(code);
   code = lintHTMLAttrib(code);
   code = code.replaceAll("&lt;/", "<span class='htmlbracket'>&lt;/</span>");
   code = code.replaceAll("&lt;", "<span class='htmlbracket'>&lt;</span>");
@@ -96,22 +103,48 @@ function lintHTML(code) {
 
 function lintHTMLAttrib(code) {
   let result = "";
-  let startIndex = code.search(/\w+="/);
+  let startIndex = code.search(/\w+&#61;"/);
   if (startIndex > 0) result += code.substring(0, startIndex);
-  let endIndex = code.indexOf("=", startIndex);
+  let endIndex = code.indexOf("&#61;", startIndex);
   while (startIndex >= 0 && endIndex > startIndex) {
     // keyword
     result += "<span class='htmlattrib'>" + code.substring(startIndex, endIndex) + "</span>";
     // equal sign
-    result += "<span class='jsoperator'>=</span>";
+    result += "<span class='jsoperator'>&#61;</span>";
     // value
-    startIndex = endIndex + 2;
+    startIndex = endIndex + 6;
     endIndex = code.indexOf("\"", startIndex);
     result += "<span class='jsstring'>" + code.substring(startIndex - 1, endIndex + 1) + "</span>";
 
     code = code.substring(endIndex + 1);
-    startIndex = code.search(/\w+="/);
-    if (startIndex >= 0) endIndex = code.indexOf("=", startIndex);
+    startIndex = code.search(/\w+&#61;"/);
+    if (startIndex >= 0) {
+      result += code.substring(0, startIndex);
+      endIndex = code.indexOf("&#61;", startIndex);
+    }
+  }
+
+  result += code;
+  return result;
+}
+
+function lintHTMLTags(code) {
+  let result = "";
+  let startIndex = code.search(/&lt;/);
+  // Increment to not include the symbol
+  startIndex += 4;
+  if (startIndex > 0) result += code.substring(0, startIndex);
+  let endIndex = code.indexOf("&gt;", startIndex);
+  while (startIndex >= 0 && endIndex > startIndex) {
+    if (code.charAt(startIndex + 1) == "/") startIndex++;
+    result += "<span class='htmltag'>" + code.substring(startIndex, endIndex) + "</span>";
+    
+    code = code.substring(endIndex);
+    startIndex = code.search(/&lt;/);
+    if (startIndex >= 0){
+      result += code.substring(0, startIndex);
+      endIndex = code.indexOf("&gt;", startIndex);
+    }
   }
 
   result += code;
@@ -138,6 +171,60 @@ function lintHTMLStrings(code) {
   result += code.substring(startIndex);
   return result;
 }
+
+// CSS lint functions
+
+function lintCSS(code) {
+  code = lintCSSSelectors(code);
+  code = lintCSSProperties(code);
+
+  return code;
+}
+
+function lintCSSSelectors(code){
+  let result = "";
+  let startIndex = 0;
+  let endIndex = code.search(/{/);
+  while (startIndex >= 0 && endIndex > startIndex) {
+    result += "<span class='cssselector'>" + code.substring(startIndex, endIndex) + "</span>";
+    startIndex = endIndex;
+    endIndex = code.indexOf("}", startIndex) + 1;
+    endIndex = endIndex == -1 ? code.length : endIndex;
+    
+    result += code.substring(startIndex, endIndex);
+    code = code.substring(endIndex);
+
+    startIndex = 0;
+    endIndex = code.search(/{/);
+  }
+  return result;
+}
+
+function lintCSSProperties(code){
+  let result = "";
+  let startIndex = code.search(/\w+:/);
+  console.log(startIndex);
+  if (startIndex > 0) result += code.substring(0, startIndex);
+  let endIndex = code.indexOf(":", startIndex);
+  while (startIndex >= 0 && endIndex > startIndex) {
+    // keyword
+    result += "<span class='htmlattrib'>" + code.substring(startIndex, endIndex) + "</span>";
+    // : symbol
+    result += "<span class='jsoperator'>:</span>";
+
+    code = code.substring(endIndex + 1);
+    startIndex = code.search(/\w+:/);
+    if (startIndex >= 0) {
+      result += code.substring(0, startIndex);
+      endIndex = code.indexOf(":", startIndex);
+    }
+  }
+
+  result += code;
+  return result;
+}
+
+// JS lint functions
 
 function lintJS(code) {
   // Remove html escape chars
