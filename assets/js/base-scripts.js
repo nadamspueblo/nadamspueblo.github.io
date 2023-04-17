@@ -177,7 +177,10 @@ function lintHTMLStrings(code) {
 function lintCSS(code) {
   code = lintCSSSelectors(code);
   code = lintCSSProperties(code);
-
+  //code = lintCSSNumbers(code);
+  code = code.replaceAll(";", "<span class='cssoperator'>;</span>");
+  code = code.replaceAll("{", "<span class='jsbracket'>{</span>");
+  code = code.replaceAll("}", "<span class='jsbracket'>}</span>");
   return code;
 }
 
@@ -202,18 +205,17 @@ function lintCSSSelectors(code){
 
 function lintCSSProperties(code){
   let result = "";
-  let startIndex = code.search(/\w+:/);
-  console.log(startIndex);
+  let startIndex = code.search(/(\w+\-\w+:\s)|(\w+:\s)/);
   if (startIndex > 0) result += code.substring(0, startIndex);
   let endIndex = code.indexOf(":", startIndex);
   while (startIndex >= 0 && endIndex > startIndex) {
     // keyword
     result += "<span class='htmlattrib'>" + code.substring(startIndex, endIndex) + "</span>";
     // : symbol
-    result += "<span class='jsoperator'>:</span>";
+    result += "<span class='cssoperator'>:</span>";
 
     code = code.substring(endIndex + 1);
-    startIndex = code.search(/\w+:/);
+    startIndex = code.search(/(\w+\-\w+:\s)|(\w+:\s)/);
     if (startIndex >= 0) {
       result += code.substring(0, startIndex);
       endIndex = code.indexOf(":", startIndex);
@@ -221,6 +223,22 @@ function lintCSSProperties(code){
   }
 
   result += code;
+  return result;
+}
+
+function lintCSSNumbers(code) {
+  let result = "";
+  let startIndex = code.search(/[0-9]\w/);
+  let endIndex = code.indexOf(";", startIndex);
+  if (endIndex == -1) endIndex = code.indexOf(" ", startIndex);
+  while (startIndex >= 0 && endIndex > startIndex) {
+    result += "<span class='jsnumber'>" + code.substring(startIndex, endIndex) + "</span>";
+    startIndex = endIndex;
+    endIndex = code.indexOf(";", startIndex);
+    if (endIndex == -1) endIndex = code.indexOf(" ", startIndex);
+    endIndex++;
+  }
+
   return result;
 }
 

@@ -60,9 +60,13 @@
 }
 
 .csscode {
-  color:saddlebrown;
+  color:chocolate;
 }
 
 .cssselector {
   color:goldenrod;
+}
+
+.cssoperator {
+  color:gainsboro;
 }
