@@ -287,6 +287,114 @@ console.log(compHand);
       </pre>
     </section>
     <div class="preview-expand-tab">More [+]</div>
+
+    <section class="preview-expand">
+      <h2>War Card Game - 6th iteration</h2>
+      <p>
+        <b>Goal: </b>Graphic UI<br>
+        I am to the point in the script where the next logical step is to start putting together the user interface and developing the actual gameplay.
+      </p>
+      <h3>Requirements</h3>
+      <ul>
+        <li>A UI element to start a new game</li>
+        <li>UI elements for player and computer decks</li>
+        <li>UI elements for cards in play</li>
+        <li>Animations and messages for game events</li>
+      </ul>
+      <p>
+        Animations and messages needs to be broken down further, but I will create basic versions the other requirements in this step and refine them later.
+      </p>
+      <p>
+        I used divs to represent the basic elements of the game and named each element I anticipate needing to find in JavaScript.
+      </p>
+      <pre class="htmlcode">
+&lt;body&gt;
+&lt;header&gt;
+  &lt;h1&gt;War&lt;/h1&gt;
+  &lt;/header&gt;
+
+  &lt;main&gt;
+    &lt;div id="game-area"&gt;
+      &lt;div id="player-deck" onclick="playerPick()" class="card-back"&gt;
+        + +&lt;br&gt;+ +
+        &lt;/div&gt;
+      &lt;div id="player-card" class="card-front"&gt;
+        &lt;h3 id="player-card-value"&gt;3&lt;/h3&gt;
+      &lt;/div&gt;
+
+      &lt;div id="comp-card" class="card-front"&gt;
+        &lt;h3 id="comp-card-value"&gt;5&lt;/h3&gt;
+      &lt;/div&gt;
+      
+      &lt;div id="comp-deck" class="card-back"&gt;
+        + +&lt;br&gt;+ +
+      &lt;/div&gt;
+
+    &lt;/div&gt;>
+    &lt;button id="new-button" class="card-back" onclick="start()">Deal&lt;/button&gt;
+  &lt;/main&gt;
+&lt;/body&gt;</pre>
+        <p>
+          Some CSS styles to make it look somewhat like cards.
+        </p>
+        <pre class="csscode">
+body {
+  margin: 0px;
+  background-color: green;
+}
+
+h1 {
+  font-size: 60px;
+  color:red;
+  text-align: center;
+}
+
+#game-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 20px;
+}
+
+#new-button {
+  font-size: 60px;
+  margin: 40px auto;
+}
+
+.card-front,
+.card-back, .card-empty {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 300px;
+  font-size: 100px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.card-front {
+  background-color: white;
+}
+
+.card-empty {
+  background-color: inherit;
+}
+
+.card-back {
+  background-color: darkblue;
+  color: cornflowerblue;
+}
+
+#new-button:hover, #player-deck:hover {
+  border: 2px solid cornflowerblue;
+  cursor: pointer;
+}
+        </pre>
+    </section>
+    <div class="preview-expand-tab">More [+]</div>
   </main>
 
   <footer>
