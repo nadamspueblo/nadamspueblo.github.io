@@ -71,7 +71,7 @@ for (let i = 0; i < expandTabs.length; i++) {
 const jsKeyWords = ["var", "let", "const", "function", "true", "false", "return"];
 const jsBrackets = ["[", "]", "{", "}", "(", ")"];
 const jsControl = ["if ", "else ", "for ", "while ", "do "];
-const jsOperators = [" < ", " > ", " <= ", " >= ", "!", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", ".", "**", "%", "&#61;"];
+const jsOperators = [" < ", " > ", " <= ", " >= ", "!", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", ".", "**", "%", "&#61;", "||", "&&"];
 const isNumeric = n => /\d|\./.test(n);
 
 let codeElements = document.getElementsByClassName("jscode");
@@ -138,10 +138,10 @@ function lintHTMLTags(code) {
   while (startIndex >= 0 && endIndex > startIndex) {
     if (code.charAt(startIndex + 1) == "/") startIndex++;
     result += "<span class='htmltag'>" + code.substring(startIndex, endIndex) + "</span>";
-    
+
     code = code.substring(endIndex);
     startIndex = code.search(/&lt;/);
-    if (startIndex >= 0){
+    if (startIndex >= 0) {
       result += code.substring(0, startIndex);
       endIndex = code.indexOf("&gt;", startIndex);
     }
@@ -184,7 +184,7 @@ function lintCSS(code) {
   return code;
 }
 
-function lintCSSSelectors(code){
+function lintCSSSelectors(code) {
   let result = "";
   let startIndex = 0;
   let endIndex = code.search(/{/);
@@ -193,7 +193,7 @@ function lintCSSSelectors(code){
     startIndex = endIndex;
     endIndex = code.indexOf("}", startIndex) + 1;
     endIndex = endIndex == -1 ? code.length : endIndex;
-    
+
     result += code.substring(startIndex, endIndex);
     code = code.substring(endIndex);
 
@@ -203,7 +203,7 @@ function lintCSSSelectors(code){
   return result;
 }
 
-function lintCSSProperties(code){
+function lintCSSProperties(code) {
   let result = "";
   let startIndex = code.search(/(\w+\-\w+:\s)|(\w+:\s)/);
   if (startIndex > 0) result += code.substring(0, startIndex);
