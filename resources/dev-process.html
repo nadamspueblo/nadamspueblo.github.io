@@ -56,8 +56,9 @@
       <p>It's very much analagous to building something out of legos where you also get to design the pieces. </p>
 
       <p>
-        Below is an example of using this process to build a web-based War card game. 
-        <a href="https://github.com/nadamspueblo/war-card-game.git" target="_blank">War Card Game Repository on Github</a>
+        Below is an example of using this process to build a web-based War card game.
+        <a href="https://github.com/nadamspueblo/war-card-game.git" target="_blank">War Card Game Repository on
+          Github</a>
       </p>
 
     </section>
@@ -258,9 +259,9 @@ console.log(deck);</pre>
 let playerHand = [];
 let compHand = [];
 let discardPile = [];</pre>
-<p>
-  This algorithm to split the cards is equivalent to "cutting" the deck exactly in half
-</p>
+      <p>
+        This algorithm to split the cards is equivalent to "cutting" the deck exactly in half
+      </p>
       <pre class="jscode">
 // Split deck into player and computer hands
 function splitDeck() {
@@ -294,7 +295,8 @@ console.log(compHand);
       <h2>War Card Game - 6th iteration</h2>
       <p>
         <b>Task: </b>Graphic UI<br>
-        I am to the point in the script where the next logical step is to start putting together the user interface and developing the actual gameplay.
+        I am to the point in the script where the next logical step is to start putting together the user interface and
+        developing the actual gameplay.
       </p>
       <h3>Requirements</h3>
       <ul>
@@ -304,10 +306,12 @@ console.log(compHand);
         <li>Animations and messages for game events</li>
       </ul>
       <p>
-        Animations and messages needs to be broken down further, but I will create basic versions of the other requirements in this step and refine them later.
+        Animations and messages needs to be broken down further, but I will create basic versions of the other
+        requirements in this step and refine them later.
       </p>
       <p>
-        I used divs to represent the basic elements of the game and named each element I anticipate needing to find in JavaScript.
+        I used divs to represent the basic elements of the game and named each element I anticipate needing to find in
+        JavaScript.
       </p>
       <pre class="htmlcode">
 &lt;body&gt;
@@ -336,10 +340,10 @@ console.log(compHand);
     &lt;button id="new-button" class="card-back" onclick="start()">Deal&lt;/button&gt;
   &lt;/main&gt;
 &lt;/body&gt;</pre>
-        <p>
-          Some CSS styles to make it look somewhat like cards.
-        </p>
-        <pre class="csscode">
+      <p>
+        Some CSS styles to make it look somewhat like cards.
+      </p>
+      <pre class="csscode">
 body {
   margin: 0px;
   background-color: green;
@@ -393,8 +397,12 @@ h1 {
 #new-button:hover, #player-deck:hover {
   border: 2px solid cornflowerblue;
   cursor: pointer;
-}
-        </pre>
+}</pre>
+      <p>
+        Screenshot of user interface
+      </p>
+      <img src="/resources/war-card-game-screenshot.jpg" alt="War card game UI screenshot" width="80%"
+        style="display: block; margin: 10px auto">
     </section>
     <div class="preview-expand-tab">More [+]</div>
 
@@ -448,6 +456,64 @@ function playerPick() {
       </pre>
     </section>
     <div class="preview-expand-tab">More [+]</div>
+
+    <section class="preview-expand">
+      <h2>War Card Game - 8th iteration</h2>
+      <p>
+        <b>Task: </b> Computer automatically plays card
+      </p>
+      <h3>Requirements</h3>
+      <ul>
+        <li>Card is played after player's turn</li>
+        <li>Card is next card from computer deck</li>
+        <li>UI updates with correct card in the correct location</li>
+      </ul>
+      <p>
+        Call the <code class="jscode">computerPick()</code> function at the end of the <code
+          class="jscode">playerPick()</code> function
+      </p>
+      <pre class="jscode">
+function playerPick() {
+  /* other code not shown */
+
+  // Trigger computer move
+  computerPick();
+}</pre>
+      <p>
+        Computer card pick algorithm is essentially the same as the algorithm for the <code
+          class="jscode">playerPick()</code> function.
+      </p>
+      <pre class="jscode">
+// Computer picks a card
+function computerPick() {
+  // Pick next card from comp deck
+  compCard = compHand.pop();
+
+  // Update UI
+  // Get card value and suit from string same algorithm as in playerPick()
+  let value = "", suit = "";
+  if (compCard.length == 3) {
+    value = compCard.substring(0, 2);
+    suit = compCard.substring(2, 3);
+  }
+  else {
+    value = compCard.substring(0, 1);
+    suit = compCard.substring(1, 2);
+  }
+
+  // Set properties on player card element
+  let valueElement = document.getElementById("comp-card-value");
+  valueElement.innerHTML = value;
+  if (suit == "H" || suit == "D") {
+    valueElement.style.color = "red";
+  } else {
+    valueElement.style.color = "black";
+  }
+
+  // TODO: Set suit image 
+}</pre>
+    </section>
+    <div class="preview-expand-tab">More [+]</div>
   </main>
 
   <footer>
@@ -474,7 +540,7 @@ function playerPick() {
 
   .preview-expand-tab {
     background-color: var(--secondary-text-color);
-    padding: 10px 20px;    
+    padding: 10px 20px;
   }
 
   section h2 {
