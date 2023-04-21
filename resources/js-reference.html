@@ -306,6 +306,33 @@ do {
           <div class="preview-expand-tab">More [+]</div>
         </div>
 
+        <div class="resource-card">
+          <div class="preview-expand">
+            <h3>Logical operators</h3>
+            <p>
+              Logical operators are statements about truth (Boolean values). To start, it's best to think about them
+              intuitively - <code class="jscode">&&</code> means <i>and</i>,
+              <code class="jscode">||</code> means <i>or</i>, and <code class="jscode">!</code> means <i>not</i>.
+            </p>
+            <ul>
+              <li><code class="jscode">a && b</code> is a true statement if <i>both</i> <code class="jscode">a</code> is
+                true <i>and</i> <code class="jscode">b</code> is true. Otherwise it's false. Intuitively: I'm happy if I'm healthy
+                <i>and</i> financially stable. If either one isn't true, I'm not happy.</li>
+              <li><code class="jscode">a || b</code> is a true statement if <i>either</i> <code class="jscode">a</code>
+                is true <i>or</i> <code class="jscode">b</code> is true or <i>both</i>. It is only false if <i>both</i>
+                are false. Intuitively: I'm happy if I have ice cream or I have cake for my birthday. Either way I'm happy, both is all the better. I'm only unhappy if I don't get either.</li>
+              <li><code class="jscode">!a</code> <i>not</i> a is a true statement if <code class="jscode">a</code> is false. It's a false statement if <code class="jscode">a</code> is true.
+                Intuitively: (Not good) is bad, (not true) is false, (not false) is true</li>
+            </ul>
+            <pre class="jscode">
+let age = prompt("Enter your age");
+if (age &gt;= 13 && age &lt; 20) {
+  alert("You are a teenager");
+}           </pre>
+          </div>
+          <div class="preview-expand-tab">More [+]</div>
+        </div>
+
       </div>
     </section>
 
