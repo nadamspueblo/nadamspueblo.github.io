@@ -73,6 +73,7 @@ const jsBrackets = ["[", "]", "{", "}", "(", ")"];
 const jsControl = ["if ", "else ", "for ", "while ", "do "];
 const jsOperators = [" < ", " > ", " <= ", " >= ", "!", "++", "-", " + ", "--", " / ", " % ", " * ", ";", ",", ".", "**", "%", "&#61;", "||", "&&"];
 const isNumeric = n => /\d|\./.test(n);
+//console.log(lintJS("a && b"));
 
 let codeElements = document.getElementsByClassName("jscode");
 for (let e of codeElements) {
@@ -248,6 +249,7 @@ function lintJS(code) {
   // Remove html escape chars
   code = code.replaceAll("&lt;", "<");
   code = code.replaceAll("&gt;", ">");
+  code = code.replaceAll("&amp;", "&");
 
   // Start lint process with block comments
   code = lintComments(code);
