@@ -235,24 +235,22 @@ let num = 2 / 3;
           <div class="preview-expand">
             <h3>Basic math operations</h3>
             <p>
-              JavaScript follows the same order of operations as math class <b>PEMDAS</b>.
+              JavaScript follows the same order of operations as math class: <b>PEMDAS</b>.
             </p>
-            <ul>
+            <ol>
               <li>Parentheses <code class="jscode"> () </code></li>
               <li>Exponents <code class="jscode"> ** </code></li>
-              <li>Multiplication <code class="jscode"> * </code></li>
-              <li>Division <code class="jscode"> / </code></li>
-              <li>Modulus <code class="jscode"> % </code></li>
-              <li>Addition <code class="jscode"> + </code></li>
-              <li>Subtraction <code class="jscode"> - </code></li>
-            </ul>
+              <li>Multiplication <code class="jscode"> * </code>, Division <code class="jscode"> / </code>, Modulus <code class="jscode"> % </code> from left to right</li>
+              <li>Addition <code class="jscode"> + </code>, Subtraction <code class="jscode"> - </code> from left to right</li>
+            </ol>
             <pre class="jscode">
-let ans = 100 - 5 ** 2 * (1 + 2) + 25 % 3;
+let ans = 100 - 5 ** 2 * (1 + 2) + 50 / 2 % 3;
 /* ans = 26 */</pre>
             <ol>
-              <li>100 - 5 ** 2 * <span style="color: blue;">(1 + 2)</span> + 25 % 3</li>
-              <li>100 - <span style="color: blue;">5 ** 2</span> * 3 + 25 % 3</li>
-              <li>100 - <span style="color: blue;">25 * 3</span> + 25 % 3</li>
+              <li>100 - 5 ** 2 * <span style="color: blue;">(1 + 2)</span> + 50 / 2 % 3</li>
+              <li>100 - <span style="color: blue;">5 ** 2</span> * 3 + 50 / 2 % 3</li>
+              <li>100 - <span style="color: blue;">25 * 3</span> + 50 / 2 % 3</li>
+              <li>100 - 75 + <span style="color: blue;">50 / 2</span> % 3</li>
               <li>100 - 75 + <span style="color: blue;">25 % 3</span></li>
               <li><span style="color: blue;">100 - 75</span> + 1</span></li>
               <li><span style="color: blue;">25 + 1</span></li>
