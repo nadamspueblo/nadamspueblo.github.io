@@ -190,12 +190,13 @@ function loadCurriculum() {
   setDisplayDates(displayMonth);
   db.collection(course + "-curriculum")
     .orderBy("unit-num")
-    .onSnapshot((querySnapShot) => {
+    .get().then((querySnapShot) => {
       units = new Map();
       unitStartDate = new Date(firstDayOfSchool.getTime());
       for (var i = 0; i < querySnapShot.docs.length; i++) {
         var doc = querySnapShot.docs[i];
         loadLessons(parseInt(doc.data()["unit-num"]), i == querySnapShot.docs.length - 1);
+        getLiveChanges(parseInt(doc.data()["unit-num"]));
       };
 
       if (querySnapShot.docs.length == 0) {
@@ -203,16 +204,29 @@ function loadCurriculum() {
         createAddUnitButton();
       }
     });
-
-    db.collection(course + "-curriculum")
-    .orderBy("unit-num")
-    .get()
-    .catch((error) => {
-      console.log(error);
-    });
 }
 
 function loadLessons(unit, last = false) {
+  db.collection(course + "-curriculum").doc("unit-" + unit).collection("lessons")
+    .orderBy("lesson-num").withConverter(lessonConverter)
+    .get().then((querySnapShot) => {
+          for (var i = 0; i < querySnapShot.docs.length; i++) {
+            var lesson = querySnapShot.docs[i].data();
+            if (lesson.lessonNum == 0) {
+              units.set(unit, lesson);
+            }
+            else {
+              units.get(unit).lessons.push(lesson);
+            }
+            if (i == querySnapShot.docs.length - 1 && last) {
+              fillCalendar();
+            }
+          }
+
+      });
+}
+
+function getLiveChanges(unit) {
   db.collection(course + "-curriculum").doc("unit-" + unit).collection("lessons")
     .orderBy("lesson-num").withConverter(lessonConverter)
     .onSnapshot((querySnapShot) => {
@@ -232,7 +246,7 @@ function loadLessons(unit, last = false) {
             else {
               units.get(unit).lessons.push(lesson);
             }
-            if (i == querySnapShot.docs.length - 1 && (last || !firstLoad)) {
+            if (i == querySnapShot.docs.length - 1 && !firstLoad) {
               fillCalendar();
             }
           }
@@ -254,12 +268,6 @@ function loadLessons(unit, last = false) {
       
     });
 
-    db.collection(course + "-curriculum").doc("unit-" + unit).collection("lessons")
-    .orderBy("lesson-num").withConverter(lessonConverter)
-    .get()
-    .catch((error) => {
-      console.log(error);
-    });
 }
 
 function addEmptyLesson(length = 1) {

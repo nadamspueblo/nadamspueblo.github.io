@@ -71,9 +71,9 @@ function getFirstDayOfSchool() {
   var now = new Date(Date.now());
   var currMonth = now.getMonth();
   var year = now.getFullYear();
-  if (currMonth < 7) {
+  /*if (currMonth < 7) {
     year--;
-  }
+  }*/
   var date = new Date("8/1/" + year);
   while (date.toLocaleDateString("en-us", { weekday: 'long' }) != "Thursday") {
     date.setDate(date.getDate() + 1);
@@ -110,43 +110,43 @@ function getSchoolDaysBetween(date1, date2) {
 }
 
 function setNoSchoolDays() {
-  noSchoolDays.set(new Date("8/3/2022").toLocaleDateString('en-us', dateKeyOptions), "Teacher Prep Day")
-  noSchoolDays.set(new Date("8/25/2022").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
-  noSchoolDays.set(new Date("9/5/2022").toLocaleDateString('en-us', dateKeyOptions), "Labor Day");
-  noSchoolDays.set(new Date("10/7/2022").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
-  noSchoolDays.set(new Date("10/10/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("10/11/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("10/12/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("10/13/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("10/14/2022").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
-  noSchoolDays.set(new Date("11/3/2022").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
-  noSchoolDays.set(new Date("11/11/2022").toLocaleDateString('en-us', dateKeyOptions), "Veteran's Day");
-  noSchoolDays.set(new Date("11/24/2022").toLocaleDateString('en-us', dateKeyOptions), "Thanksgiving Break");
-  noSchoolDays.set(new Date("11/25/2022").toLocaleDateString('en-us', dateKeyOptions), "Thanksgiving Break");
-  noSchoolDays.set(new Date("12/23/2022").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
-  noSchoolDays.set(new Date("12/26/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("12/27/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("12/28/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("12/29/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("12/30/2022").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/2/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/3/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/4/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/5/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/6/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
-  noSchoolDays.set(new Date("1/16/2023").toLocaleDateString('en-us', dateKeyOptions), "MLK Day");
-  noSchoolDays.set(new Date("1/26/2022").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
-  noSchoolDays.set(new Date("2/23/2023").toLocaleDateString('en-us', dateKeyOptions), "Rodeo Break");
-  noSchoolDays.set(new Date("2/24/2023").toLocaleDateString('en-us', dateKeyOptions), "Rodeo Break");
-  noSchoolDays.set(new Date("3/17/2023").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
-  noSchoolDays.set(new Date("3/20/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/21/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/22/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/23/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/24/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
-  noSchoolDays.set(new Date("3/30/2023").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
-  noSchoolDays.set(new Date("4/7/2023").toLocaleDateString('en-us', dateKeyOptions), "Spring Holiday");
-  noSchoolDays.set(new Date("5/26/2023").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
+  noSchoolDays.set(new Date("8/2/2023").toLocaleDateString('en-us', dateKeyOptions), "Teacher Prep Day")
+  noSchoolDays.set(new Date("8/23/2023").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
+  noSchoolDays.set(new Date("9/4/2023").toLocaleDateString('en-us', dateKeyOptions), "Labor Day");
+  noSchoolDays.set(new Date("10/6/2023").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
+  noSchoolDays.set(new Date("10/9/2023").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
+  noSchoolDays.set(new Date("10/10/2023").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
+  noSchoolDays.set(new Date("10/11/2023").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
+  noSchoolDays.set(new Date("10/12/2023").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
+  noSchoolDays.set(new Date("10/13/2023").toLocaleDateString('en-us', dateKeyOptions), "Fall Break");
+  noSchoolDays.set(new Date("10/25/2023").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
+  noSchoolDays.set(new Date("11/10/2023").toLocaleDateString('en-us', dateKeyOptions), "Veteran's Day");
+  noSchoolDays.set(new Date("11/23/2023").toLocaleDateString('en-us', dateKeyOptions), "Thanksgiving Break");
+  noSchoolDays.set(new Date("11/24/2023").toLocaleDateString('en-us', dateKeyOptions), "Thanksgiving Break");
+  noSchoolDays.set(new Date("12/22/2023").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
+  noSchoolDays.set(new Date("12/25/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("12/26/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("12/27/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("12/28/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("12/29/2023").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("1/1/2024").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("1/2/2024").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("1/3/2024").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("1/4/2024").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("1/5/2024").toLocaleDateString('en-us', dateKeyOptions), "Winter Break");
+  noSchoolDays.set(new Date("1/15/2024").toLocaleDateString('en-us', dateKeyOptions), "MLK Day");
+  noSchoolDays.set(new Date("1/24/2024").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
+  noSchoolDays.set(new Date("2/22/2024").toLocaleDateString('en-us', dateKeyOptions), "Rodeo Break");
+  noSchoolDays.set(new Date("2/23/2024").toLocaleDateString('en-us', dateKeyOptions), "Rodeo Break");
+  noSchoolDays.set(new Date("3/8/2024").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
+  noSchoolDays.set(new Date("3/11/2024").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
+  noSchoolDays.set(new Date("3/12/2024").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
+  noSchoolDays.set(new Date("3/13/2024").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
+  noSchoolDays.set(new Date("3/14/2024").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
+  noSchoolDays.set(new Date("3/15/2024").toLocaleDateString('en-us', dateKeyOptions), "Spring Break");
+  noSchoolDays.set(new Date("3/20/2024").toLocaleDateString('en-us', dateKeyOptions), "Professional Learning Day");
+  noSchoolDays.set(new Date("3/29/2024").toLocaleDateString('en-us', dateKeyOptions), "Spring Holiday");
+  noSchoolDays.set(new Date("5/24/2024").toLocaleDateString('en-us', dateKeyOptions), "Grading Day");
 }
 
 function getLastDayOfSchool() {
