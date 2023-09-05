@@ -32,3 +32,17 @@ a {
   margin: 8px;
   box-sizing: border-box;
 }
+
+@media screen and (min-width: 992px) {
+  section {
+    font-size: larger;
+  }
+
+  .nav-list {
+    font-size: x-large;
+  }
+
+  section h2, nav h2 {
+    font-size: x-large;
+  }
+}
