@@ -1,17 +1,41 @@
-const stage = document.getElementsByTagName("main").item(0);
+const root = document.getElementsByTagName("body").item(0);
 let isRunning = false;
 
 // Initialize main element
-stage.style.position = "absolute";
-stage.style.width = "640px";
-stage.style.height = "480px";
-stage.style.left = "50%";
-stage.style.transform = "translateX(-50%)";
-stage.style.backgroundColor = "lightgray";
-for (e of stage.children) {
-  e.style.position = "absolute";
+root.style.position = "absolute";
+root.style.margin = "0px";
+root.style.width = "100vw";
+root.style.height = "100vh";
+root.style.left = "50%";
+root.style.transform = "translateX(-50%)";
+root.style.backgroundColor = "lightgray";
+
+// Add controls
+let nav = document.createElement("nav");
+nav.style.textAlign = "center";
+nav.id = "controls";
+let startButton = document.createElement("button");
+startButton.innerHTML = "Start";
+startButton.addEventListener("click", start);
+nav.append(startButton);
+let stopButton = document.createElement("button");
+stopButton.innerHTML = "Stop"
+stopButton.addEventListener("click", stop);
+nav.append(stopButton);
+root.append(nav);
+
+function hideControls() {
+  let nav = document.getElementById("controls");
+  nav.style.visibility = "hidden";
 }
 
+function showControls() {
+  let nav = document.getElementById("controls");
+  nav.style.visibility = "visible";
+}
+
+
+/* ************* Element Creation ********************* */
 function createElement(id, type = "div", x = 0, y = 0) {
   let e = document.createElement(type);
   e.style.position = "absolute";
@@ -19,21 +43,71 @@ function createElement(id, type = "div", x = 0, y = 0) {
   e.style.left = x + "px";
   e.style.top = y + "px";
   e.id = id;
-  stage.append(e);
+  root.append(e);
+}
+
+function createImg(id, filename, x = 0, y = 0) {
+  let e = document.createElement("img");
+  e.src = filename;
+  e.style.position = "absolute";
+  e.style.width = "fit-content";
+  e.style.left = x + "px";
+  e.style.top = y + "px";
+  e.id = id;
+  root.append(e);
+}
+
+function createRect(x, y, w, h, color = "white", id = "") {
+  let e = document.createElement("div");
+  e.style.position = "absolute";
+  e.style.width = w + "px";
+  e.style.height = h + "px";
+  e.style.left = x + "px";
+  e.style.top = y + "px";
+  e.style.backgroundColor = color;
+  e.id = id;
+  root.append(e);
+}
+
+function createCircle(x, y, r, color = "white", id = "") {
+  let e = document.createElement("div");
+  e.style.position = "absolute";
+  e.style.width = 2 * r + "px";
+  e.style.height = 2 * r + "px";
+  e.style.borderRadius = "50%";
+  e.style.left = x + "px";
+  e.style.top = y + "px";
+  e.style.backgroundColor = color;
+  e.id = id;
+  root.append(e);
 }
 
 /* ************* Style Helpers ***************** */
-function setStageWidth(value) {
-  stage.style.width = value + "px";
+function setWindowWidth(value) {
+  root.style.width = value + "px";
 }
 
-function setStageHeight(value) {
-  stage.style.height = value + "px";
+function getWindowWidth() {
+  return root.offsetWidth;
+}
+
+function setWindowHeight(value) {
+  root.style.height = value + "px";
+}
+
+function getWindowHeight() {
+  return root.offsetHeight;
 }
 
 function setWidth(id, value) {
   let e = document.getElementById(id);
   if (e) e.style.width = value + "px";
+  else console.error(id + " does not exist");
+}
+
+function getWidth(id) {
+  let e = document.getElementById(id);
+  if (e) return e.offsetWidth;
   else console.error(id + " does not exist");
 }
 
@@ -43,9 +117,21 @@ function setHeight(id, value) {
   else console.error(id + " does not exist");
 }
 
+function getHeight(id) {
+  let e = document.getElementById(id);
+  if (e) return e.offsetHeight;
+  else console.error(id + " does not exist");
+}
+
 function setX(id, value) {
   let e = document.getElementById(id);
   if (e) e.style.left = value + "px";
+  else console.error(id + " does not exist");
+}
+
+function getX(id) {
+  let e = document.getElementById(id);
+  if (e) return e.offsetLeft;
   else console.error(id + " does not exist");
 }
 
@@ -55,13 +141,16 @@ function setY(id, value) {
   else console.error(id + " does not exist");
 }
 
+function getY(id) {
+  let e = document.getElementById(id);
+  if (e) return e.offsetTop;
+  else console.error(id + " does not exist");
+}
+
 function changeXBy(id, value) {
   let e = document.getElementById(id);
   if (e) {
-    let current = e.style.left;
-    current = current.substring(0, current.indexOf("px"));
-    current = Number(current);
-    e.style.left = current + Number(value) + "px";
+    e.style.left = e.offsetLeft + Number(value) + "px";
   }
   else console.error(id + " does not exist");
 }
@@ -69,17 +158,43 @@ function changeXBy(id, value) {
 function changeYBy(id, value) {
   let e = document.getElementById(id);
   if (e) {
-    let current = e.style.top;
-    current = current.substring(0, current.indexOf("px"));
-    current = Number(current);
-    e.style.top = current + Number(value) + "px";
+    ;
+    e.style.top = e.offsetTop + Number(value) + "px";
+  }
+  else console.error(id + " does not exist");
+}
+
+function move(id, value = 10) {
+  let e = document.getElementById(id);
+  if (e) {
+    let deg = e.style.rotate.substring(0, e.style.rotate.indexOf("deg"));
+    deg = Number(deg);
+    let rad = deg * Math.PI / 180;
+    e.style.left = (e.offsetLeft + Number(value) * Math.cos(rad)) + "px";
+    e.style.top = (e.offsetTop + Number(value) * Math.sin(rad)) + "px";
+  }
+  else console.error(id + " does not exist");
+}
+
+function setRotation(id, degrees) {
+  let e = document.getElementById(id);
+  if (e) e.style.rotate = degrees + "deg";
+  else console.error(id + " does not exist");
+}
+
+function getRotation(id) {
+  let e = document.getElementById(id);
+  if (e) {
+    return stripUnits(e.style.rotate, "deg");
   }
   else console.error(id + " does not exist");
 }
 
 function rotate(id, degrees) {
   let e = document.getElementById(id);
-  if (e) e.style.transform = "rotate(" + degrees + "deg)";
+  if (e) {
+    e.style.rotate = stripUnits(e.style.rotate, "deg") + Number(degrees) + "deg";
+  }
   else console.error(id + " does not exist");
 }
 
@@ -89,8 +204,18 @@ function setText(id, value) {
   else console.error(id + " does not exist");
 }
 
-function setStageColor(color) {
-  stage.style.backgroundColor = color;
+function getText(id) {
+  let e = document.getElementById(id);
+  if (e) return e.innerHTML;
+  else console.error(id + " does not exist");
+}
+
+function setWindowColor(color) {
+  root.style.backgroundColor = color;
+}
+
+function getWindowColor() {
+  return root.style.backgroundColor;
 }
 
 function setColor(id, color) {
@@ -99,26 +224,36 @@ function setColor(id, color) {
   else console.error(id + " does not exist");
 }
 
+function getColor(id) {
+  let e = document.getElementById(id);
+  if (e) return e.style.backgroundColor;
+  else console.error(id + " does not exist");
+}
+
 function setTextColor(id, color) {
   let e = document.getElementById(id);
-  if(e) e.style.color = color;
+  if (e) e.style.color = color;
+  else console.error(id + " does not exist");
+}
+
+function getTextColor(id) {
+  let e = document.getElementById(id);
+  if (e) return e.style.color;
   else console.error(id + " does not exist");
 }
 
 function setProperty(id, property, value) {
   let e = document.getElementById(id);
-  if(e) {
-    let actualProp = property;
-    // Switch to camelCase if property written CSS style with hyphens
-    if (property.indexOf("-") > -1) {
-      actualProp = actualProp.toLowerCase();
-      let temp = actualProp.split("-");
-      actualProp = temp[0];
-      for (let i = 1; i < temp.length; i++){
-        actualProp += temp[i].substring(0, 1).toUpperCase() + temp[i].substring(1);
-      }
-    }
-    e.style[actualProp] = value;
+  if (e) {
+    e.style[getCamelCaseProp(property)] = value;
+  }
+  else console.error(id + " does not exist");
+}
+
+function getProperty(id, property) {
+  let e = document.getElementById(id);
+  if (e) {
+    return e.style[getCamelCaseProp(property)] = value;
   }
   else console.error(id + " does not exist");
 }
@@ -148,14 +283,13 @@ function isTouching(id1, id2) {
     return false;
   }
 
-  
-  
+
+
 }
 
 /* *************** Animation ******************* */
 function start() {
   isRunning = true;
-  if (typeof(init) != 'undefined') init();
   window.requestAnimationFrame(step);
 }
 
@@ -164,7 +298,7 @@ function stop() {
 }
 
 function step(time) {
-  if (typeof(mainLoop) != 'undefined') mainLoop(time);
+  if (typeof (mainLoop) != 'undefined') mainLoop(time);
   else {
     isRunning = false;
     console.error("You must define a mainLoop() function");
@@ -174,6 +308,18 @@ function step(time) {
 
 /* *************** Utility ********************* */
 
-function stripPx(value) {
-  return current.substring(0, current.indexOf("px"));
+function stripUnits(value, unit) {
+  return Number(value.substring(0, value.indexOf(unit)));
+}
+
+function getCamelCaseProp(property) {
+  let actualProp = property.toLowerCase();
+  if (property.indexOf("-") > -1) {
+    let temp = actualProp.split("-");
+    actualProp = temp[0];
+    for (let i = 1; i < temp.length; i++) {
+      actualProp += temp[i].substring(0, 1).toUpperCase() + temp[i].substring(1);
+    }
+  }
+  return actualProp;
 }
