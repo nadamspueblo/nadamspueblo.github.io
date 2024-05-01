@@ -1,7 +1,9 @@
-.jscode, .htmlcode, .csscode {
+.jscode,
+.htmlcode,
+.csscode {
   margin: 0;
   color: lightskyblue;
-  background-color: var(--dark-bg-color);
+  background-color: rgb(44, 44, 44);
   padding: 4px;
   overflow-x: auto;
   white-space: pre-wrap;
@@ -36,11 +38,11 @@
 }
 
 .jsnumber {
-  color:lemonchiffon;
+  color: lemonchiffon;
 }
 
 .jsfunction {
-  color:khaki;
+  color: khaki;
 }
 
 .htmlcode {
@@ -48,11 +50,11 @@
 }
 
 .htmlbracket {
-  color:darkgray;
+  color: darkgray;
 }
 
 .htmlattrib {
-  color:skyblue;
+  color: skyblue;
 }
 
 .htmltag {
@@ -60,13 +62,13 @@
 }
 
 .csscode {
-  color:chocolate;
+  color: chocolate;
 }
 
 .cssselector {
-  color:goldenrod;
+  color: goldenrod;
 }
 
 .cssoperator {
-  color:gainsboro;
+  color: gainsboro;
 }

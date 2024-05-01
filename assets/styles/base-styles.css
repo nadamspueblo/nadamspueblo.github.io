@@ -6,27 +6,30 @@
 }
 
 :root {
-  --primary-text-color: rgb(80, 80, 255);
-  --light-text-color: rgb(240, 240, 240);
-  --medium-text-color: rgb(120, 120, 120);
-  --dark-text-color: rgb(40, 40, 40);
-  --primary-bg-color: rgb(40, 40, 40);
-  --active-primary-bg-color: rgb(50, 50, 50);
-  --dark-bg-color: rgb(20, 20, 20);
-  --secondary-bg-color: rgb(80, 80, 80);
+  --primary-text-color: rgb(100, 100, 255);
+  --light-text-color: rgb(61, 61, 61);
+  --medium-text-color: rgb(190, 190, 190);
+  --dark-text-color: rgb(61, 61, 61);
+  --primary-bg-color: rgb(255, 255, 255);
+  --active-primary-bg-color: rgb(240, 240, 255);
+  --dark-bg-color: rgb(190, 190, 190);
+  --secondary-bg-color: rgb(240, 240, 255);
   --secondary-text-color: rgb(60, 60, 60);
   --light-bg-color: rgb(100, 100, 100);
   scroll-behavior: smooth;
 }
 
 /* Base element styles */
-body, h1, h2 {
-    margin: 0;
+body,
+h1,
+h2 {
+  margin: 0;
 }
 
-body, a {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--primary-text-color);
+body,
+a {
+  font-family: 'Orbitron', sans-serif;
+  color: var(--primary-text-color);
 }
 
 body {
@@ -37,11 +40,14 @@ body {
   body {
     margin-left: 10%;
     margin-right: 10%;
-    background-color: var(--primary-text-color);
+    background-color: rgb(158, 158, 255);
   }
 }
 
-header, section, nav, footer {
+header,
+section,
+nav,
+footer {
   background-color: var(--primary-bg-color);
 }
 
@@ -83,11 +89,11 @@ ol {
 /* Shapes */
 
 .arrow-up {
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  
+
   border-bottom: 15px solid var(--primary-text-color);
 
   margin: 5px;
@@ -98,13 +104,13 @@ ol {
 .arrow-down {
   margin: 5px;
   margin-bottom: 0px;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  
+
   border-top: 15px solid var(--primary-text-color);
-  
+
   margin: 5px;
   margin-bottom: 0px;
   cursor: pointer;
@@ -142,13 +148,13 @@ footer {
   padding: 10px;
   font-size: small;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: var(--secondary-bg-color);
+  color: var(--medium-text-color);
   border-top: 2px solid var(--secondary-bg-color);
 }
 
 footer a {
   text-decoration: none;
-  color: rgb(80, 80, 80);
+  color: var(--medium-text-color);
 }
 
 footer a:hover {
@@ -191,18 +197,19 @@ footer a:hover {
 }
 
 .soc-media-placeholder {
-  background-color: var(--secondary-text-color);
+  background-color: var(--medium-text-color);
   min-width: 30px;
   min-height: 30px;
   border-radius: 50%;
   margin: 5px;
 }
 
-.accordion, .nav-button {
+.accordion,
+.nav-button {
   font-family: 'Orbitron', sans-serif;
   font-size: medium;
   background-color: var(--primary-bg-color);
-  color: var(--medium-text-color);
+  color: var(--light-text-color);
   cursor: pointer;
   padding: 18px;
   width: 100%;
@@ -212,18 +219,18 @@ footer a:hover {
 }
 
 .active {
-  background-color: var(--active-primary-bg-color);
   color: var(--primary-text-color);
 }
 
-.accordion:hover, .nav-button:hover {
+.accordion:hover,
+.nav-button:hover {
   background-color: var(--active-primary-bg-color);
 }
 
 .panel {
   padding: 0px 9px 9px 9px;
-  background-color: var(--active-primary-bg-color);
-  color: var(--medium-text-color);
+  background-color: var(--primary-bg-color);
+  color: var(--light-text-color);
   font-size: medium;
   display: none;
   overflow: hidden;
@@ -234,12 +241,13 @@ footer a:hover {
 }
 
 .resource-card {
-  background-color: var(--secondary-text-color);
+  background-color: var(--secondary-bg-color);
   width: fit-content;
   flex-grow: 1;
   min-width: 280px;
   padding: 10px 20px;
   margin: 10px 20px;
+  box-shadow: 4px 4px 10px darkgray;
 }
 
 .resource-card p {

@@ -56,7 +56,8 @@
     font-family: 'Paragraph', 'Courier New', Courier, monospace;
 }
 
-#news p, #news h3 {
+#news p,
+#news h3 {
     opacity: 0;
     animation-name: fade-in;
     animation-fill-mode: forwards;
@@ -84,7 +85,7 @@
     width: 75%;
     height: 130px;
     border: 1px solid var(--primary-text-color);
-    background-color: rgb(20, 20, 20);
+    background-color: var(--secondary-bg-color);
     border-radius: 8px;
     padding: 10px 20px;
     overflow-y: scroll;
@@ -116,19 +117,19 @@
 
 .quick-links {
     display: block;
-    color: var(--secondary-bg-color);
+    color: var(--secondary-text-color);
     text-decoration: none;
     padding: 0 10px;
     border-bottom: 1px solid var(--primary-bg-color);
 }
 
 .quick-links:hover {
-    border-bottom: 1px solid var(--secondary-bg-color);
+    border-bottom: 1px solid var(--primary-text-color);
 }
 
 .donate-links {
     display: block;
-    color: var(--secondary-bg-color);
+    color: var(--medium-text-color);
     border-bottom: 1px solid var(--primary-bg-color);
     text-decoration: none;
     min-width: 80px;
@@ -136,7 +137,7 @@
 }
 
 .donate-links:hover {
-    border-bottom: 1px solid var(--secondary-bg-color);
+    border-bottom: 1px solid var(--medium-text-color);
 }
 
 .down-button {
