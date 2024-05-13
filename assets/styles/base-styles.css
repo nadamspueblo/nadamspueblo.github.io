@@ -6,7 +6,8 @@
 }
 
 :root {
-  --primary-text-color: rgb(100, 100, 255);
+  --primary-text-color: rgb(61, 61, 61);
+  --active-color: rgb(100, 100, 255);
   --light-text-color: rgb(61, 61, 61);
   --medium-text-color: rgb(190, 190, 190);
   --dark-text-color: rgb(61, 61, 61);
@@ -26,21 +27,20 @@ h2 {
   margin: 0;
 }
 
-body,
-a {
+a,
+h1 {
   font-family: 'Orbitron', sans-serif;
-  color: var(--primary-text-color);
+  color: var(--active-color);
 }
 
 body {
-  background-color: var(--primary-bg-color);
+  background-color: white;
 }
 
 @media screen and (min-width: 992px) {
   body {
-    margin-left: 10%;
-    margin-right: 10%;
-    background-color: rgb(158, 158, 255);
+    margin-left: 20%;
+    margin-right: 20%;
   }
 }
 
@@ -51,12 +51,18 @@ footer {
   background-color: var(--primary-bg-color);
 }
 
+header {
+  margin: 10px;
+}
+
 p {
   font-family: 'Sofia Sans', sans-serif;
+  font-size: large;
 }
 
 h2 {
-  font-size: medium;
+  font-family: 'Orbitron', sans-serif;
+  font-size: xx-large;
 }
 
 ul,
