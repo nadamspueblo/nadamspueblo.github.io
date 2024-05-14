@@ -32,101 +32,115 @@
   </header>
 
   <main>
+    <nav id="nav-section">
+      <a class="nav-link" href="#variables">Variables</a>
+      <a class="nav-link" href="#data-types">Data types</a>
+      <a class="nav-link" href="#math">Math and logic</a>
+      <a class="nav-link" href="#control">Control structures</a>
+      <a class="nav-link" href="#functions">Functions</a>
+      <a class="nav-link" href="#arrays">Arrays and collections</a>
+      <a class="nav-link" href="#dom">Document Object Model</a>
+    </nav>
     <section>
-      <h2>Variables</h2>
-      <div class="item-box">
+      <a name="variables"></a>
+      <article>
+        <h2>Variables</h2>
+        <div class="item-box">
 
-        <div class="resource-card">
-          <h3>Assigning values</h3>
-          <p>
-            <i>Assigning a value</i> means to store some data into a variable or constant. Values are assigned using a
-            single = sign and the variable being assigned to should be on the left side of the =.<br>
-            <br>
-            <b>Variables</b> can be "reused" by assigning new values.
-          </p>
-          <pre class="jscode">
-let userName = "unspecified";
-userName = "Rick";
-userName = "Morty";</pre>
-          <p>
-            <b>Constants</b> can only be assigned to once when first declared.
-          </p>
-          <pre class="jscode">
-const pi = 3.14159;</pre>
-        </div>
-
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Declaring</h3>
-            <p>
-              <i>Declare</i> or create a variable before you use it and give a descriptive, camelCase name and
-              appropriate
-              intial value.
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Declaring</h3>
+              <p>
+                <i>Declare</i> or create a variable before you use it and give a descriptive, camelCase name and
+                appropriate
+                intial value.
+              </p>
+              <pre class="jscode">
 let num = 25;
 const myList = [];
 var userName = "";</pre>
-            <p>
-              Often, it is good to use the zero/empty value for the data type: <code class="jscode">0</code> for
-              numbers,
-              <code class="jscode">""</code> for strings, <code class="jscode">[]</code> for arrays, <code
-                class="jscode">{}</code> for objects.
-            </p>
-            <p>Variables declared with <code class="jscode">let</code> or <code class="jscode">const</code>
-              <b>cannot</b>
-              be
-              re-declared (which is normal in most languages). Additionally, declaring with <code
-                class="jscode">const</code> is
-              technically declaring a <i>constant</i> and not a variable and it <b>must</b> be declared with an initial
-              value. The value of a constant cannot be changed after is has been declared.
-            </p>
-            <p>Variables declared with <code class="jscode">var</code> <b>can</b> be re-declared. This is not normal in
-              most languages and is best to be avoided as a beginner. Use <code class="jscode">let</code> instead.</p>
-            <p>
-              You can declare multiple variables in one statement.
-            <pre class="jscode">
+              <p>
+                Often, it is good to use the zero/empty value for the data type: <code class="jscode">0</code> for
+                numbers,
+                <code class="jscode">""</code> for strings, <code class="jscode">[]</code> for arrays, <code
+                  class="jscode">{}</code> for objects.
+              </p>
+              <p>Variables declared with <code class="jscode">let</code> or <code class="jscode">const</code>
+                <b>cannot</b>
+                be
+                re-declared (which is normal in most languages). Additionally, declaring with <code
+                  class="jscode">const</code> is
+                technically declaring a <i>constant</i> and not a variable and it <b>must</b> be declared with an
+                initial
+                value. The value of a constant cannot be changed after is has been declared.
+              </p>
+              <p>Variables declared with <code class="jscode">var</code> <b>can</b> be re-declared. This is not normal
+                in
+                most languages and is best to be avoided as a beginner. Use <code class="jscode">let</code> instead.</p>
+              <p>
+                You can declare multiple variables in one statement.
+              <pre class="jscode">
 let x = 0, y = 250, width = 300, height = 400;</pre>
-            </p>
+              </p>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
-        </div>
 
-        <div class="resource-card">
-          <h3>Accessing values</h3>
-          <p>
-            To <i>access</i> a value means to retrieve the value stored in a variable. To access a value, just use the
-            variable in place of a hard-coded value.<br>
-            <br>
-            The value stored in <code class="jscode">num</code> is <b>accessed</b> and stored into the variable <code
-              class="jscode">numTwo</code>.
-          </p>
-          <pre class="jscode">
+          <div class="resource-card">
+            <h3>Assigning values</h3>
+            <p>
+              <i>Assigning a value</i> means to store some data into a variable or constant. Values are assigned using a
+              single = sign and the variable being assigned to should be on the left side of the =.<br>
+              <br>
+              <b>Variables</b> can be "reused" by assigning new values.
+            </p>
+            <pre class="jscode">
+let userName = "unspecified";
+userName = "Rick";
+userName = "Morty";</pre>
+            <p>
+              <b>Constants</b> can only be assigned to once when first declared.
+            </p>
+            <pre class="jscode">
+const pi = 3.14159;</pre>
+          </div>
+
+          <div class="resource-card">
+            <h3>Accessing values</h3>
+            <p>
+              To <i>access</i> a value means to retrieve the value stored in a variable. To access a value, just use the
+              variable in place of a hard-coded value.<br>
+              <br>
+              The value stored in <code class="jscode">num</code> is <b>accessed</b> and stored into the variable <code
+                class="jscode">numTwo</code>.
+            </p>
+            <pre class="jscode">
 let num = 25;
 let numTwo = num;</pre>
-        </div>
+          </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Scope</h3>
-            <p>
-              The <i>scope</i> of a variable is where it exists.<br>
-              There are three levels of scope,
-            </p>
-            <ul>
-              <li><i>Global</i> - exists everywhere in the script</li>
-              <li><i>Local</i> - exist only in the function where declared</li>
-              <li><i>Block</i> - exist only in the block where declared. (block is current set of <code
-                  class="jscode">{}</code>)</li>
-            </ul>
-            <p>
-              Variables declared with <code class="jscode">var</code> or <code class="jscode">const</code> will have
-              either global or local scope.<br>
-              Variables declared with <code class="jscode">let</code> have block level scope (which could be equivalent
-              to global or
-              local)
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Scope</h3>
+              <p>
+                The <i>scope</i> of a variable is where it exists.<br>
+                There are three levels of scope,
+              </p>
+              <ul>
+                <li><i>Global</i> - exists everywhere in the script</li>
+                <li><i>Local</i> - exist only in the function where declared</li>
+                <li><i>Block</i> - exist only in the block where declared. (block is current set of <code
+                    class="jscode">{}</code>)</li>
+              </ul>
+              <p>
+                Variables declared with <code class="jscode">var</code> or <code class="jscode">const</code> will have
+                either global or local scope.<br>
+                Variables declared with <code class="jscode">let</code> have block level scope (which could be
+                equivalent
+                to global or
+                local)
+              </p>
+              <pre class="jscode">
 /* Global variables declared at root level (not inside a set of {}) */
 let id = 100;
 var name = "Throckmorton";
@@ -145,124 +159,128 @@ function myFunction() {
   // i doesn't exist here
 }
 </pre>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
+
         </div>
 
-      </div>
+      </article>
 
-    </section>
+      <a name="data-types"></a>
+      <article>
+        <h2>Datatypes</h2>
+        <div class="item-box">
 
-    <section>
-      <h2>Datatypes</h2>
-      <div class="item-box">
-
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Strings</h3>
-            <p>
-              In JavaScript, as in most languages, a <i>string</i> is any characters inside double or single quotes.
-              Best practice is to use double quotes.<code class="jscode">"This is a string"</code>.
-              This can be confusing at first when a string "looks like" another datatype.
-            </p>
-            <ul>
-              <li><code class="jscode">0</code> is an integer, <code class="jscode">"0"</code> is a string.</li>
-              <li><code class="jscode">0.0</code> is a float, <code class="jscode">"0.0"</code> is a string.</li>
-              <li><code class="jscode">true</code> is a boolean, <code class="jscode">"true"</code> is a string.</li>
-              <li><code class="jscode">"Anything in quotes is a string"</code></li>
-            </ul>
-            <p>
-              Data is often stored in databases and HTML elements as strings, so JavaScript has some built-in functions
-              to
-              convert strings containing integers and floats to actual integer and float datatypes.
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Strings</h3>
+              <p>
+                In JavaScript, as in most languages, a <i>string</i> is any characters inside double or single quotes.
+                Best practice is to use double quotes.<code class="jscode">"This is a string"</code>.
+                This can be confusing at first when a string "looks like" another datatype.
+              </p>
+              <ul>
+                <li><code class="jscode">0</code> is an integer, <code class="jscode">"0"</code> is a string.</li>
+                <li><code class="jscode">0.0</code> is a float, <code class="jscode">"0.0"</code> is a string.</li>
+                <li><code class="jscode">true</code> is a boolean, <code class="jscode">"true"</code> is a string.</li>
+                <li><code class="jscode">"Anything in quotes is a string"</code></li>
+              </ul>
+              <p>
+                Data is often stored in databases and HTML elements as strings, so JavaScript has some built-in
+                functions
+                to
+                convert strings containing integers and floats to actual integer and float datatypes.
+              </p>
+              <pre class="jscode">
 let myInt = parseInt("10");
 let myFloat = parseFloat("3.14");</pre>
-            <p>
-              There is no pre-made "parseBool" function, but it's simple enough to write one.
-            </p>
-            <pre class="jscode">
+              <p>
+                There is no pre-made "parseBool" function, but it's simple enough to write one.
+              </p>
+              <pre class="jscode">
 function parseBool(value) {
   return value == "true";
 }</pre>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
-        </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Numbers</h3>
-            <p>
-              The two most common datatypes for numbers are <i>integers</i> and <i>floats</i> (floating point
-              numbers)<br>
-              <br>
-              <b>Integers</b> are positive and negative whole numbers and zero. Same as in math class. Integers have
-              <b>no
-                decimal point</b>, also like math class. <code class="jscode">10, 0, -1, 255</code> are all
-              integers.<br>
-              <br>
-              <b>Floats</b> are any number <b>with a decimal point</b> including whole numbers with a decimal point.
-              <code class="jscode">2.73</code>, <code class="jscode">0.0</code>, <code class="jscode">12.0</code> are
-              all
-              floats.<br>
-              <br>
-              If your numbers are in strings you can use the functions below to convert them.
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Numbers</h3>
+              <p>
+                The two most common datatypes for numbers are <i>integers</i> and <i>floats</i> (floating point
+                numbers)<br>
+                <br>
+                <b>Integers</b> are positive and negative whole numbers and zero. Same as in math class. Integers have
+                <b>no
+                  decimal point</b>, also like math class. <code class="jscode">10, 0, -1, 255</code> are all
+                integers.<br>
+                <br>
+                <b>Floats</b> are any number <b>with a decimal point</b> including whole numbers with a decimal point.
+                <code class="jscode">2.73</code>, <code class="jscode">0.0</code>, <code class="jscode">12.0</code> are
+                all
+                floats.<br>
+                <br>
+                If your numbers are in strings you can use the functions below to convert them.
+              </p>
+              <pre class="jscode">
 let myInt = parseInt("10");
 let myFloat = parseFloat("3.14");</pre>
-            <p>
-              In JavaScript, if the division of two integers would result in a fractional part (a decimal number), it is
-              automatically converted to a float.
-            </p>
-            <pre class="jscode">
+              <p>
+                In JavaScript, if the division of two integers would result in a fractional part (a decimal number), it
+                is
+                automatically converted to a float.
+              </p>
+              <pre class="jscode">
 let num = 2 / 3;
 // num contains the float value 0.6666666666666666
 </pre>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
+
         </div>
+      </article>
 
-      </div>
-    </section>
+      <a name="math"></a>
+      <article>
+        <h2>Math and Logic</h2>
+        <div class="item-box">
 
-    <section>
-      <h2>Math and Logic</h2>
-      <div class="item-box">
-
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Basic math operations</h3>
-            <p>
-              JavaScript follows the same order of operations as math class: <b>PEMDAS</b>.
-            </p>
-            <ol>
-              <li>Parentheses <code class="jscode"> () </code></li>
-              <li>Exponents <code class="jscode"> ** </code></li>
-              <li>Multiplication <code class="jscode"> * </code>, Division <code class="jscode"> / </code>, Modulus
-                <code class="jscode"> % </code> from left to right
-              </li>
-              <li>Addition <code class="jscode"> + </code>, Subtraction <code class="jscode"> - </code> from left to
-                right</li>
-            </ol>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Basic math operations</h3>
+              <p>
+                JavaScript follows the same order of operations as math class: <b>PEMDAS</b>.
+              </p>
+              <ol>
+                <li>Parentheses <code class="jscode"> () </code></li>
+                <li>Exponents <code class="jscode"> ** </code></li>
+                <li>Multiplication <code class="jscode"> * </code>, Division <code class="jscode"> / </code>, Modulus
+                  <code class="jscode"> % </code> from left to right
+                </li>
+                <li>Addition <code class="jscode"> + </code>, Subtraction <code class="jscode"> - </code> from left to
+                  right</li>
+              </ol>
+              <pre class="jscode">
 let ans = 100 - 5 ** 2 * (1 + 2) + 50 / 2 % 3;
 /* ans = 26 */</pre>
-            <ol>
-              <li>100 - 5 ** 2 * <span style="color: blue;">(1 + 2)</span> + 50 / 2 % 3</li>
-              <li>100 - <span style="color: blue;">5 ** 2</span> * 3 + 50 / 2 % 3</li>
-              <li>100 - <span style="color: blue;">25 * 3</span> + 50 / 2 % 3</li>
-              <li>100 - 75 + <span style="color: blue;">50 / 2</span> % 3</li>
-              <li>100 - 75 + <span style="color: blue;">25 % 3</span></li>
-              <li><span style="color: blue;">100 - 75</span> + 1</span></li>
-              <li><span style="color: blue;">25 + 1</span></li>
-              <li>26</li>
-            </ol>
-            <p>
-              <i>Modulus</i> calculates the remainder after division which is surprisingly useful in programming.
-            </p>
-            <pre class="jscode">
+              <ol>
+                <li>100 - 5 ** 2 * <span style="color: blue;">(1 + 2)</span> + 50 / 2 % 3</li>
+                <li>100 - <span style="color: blue;">5 ** 2</span> * 3 + 50 / 2 % 3</li>
+                <li>100 - <span style="color: blue;">25 * 3</span> + 50 / 2 % 3</li>
+                <li>100 - 75 + <span style="color: blue;">50 / 2</span> % 3</li>
+                <li>100 - 75 + <span style="color: blue;">25 % 3</span></li>
+                <li><span style="color: blue;">100 - 75</span> + 1</span></li>
+                <li><span style="color: blue;">25 + 1</span></li>
+                <li>26</li>
+              </ol>
+              <p>
+                <i>Modulus</i> calculates the remainder after division which is surprisingly useful in programming.
+              </p>
+              <pre class="jscode">
 /* Check if a number is even (or divisible by any number) */
 if (num % 2 == 0) {
  // Do something 
@@ -271,107 +289,115 @@ if (num % 2 == 0) {
 /* Have a value "loop" within a range */ 
 red = (red + 1) % 256;
 /* The above increments red by 1. When it goes past 255, the max value for rgb colors, it begins again at 0 */</pre>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
-        </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Comparison Operators</h3>
-            <p>Comparison operators result in a <i>boolean</i> value which is can then be used as conditions for control
-              structures such as if blocks, for loops, and while loops.<br>
-              <b>Make sure the values being compared are both the same datatype</b> i.e. string with string, int with
-              int, etc.
-            </p>
-            <ul>
-              <li><code class="jscode"> == </code> <i>equal to</i>: true when the values are equal</li>
-              <li><code class="jscode"> != </code> <i>not equal to</i>: true when the values are NOT equal</li>
-              <li><code class="jscode"> &lt; </code> <i>less than</i>: true when the value on the left is <i>less
-                  than</i> the value on the right, otherwise false</li>
-              <li><code class="jscode"> &gt; </code> <i>greater than</i>: true when the value on the left is <i>greater
-                  than</i> the value on the right, otherwise false</li>
-              <li><code class="jscode"> &lt;= </code> <i>less than or equal to</i>: true when the value on the left is
-                <i>less than or equal to</i> the value on the right, otherwise false (when greater)
-              </li>
-              <li><code class="jscode"> &gt;= </code> <i>greater than or equal to</i>: true when the value on the left
-                is <i>greater than or equal to</i> the value on the right, otherwise false (when less)</li>
-            </ul>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Comparison Operators</h3>
+              <p>Comparison operators result in a <i>boolean</i> value which is can then be used as conditions for
+                control
+                structures such as if blocks, for loops, and while loops.<br>
+                <b>Make sure the values being compared are both the same datatype</b> i.e. string with string, int with
+                int, etc.
+              </p>
+              <ul>
+                <li><code class="jscode"> == </code> <i>equal to</i>: true when the values are equal</li>
+                <li><code class="jscode"> != </code> <i>not equal to</i>: true when the values are NOT equal</li>
+                <li><code class="jscode"> &lt; </code> <i>less than</i>: true when the value on the left is <i>less
+                    than</i> the value on the right, otherwise false</li>
+                <li><code class="jscode"> &gt; </code> <i>greater than</i>: true when the value on the left is
+                  <i>greater
+                    than</i> the value on the right, otherwise false
+                </li>
+                <li><code class="jscode"> &lt;= </code> <i>less than or equal to</i>: true when the value on the left is
+                  <i>less than or equal to</i> the value on the right, otherwise false (when greater)
+                </li>
+                <li><code class="jscode"> &gt;= </code> <i>greater than or equal to</i>: true when the value on the left
+                  is <i>greater than or equal to</i> the value on the right, otherwise false (when less)</li>
+              </ul>
+              <pre class="jscode">
 let response = "";
 let code = "7727";
 do {
   response = prompt("Enter the 4-digit code");
 } while (response != code);
   </pre>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
-        </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Logical operators</h3>
-            <p>
-              Logical operators are statements about truth (Boolean values). To start, it's best to think about them
-              intuitively - <code class="jscode">&&</code> means <i>and</i>,
-              <code class="jscode">||</code> means <i>or</i>, and <code class="jscode">!</code> means <i>not</i>.
-            </p>
-            <ul>
-              <li><code class="jscode">a && b</code> is a true statement if <i>both</i> <code class="jscode">a</code> is
-                true <i>and</i> <code class="jscode">b</code> is true. Otherwise it's false. Intuitively: I'm happy if
-                I'm healthy
-                <i>and</i> financially stable. If either one isn't true, I'm not happy.
-              </li>
-              <li><code class="jscode">a || b</code> is a true statement if <i>either</i> <code class="jscode">a</code>
-                is true <i>or</i> <code class="jscode">b</code> is true or <i>both</i>. It is only false if <i>both</i>
-                are false. Intuitively: I'm happy if I have ice cream or I have cake for my birthday. Either way I'm
-                happy, both is all the better. I'm only unhappy if I don't get either.</li>
-              <li><code class="jscode">!a</code> <i>not</i> a is a true statement if <code class="jscode">a</code> is
-                false. It's a false statement if <code class="jscode">a</code> is true.
-                Intuitively: (Not good) is bad, (not true) is false, (not false) is true</li>
-            </ul>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Logical operators</h3>
+              <p>
+                Logical operators are statements about truth (Boolean values). To start, it's best to think about them
+                intuitively - <code class="jscode">&&</code> means <i>and</i>,
+                <code class="jscode">||</code> means <i>or</i>, and <code class="jscode">!</code> means <i>not</i>.
+              </p>
+              <ul>
+                <li><code class="jscode">a && b</code> is a true statement if <i>both</i> <code class="jscode">a</code>
+                  is
+                  true <i>and</i> <code class="jscode">b</code> is true. Otherwise it's false. Intuitively: I'm happy if
+                  I'm healthy
+                  <i>and</i> financially stable. If either one isn't true, I'm not happy.
+                </li>
+                <li><code class="jscode">a || b</code> is a true statement if <i>either</i> <code
+                    class="jscode">a</code>
+                  is true <i>or</i> <code class="jscode">b</code> is true or <i>both</i>. It is only false if
+                  <i>both</i>
+                  are false. Intuitively: I'm happy if I have ice cream or I have cake for my birthday. Either way I'm
+                  happy, both is all the better. I'm only unhappy if I don't get either.
+                </li>
+                <li><code class="jscode">!a</code> <i>not</i> a is a true statement if <code class="jscode">a</code> is
+                  false. It's a false statement if <code class="jscode">a</code> is true.
+                  Intuitively: (Not good) is bad, (not true) is false, (not false) is true</li>
+              </ul>
+              <pre class="jscode">
 let age = prompt("Enter your age");
 if (age &gt;= 13 && age &lt; 20) {
   alert("You are a teenager");
 }           </pre>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
+
         </div>
+      </article>
 
-      </div>
-    </section>
+      <a name="control"></a>
+      <article>
+        <h2>Control Structures</h2>
+        <div class="item-box">
 
-    <section>
-      <h2>Control Structures</h2>
-      <div class="item-box">
-
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>If, else if, and else blocks</h3>
-            <p>
-              if, else if, and else blocks are the basic elements of logic that decide which blocks of code run
-              depending of
-              whether a Boolean value is <i>true</i> or <i>false</i>.<br>
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>If, else if, and else blocks</h3>
+              <p>
+                if, else if, and else blocks are the basic elements of logic that decide which blocks of code run
+                depending of
+                whether a Boolean value is <i>true</i> or <i>false</i>.<br>
+              </p>
+              <pre class="jscode">
 if (condition) { 
   // Do this when true
 } /* skip when false */</pre>
-            <p>
-              If the condition is true, the code in the <code class="jscode">{}</code> will run. Otherwise, it will be
-              skipped.
-            </p>
-            <pre class="jscode">
+              <p>
+                If the condition is true, the code in the <code class="jscode">{}</code> will run. Otherwise, it will be
+                skipped.
+              </p>
+              <pre class="jscode">
 if (condition) { 
   // Do this when true
 } 
 else {
   // Do this when false 
 }</pre>
-            <p>
-              Run one set of statements when the condition is true or another set when it is false.
-            </p>
-            <pre class="jscode">
+              <p>
+                Run one set of statements when the condition is true or another set when it is false.
+              </p>
+              <pre class="jscode">
 if (conditionOne) { 
   // Do this when one condition is true
 } 
@@ -384,23 +410,23 @@ else if (conditionThree) {
 else {
   // Do this when all other conditions are false
 }</pre>
-            <p>
-              Run different sets of code based on different conditions. You can have any number of <code
-                class="jscode">else if ()</code> sections, but
-              must start with <code class="jscode">if ()</code>, and if there is an <code class="jscode">else </code>,
-              it must be last.
-            </p>
+              <p>
+                Run different sets of code based on different conditions. You can have any number of <code
+                  class="jscode">else if ()</code> sections, but
+                must start with <code class="jscode">if ()</code>, and if there is an <code class="jscode">else </code>,
+                it must be last.
+              </p>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
-        </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>While loops</h3>
-            <p>
-              Repeat a set of statements <i>while</i> a condition is true.
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>While loops</h3>
+              <p>
+                Repeat a set of statements <i>while</i> a condition is true.
+              </p>
+              <pre class="jscode">
 let myString = "Hello there";
 let count = 1;
 let index = myString.indexOf(" ");
@@ -409,23 +435,23 @@ while (index >= 0) {
   index++;
   index = myString.indexOf(" ", index);
 }</pre>
-            <p>
-              The code above counts words by searching for space <code class="jscode">" "</code> characters. When the
-              character isn't found, the <code class="jscode">.indexOf()</code> function returns <code
-                class="jscode">-1</code> making the condition false.
-            </p>
+              <p>
+                The code above counts words by searching for space <code class="jscode">" "</code> characters. When the
+                character isn't found, the <code class="jscode">.indexOf()</code> function returns <code
+                  class="jscode">-1</code> making the condition false.
+              </p>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
-        </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>For loops</h3>
-            <p>
-              A for loop is short-hand for declaring a counter, checking a condition, and updating the counter to use
-              with a block of code.
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>For loops</h3>
+              <p>
+                A for loop is short-hand for declaring a counter, checking a condition, and updating the counter to use
+                with a block of code.
+              </p>
+              <pre class="jscode">
 let myString = "Once upon a time";
 let count = 0;
 for (let i = 0; i &lt; myString.length; i++){
@@ -433,38 +459,41 @@ for (let i = 0; i &lt; myString.length; i++){
     count++;
   }
 }</pre>
-            <p>
-              The code above counts the number of <code class="jscode">"a"</code> characters in the string by accessing
-              each char in order by index.<br>
-              <code class="jscode">let i = 0</code> declares and initializes a new counter variable to zero which is
-              used to increment through each index in the string in order, starting with the first character<br>
-              <code class="jscode">i &lt; myString.length</code> continues the loop while the counter is less than the
-              length of the string, which will end after the last index<br>
-              <code class="jscode">i++</code> increments the counter by one each <i>iteration</i>
-            </p>
-            <p>
-              For loops are frequently used with operations on strings and arrays
-            </p>
+              <p>
+                The code above counts the number of <code class="jscode">"a"</code> characters in the string by
+                accessing
+                each char in order by index.<br>
+                <code class="jscode">let i = 0</code> declares and initializes a new counter variable to zero which is
+                used to increment through each index in the string in order, starting with the first character<br>
+                <code class="jscode">i &lt; myString.length</code> continues the loop while the counter is less than the
+                length of the string, which will end after the last index<br>
+                <code class="jscode">i++</code> increments the counter by one each <i>iteration</i>
+              </p>
+              <p>
+                For loops are frequently used with operations on strings and arrays
+              </p>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
+
         </div>
+      </article>
 
-      </div>
-    </section>
+      <a name="functions"></a>
+      <article>
+        <h2>Functions</h2>
+        <div class="item-box">
 
-    <section>
-      <h2>Functions</h2>
-      <div class="item-box">
-
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Basics</h3>
-            <p>
-              Functions are a way to break programs and algorithms into logical pieces, re-use common algorithms with
-              out re-writing them, and make your program more understandable by grouping sets of statements together and
-              giving them a name
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Basics</h3>
+              <p>
+                Functions are a way to break programs and algorithms into logical pieces, re-use common algorithms with
+                out re-writing them, and make your program more understandable by grouping sets of statements together
+                and
+                giving them a name
+              </p>
+              <pre class="jscode">
 /* Declare global variables first */
 let secretWord = "";
 let wrongGuesses = 0;
@@ -487,196 +516,202 @@ function checkGuess(event) { // Called from click event
     // TODO: addNextPart();
   }
 }</pre>
-            <p>
-              Using comments and pseudo-code and following the top-down design process and decomposition can help you
-              determine what functions to create
-              and what to name them which will greatly enhance your ability to create complex programs
-            </p>
+              <p>
+                Using comments and pseudo-code and following the top-down design process and decomposition can help you
+                determine what functions to create
+                and what to name them which will greatly enhance your ability to create complex programs
+              </p>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
-        </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Function definitions</h3>
-            <p>
-              Before a function can be used, it must be defined somewhere. Define your own functions using the syntax
-              below
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Function definitions</h3>
+              <p>
+                Before a function can be used, it must be defined somewhere. Define your own functions using the syntax
+                below
+              </p>
+              <pre class="jscode">
 function myFunction() {
   // Statements 
 }</pre>
-            <p>
-              The function below logs that there was an error and shows a popup alert
-            </p>
-            <pre class="jscode">
+              <p>
+                The function below logs that there was an error and shows a popup alert
+              </p>
+              <pre class="jscode">
 function errorAlert() {
   console.log("Error");
   alert("Error, please refresh the page");
 }</pre>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
+
         </div>
+      </article>
 
-      </div>
-    </section>
+      <a name="arrays"></a>
+      <article>
+        <h2>Arrays and Collections</h2>
+        <div class="item-box">
 
-    <section>
-      <h2>Arrays and Collections</h2>
-      <div class="item-box">
-
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Array basics</h3>
-            <p>
-              An array is a datatype that represents an ordered collection of items. Each item is referred to as an
-              <i>element</i> and has an
-              ordered position or <i>index</i> in the array. Array indices start at zero. Array elements can be of any
-              datatype, including arrays, and unlike many programming languages, JavaScript arrays can contain more than
-              one datatype.
-            </p>
-            <p>
-              Create an array with some initial string values.
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Array basics</h3>
+              <p>
+                An array is a datatype that represents an ordered collection of items. Each item is referred to as an
+                <i>element</i> and has an
+                ordered position or <i>index</i> in the array. Array indices start at zero. Array elements can be of any
+                datatype, including arrays, and unlike many programming languages, JavaScript arrays can contain more
+                than
+                one datatype.
+              </p>
+              <p>
+                Create an array with some initial string values.
+              </p>
+              <pre class="jscode">
 let weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];</pre>
-            <p>
-              The index of the first element, <code class="jscode">"Monday"</code> is the integer value <code
-                class="jscode">0</code>, <code class="jscode">"Tuesday"</code> is <code class="jscode">1</code> and so
-              forth
-            </p>
-            <p>
-              Often it can be useful to declare an initially empty array, and then use the <code
-                class="jscode">.push()</code> method to add elements at another point in the script.
-            </p>
-            <pre class="jscode">
+              <p>
+                The index of the first element, <code class="jscode">"Monday"</code> is the integer value <code
+                  class="jscode">0</code>, <code class="jscode">"Tuesday"</code> is <code class="jscode">1</code> and so
+                forth
+              </p>
+              <p>
+                Often it can be useful to declare an initially empty array, and then use the <code
+                  class="jscode">.push()</code> method to add elements at another point in the script.
+              </p>
+              <pre class="jscode">
 let arr = [];</pre>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
-        </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Accessing array values (getting and setting)</h3>
-            <p>
-              An array is a list of values stored in one variable. Each element in the array has an ordered position or
-              index. To <i>access</i> individual elements in the array, use square bracket or subscript notation with
-              the index of the element you want to access <code class="jscode">arr[index]</code>. To access elements by
-              index, the array must already contain elements. You cannot add more elements to array this way, only
-              change elements at positions that already exist.
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Accessing array values (getting and setting)</h3>
+              <p>
+                An array is a list of values stored in one variable. Each element in the array has an ordered position
+                or
+                index. To <i>access</i> individual elements in the array, use square bracket or subscript notation with
+                the index of the element you want to access <code class="jscode">arr[index]</code>. To access elements
+                by
+                index, the array must already contain elements. You cannot add more elements to array this way, only
+                change elements at positions that already exist.
+              </p>
+              <pre class="jscode">
 let colors = ["red", "blue", "yellow", "orange", "green"];
 /* Print the first element, red, to the console */ 
 console.log(colors[0]);
 
 /* Store the 4th element in another variable */ 
 let color = colors[3];</pre>
-            <p>Change values in the array</p>
-            <pre class="jscode">
+              <p>Change values in the array</p>
+              <pre class="jscode">
 /* Change the second element (index = 1) from blue to purple */ 
 colors[1] = "purple";</pre>
+            </div>
+            <div class="preview-expand-tab">More [+]</div>
           </div>
-          <div class="preview-expand-tab">More [+]</div>
-        </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>Adding elements to an array</h3>
-            <p>
-              Add elements to the end of an array using the <code class="jscode">arr.push(element)</code> method.
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>Adding elements to an array</h3>
+              <p>
+                Add elements to the end of an array using the <code class="jscode">arr.push(element)</code> method.
+              </p>
+              <pre class="jscode">
 let foods = [];
 foods.push("Ice cream");
 foods.push("Hamburger");
 /* Now, foods = ["Ice cream", "Hamburger"] */ </pre>
+            </div>
           </div>
+
         </div>
+      </article>
 
-      </div>
-    </section>
+      <a name="dom"></a>
+      <article>
+        <h2>Document Object Model (DOM)</h2>
+        <div class="item-box">
 
-    <section>
-      <h2>Document Object Model (DOM)</h2>
-      <div class="item-box">
-
-        <div class="resource-card">
-          <h3>Finding elements by id</h3>
-          <p>
-            Give the element you want to find in JS an id in HTML.<br>
-            <code class="htmlcode">&lt;p id="my-paragraph"&gt;&lt;/p&gt;</code><br>
-            In JavaScript, you can use <code class="jscode">document.getElementById()</code> to find and access the
-            element.
-          </p>
-          <pre class="jscode">
+          <div class="resource-card">
+            <h3>Finding elements by id</h3>
+            <p>
+              Give the element you want to find in JS an id in HTML.<br>
+              <code class="htmlcode">&lt;p id="my-paragraph"&gt;&lt;/p&gt;</code><br>
+              In JavaScript, you can use <code class="jscode">document.getElementById()</code> to find and access the
+              element.
+            </p>
+            <pre class="jscode">
 let p = document.getElementById("my-paragraph");
 p.innerHTML = "Hello world!";
 p.style.color = "red";</pre>
-        </div>
+          </div>
 
-        <div class="resource-card">
-          <h3>Creating elements</h3>
-          <p>
-            To create a new HTML element in JS, use the <code class="jscode">document.createElement(<i>tag</i>)</code>
-            method where <i>tag</i> is a string containing the name of an HTML tag. Then, use <code
-              class="jscode">element.appendChild()</code> to add the new element as a child of another container
-            element.
-          </p>
-          <pre class="jscode">
+          <div class="resource-card">
+            <h3>Creating elements</h3>
+            <p>
+              To create a new HTML element in JS, use the <code class="jscode">document.createElement(<i>tag</i>)</code>
+              method where <i>tag</i> is a string containing the name of an HTML tag. Then, use <code
+                class="jscode">element.appendChild()</code> to add the new element as a child of another container
+              element.
+            </p>
+            <pre class="jscode">
 let a = document.createElement("a");
 a.innerHTML = "Pueblo CS Website";
 a.href = "https://www.pueblocs.org";
 let body = document.getElementById("body");
 body.appendChild(a);</pre>
-        </div>
+          </div>
 
-        <div class="resource-card">
-          <div class="preview-expand">
-            <h3>CSS styles</h3>
-            <p>
-              CSS properties can be read and assigned to using <code class="jscode">element.style.propertyName</code>.
-              Where <code class="jscode">propertyName</code> is the camelCase equivalent of a CSS property with the
-              hypen removed. The value of the property is a <b>string</b> datatype.
-            </p>
-            <pre class="jscode">
+          <div class="resource-card">
+            <div class="preview-expand">
+              <h3>CSS styles</h3>
+              <p>
+                CSS properties can be read and assigned to using <code class="jscode">element.style.propertyName</code>.
+                Where <code class="jscode">propertyName</code> is the camelCase equivalent of a CSS property with the
+                hypen removed. The value of the property is a <b>string</b> datatype.
+              </p>
+              <pre class="jscode">
 let div = document.getElementById("my-div");
 div.style.width = "200px";
 div.style.color = "blue";</pre>
+            </div>
           </div>
-        </div>
 
-        <div class="resource-card">
-          <h3>HTML attributes</h3>
-          <p>
-            <code class="jscode">element.attributName</code><br>
-            All HTML attributes can be read and assigned to using the corresponding property. The value is a
-            <b>string</b> data type.
-          </p>
-          <pre class="jscode">
+          <div class="resource-card">
+            <h3>HTML attributes</h3>
+            <p>
+              <code class="jscode">element.attributName</code><br>
+              All HTML attributes can be read and assigned to using the corresponding property. The value is a
+              <b>string</b> data type.
+            </p>
+            <pre class="jscode">
 let img = document.createElement("img");
 img.src = "goose.png";
 img.id = "goose-pic";</pre>
 
-        </div>
+          </div>
 
-        <div class="resource-card">
-          <h3>.innerHTML</h3>
-          <p>
-            <code class="jscode">element.innerHTML</code><br>
-            The inner HTML is what would be between the opening and closing tags of the element. If you're new,
-            it's probably best to only use this when the only content of the element will be plaintext.
-          </p>
-          <pre class="jscode">
+          <div class="resource-card">
+            <h3>.innerHTML</h3>
+            <p>
+              <code class="jscode">element.innerHTML</code><br>
+              The inner HTML is what would be between the opening and closing tags of the element. If you're new,
+              it's probably best to only use this when the only content of the element will be plaintext.
+            </p>
+            <pre class="jscode">
 let button = document.createElement("button");
 button.innerHTML = "Cancel";</pre>
-          <p>
-            You can use this to create HTML elements by assigning a string containing HTML code too.
-          </p>
-        </div>
+            <p>
+              You can use this to create HTML elements by assigning a string containing HTML code too.
+            </p>
+          </div>
 
-      </div>
+        </div>
+      </article>
     </section>
   </main>
 
@@ -689,7 +724,7 @@ button.innerHTML = "Cancel";</pre>
       <div><a href="#" class="donate-links">donate</a></div>
     </div>
     <p style="text-align:center;">
-      Copyright (C) 2023 Nathan Adams<br> <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a>
+      Copyright &copy; 2023 Nathan Adams<br> <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a>
     </p>
   </footer>
 </body>
@@ -697,35 +732,24 @@ button.innerHTML = "Cancel";</pre>
 <style>
   .resource-card p {
     margin: 10px 0px;
-    color: var(--light-text-color);
   }
 
-  .resource-card {
-    max-width: 40%;
-    height: fit-content;
-    border-radius: 8px;
-    margin: 10px 0px;
-    transition: 200ms linear;
+  .resource-card h3 {
+    font-size: x-large;
+    color: var(--active-color);
   }
 
   .block {
     display: block;
   }
 
-  section {
+  article {
     padding: 10px;
     border-radius: 8px;
   }
 
-  section h2 {
-    color: var(--light-text-color);
-    border-bottom: 2px solid var(--primary-text-color);
-    font-size: larger;
-  }
-
-  main {
-    background-color: var(--primary-bg-color);
-    padding: 10px 20px;
+  article h2 {
+    border-bottom: 2px solid;
   }
 
   h3 {

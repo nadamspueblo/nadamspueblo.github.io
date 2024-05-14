@@ -27,20 +27,32 @@ h2 {
   margin: 0;
 }
 
-a,
 h1 {
   font-family: 'Orbitron', sans-serif;
   color: var(--active-color);
 }
 
+a {
+  color: var(--active-color);
+  text-decoration: none;
+  font-family: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 body {
+  color: var(--primary-text-color);
   background-color: white;
+  font-family: 'Sofia Sans', sans-serif;
 }
 
 @media screen and (min-width: 992px) {
   body {
-    margin-left: 20%;
-    margin-right: 20%;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -123,7 +135,7 @@ ol {
 }
 
 
-/* Header */
+/* ***************** Header ************************ */
 
 header {
   display: flex;
@@ -135,7 +147,7 @@ header {
 }
 
 header h1 {
-  color: var(--light-text-color);
+  color: var(--primary-text-color);
   font-size: 50px;
 }
 
@@ -143,7 +155,50 @@ header h2 {
   font-size: 30px;
 }
 
-/* Footer */
+/* ************** Main **************************** */
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#main-content {
+  flex-grow: 2;
+}
+
+/* ************** Navigation ********************** */
+#nav-section {
+  width: fit-content;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: end;
+  margin-right: 20px;
+}
+
+.nav-link {
+  width: fit-content;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  border-bottom: 2px dotted var(--primary-bg-color);
+  text-align: end;
+  text-wrap: nowrap;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--active-color);
+}
+
+.nav-link:hover {
+  text-decoration: none;
+  border-bottom: 2px dotted var(--active-color);
+}
+
+.nav-link::after {
+  content: ">";
+  margin-left: 4px;
+}
+
+/* ******************** Footer ********************** */
 
 footer {
   display: flex;
@@ -247,13 +302,10 @@ footer a:hover {
 }
 
 .resource-card {
-  background-color: var(--secondary-bg-color);
   width: fit-content;
   flex-grow: 1;
   min-width: 280px;
   padding: 10px 20px;
-  margin: 10px 20px;
-  box-shadow: 4px 4px 10px darkgray;
 }
 
 .resource-card p {
@@ -279,7 +331,6 @@ footer a:hover {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px 40px;
 }
 
 .horz-flex-box {
@@ -296,4 +347,7 @@ footer a:hover {
 .preview-expand-tab {
   cursor: pointer;
   text-align: end;
+  padding: 10px 20px;
+  background-color: var(--active-primary-bg-color);
+  color: var(--active-color);
 }

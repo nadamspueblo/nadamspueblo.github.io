@@ -2,8 +2,8 @@
 .htmlcode,
 .csscode {
   margin: 0;
-  color: lightskyblue;
-  background-color: rgb(44, 44, 44);
+  color: rgb(72, 185, 255);
+  background-color: white;
   padding: 4px;
   overflow-x: auto;
   white-space: pre-wrap;
@@ -11,18 +11,49 @@
   white-space: -pre-wrap;
   white-space: -o-pre-wrap;
   word-wrap: break-word;
+  font-size: larger;
+}
+
+pre.jscode,
+pre.htmlcode,
+pre.csscode {
+  position: relative;
+  border: 1px solid lightgray;
+  padding: 10px;
+}
+
+pre.jscode::before,
+pre.htmlcode::before,
+pre.csscode::before {
+  display: block;
+  position: absolute;
+  right: 4px;
+  top: 0px;
+  font-size: small;
+}
+
+pre.jscode::before {
+  content: "JavaScript";
+}
+
+pre.htmlcode::before {
+  content: "HTML";
+}
+
+pre.csscode::before {
+  content: "CSS";
 }
 
 .jskeyword {
-  color: cornflowerblue;
+  color: rgb(58, 111, 211);
 }
 
 .jsoperator {
-  color: white;
+  color: rgb(87, 87, 87);
 }
 
 .jsbracket {
-  color: gold;
+  color: rgb(255, 196, 0);
 }
 
 .jscontrol {
@@ -30,19 +61,19 @@
 }
 
 .jscomment {
-  color: limegreen;
+  color: rgb(30, 122, 37)
 }
 
 .jsstring {
-  color: rgb(255, 166, 103);
+  color: rgb(158, 79, 22);
 }
 
 .jsnumber {
-  color: lemonchiffon;
+  color: rgb(255, 0, 0);
 }
 
 .jsfunction {
-  color: khaki;
+  color: rgb(243, 152, 33);
 }
 
 .htmlcode {
