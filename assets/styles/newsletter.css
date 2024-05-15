@@ -2,13 +2,15 @@ main {
   background-color: var(--primary-bg-color);
 }
 
-section, nav {
+section,
+nav {
   border: 2px solid var(--secondary-text-color);
   padding: 10px;
   overflow: auto;
 }
 
-section h2, nav h2 {
+section h2,
+nav h2 {
   color: var(--light-text-color);
   border-bottom: 2px solid var(--primary-text-color);
   font-size: larger;
@@ -23,10 +25,6 @@ a {
   color: inherit;
 }
 
-.nav-list {
-  font-size: larger;
-}
-
 .inline-image {
   max-width: 320px;
   margin: 8px;
@@ -38,11 +36,8 @@ a {
     font-size: larger;
   }
 
-  .nav-list {
-    font-size: x-large;
-  }
-
-  section h2, nav h2 {
+  section h2,
+  nav h2 {
     font-size: x-large;
   }
 }

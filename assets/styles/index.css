@@ -1,6 +1,11 @@
 @import url("base-styles.css");
 
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+#news::-webkit-scrollbar {
+    display: none;
+}
+
 #site-title {
     margin: 10px 0px;
 }
@@ -59,11 +64,24 @@
     scrollbar-width: none;
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-#news::-webkit-scrollbar {
-    display: none;
+#course-table {
+    border-collapse: collapse;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: left;
 }
 
+#course-table,
+#course-table tr,
+#course-table th,
+#course-table td {
+    padding: 4px;
+    vertical-align: top;
+}
+
+#course-table th {
+    background-color: var(--active-primary-bg-color);
+}
 
 #quick-link-box {
     width: 100%;
