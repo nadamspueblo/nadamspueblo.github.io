@@ -46,7 +46,7 @@
 }
 
 #news {
-    width: 100%;
+    width: auto;
     height: 130px;
     border: 1px solid var(--primary-text-color);
     background-color: var(--secondary-bg-color);
