@@ -65,6 +65,7 @@
 }
 
 #course-table {
+    width: 80%;
     border-collapse: collapse;
     margin-left: 10px;
     margin-right: 10px;
