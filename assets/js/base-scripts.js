@@ -1,3 +1,19 @@
+/* ************** Typing animation *********** */
+function startTypingTitle() {
+  if (location.hash == "#top") {
+    setTimeout(function () {
+      window.scrollTop = 0;
+      window.scrollTo(0, 1);
+    }, 1);
+  }
+  var title = document.getElementById("site-title");
+  if (title.innerHTML == "") {
+    var anim = new TypingAnimation(title, document.getElementById("site-title-text").innerHTML, 100, true);
+    anim.start();
+  }
+}
+
+
 /**Accordian button functionality */
 var acc = document.getElementsByClassName("accordion");
 
