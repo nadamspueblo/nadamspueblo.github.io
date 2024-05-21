@@ -1,3 +1,15 @@
+#nav-section>h2 {
+  font-size: x-large;
+  width: 100%;
+  text-align: left;
+}
+
+@media screen and (min-width: 992px) {
+  #nav-section>h2 {
+    text-align: right;
+  }
+}
+
 .photo-wrapper>img {
   width: 100%;
 }
@@ -8,4 +20,23 @@
   position: relative;
   top: calc(1em + 4px);
   left: 4px;
+}
+
+.photo-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.photo-grid>img {
+  margin: 8px 0px;
+  width: 40%;
+}
+
+#latest-button {
+  text-align: center;
+  border: 4px dotted var(--active-color);
+  border-radius: 16px;
+  padding: 8px;
 }
