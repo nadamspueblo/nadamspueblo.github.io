@@ -1,43 +1,11 @@
-main {
-  background-color: var(--primary-bg-color);
+.photo-wrapper>img {
+  width: 100%;
 }
 
-section,
-nav {
-  border: 2px solid var(--secondary-text-color);
-  padding: 10px;
-  overflow: auto;
-}
-
-section h2,
-nav h2 {
-  color: var(--light-text-color);
-  border-bottom: 2px solid var(--primary-text-color);
-  font-size: larger;
-}
-
-p {
-  color: var(--light-text-color);
-}
-
-a {
-  font-family: inherit;
-  color: inherit;
-}
-
-.inline-image {
-  max-width: 320px;
-  margin: 8px;
-  box-sizing: border-box;
-}
-
-@media screen and (min-width: 992px) {
-  section {
-    font-size: larger;
-  }
-
-  section h2,
-  nav h2 {
-    font-size: x-large;
-  }
+.photo-wrapper::before {
+  content: attr(label);
+  color: white;
+  position: relative;
+  top: calc(1em + 4px);
+  left: 4px;
 }
