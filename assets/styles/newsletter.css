@@ -10,16 +10,18 @@
   }
 }
 
-.photo-wrapper>img {
+.photo-wrapper>* {
   width: 100%;
 }
 
 .photo-wrapper::before {
   content: attr(label);
   color: white;
+  background-color: rgba(128, 128, 128, 0.5);
+  padding: 4px;
   position: relative;
-  top: calc(1em + 4px);
-  left: 4px;
+  top: calc(1em + 8px);
+  left: 0px;
 }
 
 .photo-grid {
@@ -29,8 +31,7 @@
   justify-content: space-evenly;
 }
 
-.photo-grid>img,
-.photo-grid>video {
+.photo-grid>* {
   margin: 8px 0px;
   width: 40%;
 }
