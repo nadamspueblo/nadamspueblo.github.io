@@ -29,7 +29,8 @@
   justify-content: space-evenly;
 }
 
-.photo-grid>img {
+.photo-grid>img,
+.photo-grid>video {
   margin: 8px 0px;
   width: 40%;
 }
