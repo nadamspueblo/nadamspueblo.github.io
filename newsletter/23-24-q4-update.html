@@ -100,32 +100,32 @@
           of student projects.</p>
         <div class="photo-grid">
           <div class="photo-wrapper" label="Robert Saucedo">
-            <video autoplay muted loop>
+            <video autoplay muted loop onclick="zoomVideo(event)">
               <source src="/assets/media/newsletter/proj-video-roberts.mp4">
             </video>
           </div>
           <div class="photo-wrapper" label="Natalie Romero">
-            <video autoplay muted loop>
+            <video autoplay muted loop onclick="zoomVideo(event)">
               <source src="/assets/media/newsletter/proj-video-natalier.mp4">
             </video>
           </div>
           <div class="photo-wrapper" label="Ruben Cordova">
-            <video autoplay muted loop>
+            <video autoplay muted loop onclick="zoomVideo(event)">
               <source src="/assets/media/newsletter/proj-video-rubenc.mp4">
             </video>
           </div>
           <div class="photo-wrapper" label="Jazz Fausto">
-            <video autoplay muted loop>
+            <video autoplay muted loop onclick="zoomVideo(event)">
               <source src="/assets/media/newsletter/proj-video-jazzf.mp4">
             </video>
           </div>
           <div class="photo-wrapper" label="Adriel Morales">
-            <video autoplay muted loop>
+            <video autoplay muted loop onclick="zoomVideo(event)">
               <source src="/assets/media/newsletter/proj-video-adrielm.mp4">
             </video>
           </div>
           <div class="photo-wrapper" label="Anthony Sprouse">
-            <video autoplay muted loop>
+            <video autoplay muted loop onclick="zoomVideo(event)">
               <source src="/assets/media/newsletter/proj-video-anthonysp.mp4">
             </video>
           </div>
@@ -239,4 +239,10 @@
     <p>Copyright &copy; 2023 Nathan Adams <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a>
     </p>
   </footer>
+
+  <div id="video-window" class="modal">
+    <span class="close" id="close-video">&times;</span>
+    <video class="modal-content" autoplay controls>
+    </video>
+  </div>
 </body>

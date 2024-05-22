@@ -83,6 +83,27 @@ for (let i = 0; i < expandTabs.length; i++) {
   });
 }
 
+/* ******** Video Zoom View Functionality ***************** */
+function zoomVideo(event) {
+  // Load video
+  let modal = document.getElementById("video-window");
+  let video = modal.getElementsByTagName("video")[0];
+  let url = event.target.getElementsByTagName("source")[0].src;
+  video.src = url;
+  modal.style.display = "block";
+
+  // Stop scrolling
+  const body = document.getElementsByTagName("body")[0];
+  body.style.overflow = "clip";
+  
+  // Configure close button 
+  let closeButton = document.getElementById("close-video");
+  closeButton.onclick = function() {
+    modal.style.display = "none";
+    body.style.overflow = "auto";
+  }
+}
+
 /** Linting of code elements */
 const jsKeyWords = ["var", "let", "const", "function", "true", "false", "return"];
 const jsBrackets = ["[", "]", "{", "}", "(", ")"];
