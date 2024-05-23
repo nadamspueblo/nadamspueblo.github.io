@@ -6,93 +6,135 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="pueblo high school, programming, CTE, AP Computer Science, Software and App Design">
-    <meta name="description" content="Website for Pueblo High School's computer science, software and app design program">
+    <meta name="description"
+        content="Website for Pueblo High School's computer science, software and app design program">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4640479150069852"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="assets/styles/index.css">
     <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
     <title>Pueblo HS Computer Science</title>
+    <script defer src="assets/js/animations.js"></script>
+    <script defer src="assets/js/base-scripts.js"></script>
+    <script defer src="assets/js/index.js"></script>
 </head>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-85Z0RPVRNR"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
 
-  gtag('config', 'G-85Z0RPVRNR');
+    gtag('config', 'G-85Z0RPVRNR');
 </script>
 
 <body onload="startTypingTitle()">
     <a name="top"></a>
-    <section id="hero-section">
-        <div id="quick-link-box">
-            <a class="quick-links" href="cs1-2.html">CS 1-2</a>
-            <a class="quick-links" href="cs3-4.html">CS 3-4</a>
-            <a class="quick-links" href="cs5-6.html">CS 5-6</a>
-        </div>
-        <div id="title-box">
-            <h2>Welcome to the</h2>
-            <h1 id="site-title"></h1><span id="site-title-text" class="data">Pueblo HS Computer Science</span>
-            <h2 style="align-self:flex-end;">Program</h2>
-        </div>
+    <header>
+        <h1 id="site-title"></h1><span id="site-title-text" class="data">PH:S\Computer Science\</span>
         <div id="news">
             <div>
                 <h3>[1/27] C:\S Club Meeting</h3>
                 <p>Every Wednesday and Thursday after school in 258</p>
             </div>
         </div>
+    </header>
+
+    <a name="navigation"></a>
+    <main>
+        <nav id="nav-section">
+            <a href="cs1-2.html">Intro Course</a>
+            <a href="cs3-4.html">AP CS Principles</a>
+            <a href="cs5-6.html">AP CS A</a>
+            <a href="resources/js-reference.html">JavaScript Reference</a>
+            <a href="https://www.pueblocs.org/domhelper">DOM Helper</a>
+            <a href="newsletter.html">Newsletter</a>
+            <a href="student-work.html">Student Work</a>
+            <a href="https://johnnysaenz.github.io">C:\S Club</a>
+        </nav>
+        <section id="main-content">
+            <article>
+                <h2>Hello!</h2>
+                <p>
+                    Welcome to the Pueblo High School Software and App Design (aka Computer Science) program. The
+                    mission of this program is to promote, prepare, and inspire students to create and innovate with
+                    software and
+                    tech.
+                </p>
+                <p>
+                    According to <a href="https://pipelineaz.com/hubs/cyber" target="_blank">Pipeline AZ</a>, cyber and
+                    tech are
+                    the fastest growing career fields in Arizona. However, this program isn't soley about career
+                    preparation. It's about creativity and invention.
+                    It's about gaining access to cutting edge skills, giving yourself a voice, and using that to help
+                    solve the problems of the next generation.
+                </p>
+            </article>
+            <article>
+                <h3>Software and App Design CTE Program</h3>
+                <p>
+                    <a href="https://www.azed.gov/cte/sd/" target="_blank">Software and App Design</a> is a 2-year <a
+                        href="https://www.azed.gov/cte" target="_blank">Career and Technical
+                        Education (CTE)</a> program with optional 3rd
+                    and 4th years.
+                    Throughout the program, you will have opportunities to earn industry certifications in JavaScript,
+                    HTML/CSS, and Java
+                    that can be used to gain employment or apply for post-secondary education programs. To complete the
+                    program, you must
+                    pass the <a href="https://www.azed.gov/cte/assessments" target="_blank">Technical Skills Assessment
+                        (TSA)</a>.
+                </p>
+                <table id="course-table">
+                    <tr>
+                        <th>Year</th>
+                        <th>Course</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td><a href="cs1-2.html">CS1-2 Intro to Computer Science</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><a href="cs3-4.html">CS3-4 AP CS Principles</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><a href="cs5-6.html">CS5-6 AP Computer Science A</a></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>CS7-8 Work-based Learning</td>
+                    </tr>
+                </table>
+            </article>
+        </section>
+    </main>
+
+
+    <footer>
         <div class="social-media-box">
             <div><a href="#" class="donate-links">volunteer</a></div>
             <div class="soc-media-placeholder"></div>
-            <a href="#navigation"> <div class="down-button">V</div></a>
+            <div class="soc-media-placeholder"></div>
             <div class="soc-media-placeholder"></div>
             <div><a href="donate.html" class="donate-links">donate</a></div>
         </div>
-    </section>
-
-    <a name="navigation"></a>
-    <nav id="nav-section">
-        <a class="nav-link" href="https://johnnysaenz.github.io">
-            <span style="pointer-events: none;">C:\S Club&gt;</span>
-            <span class="anim-type-text"></span>
-            <span class="data">Meets every Wednesday and Thursday after school in Rm 258. All are welcome!</span>
-        </a>
-        <a class="nav-link" href="cs1-2.html">
-            <span style="pointer-events: none;">Intro Course&gt;</span>
-            <span class="anim-type-text"></span>
-            <span class="data">Year 1: Try out programming in a block-based drag-and-drop programming environment called
-                Snap!. Then, start learning to make webpages using HTML, CSS, and JavaScript!</span>
-        </a>
-        <a class="nav-link" href="cs3-4.html">
-            <span style="pointer-events: none;">AP CS Principles&gt;</span>
-            <span class="anim-type-text"></span>
-            <span class="data">Year 2: Learn how binary and networking work to digitize and transimit data. Go deeper
-                into JavaScript to make more advanced web applications. This course ends with an AP test, the
-                state technical skills assessment, and the first opportunity to earn an industry certification</span>
-        </a>
-        <a class="nav-link" href="cs5-6.html">
-            <span style="pointer-events: none;">AP CS A&gt;</span>
-            <span class="anim-type-text"></span>
-            <span class="data">Year 3: Equivalent to an introductory college course in Java. Learn a language used to
-                develop applications across a multitude of devices.</span>
-        </a>
-        <a class="nav-link" href="student-work.html">
-            <span style="pointer-events: none;">Featured Work&gt;</span>
-            <span class="anim-type-text"></span>
-            <span class="data">Check out some of my favorite student projects</span>
-        </a>
-    </nav>
-
-    <footer>
-        <p>Copyright (C) 2023 Nathan Adams <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a></p>
+        <nav>
+            <a href="cs1-2.html">Intro Course</a>
+            <a href="cs3-4.html">AP CS Principles</a>
+            <a href="cs5-6.html">AP CS A</a>
+            <a href="resources/js-reference.html">JavaScript Reference</a>
+            <a href="https://www.pueblocs.org/domhelper">DOM Helper</a>
+            <a href="newsletter.html">Newsletter</a>
+            <a href="student-work.html">Student Work</a>
+            <a href="https://johnnysaenz.github.io">C:\S Club</a>
+        </nav>
+        <p>Copyright &copy; 2023 Nathan Adams <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a>
+        </p>
     </footer>
 
-    <script src="assets/js/animations.js"></script>
-    <script src="assets/js/base-scripts.js"></script>
-    <script src="assets/js/index.js"></script>
+
 </body>
 
 </html>

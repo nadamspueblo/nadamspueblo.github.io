@@ -1,3 +1,19 @@
+/* ************** Typing animation *********** */
+function startTypingTitle() {
+  if (location.hash == "#top") {
+    setTimeout(function () {
+      window.scrollTop = 0;
+      window.scrollTo(0, 1);
+    }, 1);
+  }
+  var title = document.getElementById("site-title");
+  if (title.innerHTML == "") {
+    var anim = new TypingAnimation(title, document.getElementById("site-title-text").innerHTML, 100, true);
+    anim.start();
+  }
+}
+
+
 /**Accordian button functionality */
 var acc = document.getElementsByClassName("accordion");
 
@@ -65,6 +81,58 @@ for (let i = 0; i < expandTabs.length; i++) {
       panel.style.maxHeight = "200px";
     }
   });
+}
+
+/* ******** Element Zoom View Functionality ***************** */
+const zoomElems = document.getElementsByClassName("zoom-target");
+for (let e of zoomElems) {
+  e.onclick = zoomElement;
+}
+function zoomElement(event) {
+  // Prepare video element
+  let modal = document.getElementById("video-window");
+  const element = event.target;
+  const parent = element.parentElement;
+  if (parent.id != "video-window") {
+    element.classList.add("modal-content");
+    if (element.tagName == "VIDEO") {
+      setTimeout(function () { element.play() }, 10);
+      element.controls = true;
+    }
+    const fit = element.style.objectFit;
+    element.style.objectFit = "contain";
+    element.style.animation = "zoom 0.3s ease-in-out";
+    modal.appendChild(element);
+    modal.style.display = "block";
+    modal.style.animation = "fade-in 0.2s ease-in-out 0.2s";
+    modal.style.animationFillMode = "forwards";
+
+    // Stop scrolling
+    const body = document.getElementsByTagName("body")[0];
+    body.style.overflow = "clip";
+
+    // Configure close functionality
+    const close = function () {
+      // Hide modal
+      //modal.style.display = "none";
+      modal.style.animation = "fade-out 0.2s ease-in-out";
+      modal.style.animationFillMode = "forwards";
+      // Resume scrolling
+      body.style.overflow = "auto";
+      // Return video element
+      element.classList.remove("modal-content");
+      if (element.tagName == "VIDEO") {
+        element.controls = false;
+        element.play();
+      }
+      element.style.objectFit = fit;
+      element.style.animation = "unzoom 0.3s ease-in-out";
+      parent.appendChild(element);
+    }
+    let closeButton = document.getElementById("close-video");
+    closeButton.onclick = close;
+    modal.onclick = close;
+  }
 }
 
 /** Linting of code elements */

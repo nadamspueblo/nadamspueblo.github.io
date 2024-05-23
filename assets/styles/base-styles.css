@@ -6,7 +6,8 @@
 }
 
 :root {
-  --primary-text-color: rgb(100, 100, 255);
+  --primary-text-color: rgb(61, 61, 61);
+  --active-color: rgb(100, 100, 255);
   --light-text-color: rgb(61, 61, 61);
   --medium-text-color: rgb(190, 190, 190);
   --dark-text-color: rgb(61, 61, 61);
@@ -26,21 +27,32 @@ h2 {
   margin: 0;
 }
 
-body,
-a {
+h1 {
   font-family: 'Orbitron', sans-serif;
-  color: var(--primary-text-color);
+  color: var(--active-color);
+}
+
+a {
+  color: var(--active-color);
+  text-decoration: none;
+  font-family: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 body {
-  background-color: var(--primary-bg-color);
+  color: var(--primary-text-color);
+  background-color: white;
+  font-family: 'Sofia Sans', sans-serif;
 }
 
 @media screen and (min-width: 992px) {
   body {
-    margin-left: 10%;
-    margin-right: 10%;
-    background-color: rgb(158, 158, 255);
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -51,12 +63,27 @@ footer {
   background-color: var(--primary-bg-color);
 }
 
+header {
+  margin: 10px;
+}
+
 p {
   font-family: 'Sofia Sans', sans-serif;
+  font-size: larger;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Orbitron', sans-serif;
 }
 
 h2 {
-  font-size: medium;
+  font-size: xx-large;
+}
+
+h3 {
+  font-size: x-large;
 }
 
 ul,
@@ -117,7 +144,7 @@ ol {
 }
 
 
-/* Header */
+/* ***************** Header ************************ */
 
 header {
   display: flex;
@@ -129,20 +156,87 @@ header {
 }
 
 header h1 {
-  color: var(--light-text-color);
-  font-size: 50px;
+  color: var(--primary-text-color);
+  font-size: 40px;
+}
+
+@media screen and (min-width: 992px) {
+  header h1 {
+    font-size: 50px;
+  }
 }
 
 header h2 {
   font-size: 30px;
+  color: var(--active-color);
 }
 
-/* Footer */
+/* ************** Main **************************** */
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#main-content {
+  flex-grow: 3;
+  width: 67%;
+  padding: 10px;
+}
+
+/* ************** Navigation ********************** */
+#nav-section {
+  position: sticky;
+  top: 0px;
+  width: auto;
+  height: fit-content;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  z-index: 1;
+}
+
+@media screen and (min-width: 992px) {
+  #nav-section {
+    flex-direction: column;
+    align-items: end;
+    margin-right: 20px;
+  }
+}
+
+#nav-section a {
+  display: block;
+  width: fit-content;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  border-bottom: 2px dotted var(--primary-bg-color);
+  text-align: end;
+  text-wrap: nowrap;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--active-color);
+}
+
+#nav-section a:hover {
+  text-decoration: none;
+  border-bottom: 2px dotted var(--active-color);
+}
+
+#nav-section a::after {
+  content: ">";
+  margin-left: 4px;
+}
+
+/* ******************** Footer ********************** */
 
 footer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   justify-content: space-around;
   min-height: 25vh;
   padding: 10px;
@@ -152,6 +246,10 @@ footer {
   border-top: 2px solid var(--secondary-bg-color);
 }
 
+footer p {
+  text-align: center;
+}
+
 footer a {
   text-decoration: none;
   color: var(--medium-text-color);
@@ -159,6 +257,18 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+footer nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+footer nav a {
+  display: block;
+  margin: 0px 8px;
 }
 
 /* Specialty */
@@ -194,6 +304,10 @@ footer a:hover {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.social-media-box a:hover {
+  text-decoration: none;
 }
 
 .soc-media-placeholder {
@@ -241,13 +355,10 @@ footer a:hover {
 }
 
 .resource-card {
-  background-color: var(--secondary-bg-color);
   width: fit-content;
   flex-grow: 1;
   min-width: 280px;
   padding: 10px 20px;
-  margin: 10px 20px;
-  box-shadow: 4px 4px 10px darkgray;
 }
 
 .resource-card p {
@@ -273,7 +384,6 @@ footer a:hover {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 20px 40px;
 }
 
 .horz-flex-box {
@@ -290,4 +400,7 @@ footer a:hover {
 .preview-expand-tab {
   cursor: pointer;
   text-align: end;
+  padding: 10px 20px;
+  background-color: var(--active-primary-bg-color);
+  color: var(--active-color);
 }

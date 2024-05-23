@@ -1,59 +1,29 @@
 @import url("base-styles.css");
 
 
-#hero-section {
-    min-height: 100vh;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+/* Hide scrollbar for Chrome, Safari and Opera */
+#news::-webkit-scrollbar {
+    display: none;
 }
 
-#hero-section .button {
-    opacity: 0%;
-    animation-name: fade-in;
-    animation-delay: 4s;
-    animation-fill-mode: forwards;
-    animation-duration: 1s;
+#site-title {
+    margin: 10px 0px;
 }
 
-#title-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: fit-content;
-    min-height: 300px;
-    margin: 0 auto;
-}
-
-#title-box h1 {
-    font-size: 60px;
-}
-
-#title-box h1:after {
+#site-title:after {
     content: "_";
-    color: var(--light-text-color);
+    color: var(--active-color);
     opacity: 0%;
     animation-name: blink;
     animation-duration: 1000ms;
     animation-iteration-count: infinite;
 }
 
-#title-box h2 {
-    color: var(--light-text-color);
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 30px;
-    opacity: 0%;
-    animation-name: fade-in;
-    animation-delay: 3200ms;
-    animation-fill-mode: forwards;
-    animation-duration: 1s;
-}
 
 #news,
 #news p {
     font-family: 'Paragraph', 'Courier New', Courier, monospace;
+    font-size: large;
 }
 
 #news p,
@@ -81,8 +51,7 @@
 }
 
 #news {
-    max-width: 75%;
-    width: 75%;
+    width: auto;
     height: 130px;
     border: 1px solid var(--primary-text-color);
     background-color: var(--secondary-bg-color);
@@ -93,19 +62,27 @@
     -ms-overflow-style: none;
     /* Firefox */
     scrollbar-width: none;
-    opacity: 0%;
-    animation-name: fade-in;
-    animation-delay: 4s;
-    animation-fill-mode: forwards;
-    animation-duration: 1s;
-
 }
 
-/* Hide scrollbar for Chrome, Safari and Opera */
-#news::-webkit-scrollbar {
-    display: none;
+#course-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: left;
 }
 
+#course-table,
+#course-table tr,
+#course-table th,
+#course-table td {
+    padding: 4px;
+    vertical-align: top;
+}
+
+#course-table th {
+    background-color: var(--active-primary-bg-color);
+}
 
 #quick-link-box {
     width: 100%;
@@ -140,67 +117,6 @@
     border-bottom: 1px solid var(--medium-text-color);
 }
 
-.down-button {
-    background-color: var(--primary-text-color);
-    color: var(--primary-bg-color);
-    min-width: 60px;
-    min-height: 60px;
-    border-radius: 50%;
-    margin: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-@keyframes fade-in {
-    0% {
-        opacity: 0%;
-    }
-
-    100% {
-        opacity: 100%;
-    }
-}
-
-#nav-section {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: stretch;
-}
-
-.nav-link {
-    display: block;
-    text-decoration: none;
-    font-size: 30px;
-    height: 100%;
-    padding: 0px 10px;
-}
-
-.nav-link:hover {
-    background-color: var(--active-primary-bg-color);
-}
-
-.nav-link:after {
-    content: "_";
-    opacity: 0%;
-    color: var(--light-text-color);
-}
-
-.nav-link:hover:after {
-    animation-name: blink;
-    animation-duration: 1000ms;
-    animation-iteration-count: infinite;
-}
-
-.anim-type-text {
-    color: var(--medium-text-color);
-    font-size: 18pt;
-    pointer-events: none;
-}
 
 @keyframes blink {
     0% {
@@ -217,5 +133,15 @@
 
     80% {
         opacity: 0%;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0%;
+    }
+
+    100% {
+        opacity: 100%;
     }
 }

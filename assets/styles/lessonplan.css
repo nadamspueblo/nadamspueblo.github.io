@@ -1,0 +1,44 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  color: black;
+  margin-bottom: 10px;
+}
+
+td,
+th {
+  border: 1px solid;
+}
+
+th {
+  padding: 8px;
+}
+
+td {
+  position: relative;
+  padding: calc(1.5em + 4px) 8px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+td::before {
+  position: absolute;
+  content: attr(label);
+  left: 4px;
+  top: 4px;
+  font-weight: bold;
+}
+
+th.design {
+  background-color: rgb(75, 173, 75);
+}
+
+th.facilitate {
+  background-color: rgb(94, 94, 255);
+}
+
+ul {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}

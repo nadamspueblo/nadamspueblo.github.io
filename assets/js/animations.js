@@ -4,6 +4,7 @@ class TypingAnimation {
   speed = 0;
   run = false;
   origText;
+  fillEnd = false;
 
   constructor(textElement, text, speed, delay = 0, fillEnd = false) {
     this.textElement = textElement;
@@ -37,7 +38,7 @@ class TypingAnimation {
     else {
       this.prevTime = 0;
       this.run = false;
-      if (fillEnd) this.textElement.innerHTML = this.origText;
+      if (this.fillEnd) this.textElement.innerHTML = this.origText;
     }
   }
 
