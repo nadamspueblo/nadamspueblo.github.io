@@ -85,11 +85,13 @@ for (let i = 0; i < expandTabs.length; i++) {
 
 /* ******** Video Zoom View Functionality ***************** */
 function zoomVideo(event) {
-  // Load video
+  // Prepare video element
   let modal = document.getElementById("video-window");
-  let video = modal.getElementsByTagName("video")[0];
-  let url = event.target.getElementsByTagName("source")[0].src;
-  video.src = url;
+  const video = event.target;
+  const parent = video.parentElement;
+  video.classList.add("modal-content");
+  video.controls = true;
+  modal.appendChild(video);
   modal.style.display = "block";
 
   // Stop scrolling
@@ -99,8 +101,14 @@ function zoomVideo(event) {
   // Configure close button 
   let closeButton = document.getElementById("close-video");
   closeButton.onclick = function() {
+    // Hide modal
     modal.style.display = "none";
+    // Resume scrolling
     body.style.overflow = "auto";
+    // Return video element
+    video.classList.remove("modal-content");
+    video.controls = false;
+    parent.appendChild(video);
   }
 }
 
