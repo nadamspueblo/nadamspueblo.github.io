@@ -48,29 +48,7 @@
 }
 
 .zoom-target {
-  overflow: hidden;
-}
-
-.zoom-target::after {
-  display:block;
-  box-sizing: border-box;
-  content: "+";
-  color:white;
-  border-radius: 50%;
-  border: 2px solid rgba(128, 128, 128, 0.0);
-  position: relative;
-  margin: auto;
-  font-size: 40px;
-  top: calc(-75% + 2em + 8px);
-  width: 1em;
-  text-align: center;
-  pointer-events: none;
-  opacity: 0;
-}
-
-.zoom-target:hover::after {
-  opacity: 1.0;
-  border: 2px solid white;
+  cursor: pointer;
 }
 
 .modal {
@@ -125,7 +103,17 @@
   to {
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1) ;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes unzoom {
+  from {
+    transform: scale(1.5);
+  }
+
+  to {
+    transform: scale(1.0);
   }
 }
 
@@ -145,5 +133,17 @@
 
   to {
     background-color: rgba(128, 128, 128, 0.5);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    background-color: rgba(128, 128, 128, 0.5);
+    display: block;
+  }
+
+  to {
+    background-color: rgba(128, 128, 128, 0.0);
+    display: none;
   }
 }
