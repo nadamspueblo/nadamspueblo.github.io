@@ -28,7 +28,8 @@
   left: 0px;
 }
 
-.photo-grid {
+.photo-grid,
+.video-grid {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -38,6 +39,18 @@
 .photo-grid>* {
   margin: 8px 0px;
   width: 40%;
+}
+
+.video-grid>* {
+  margin: 8px;
+  width: 40%;
+}
+
+@media screen and (min-width: 992px) {
+  .video-grid>* {
+    margin: 8px;
+    width: 20%;
+  }
 }
 
 #latest-button {
