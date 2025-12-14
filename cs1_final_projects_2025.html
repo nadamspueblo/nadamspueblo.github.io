@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="pueblo high school, programming, CTE, AP Computer Science, Software and App Design">
+    <meta name="description"
+        content="Website for Pueblo High School's computer science, software and app design program">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4640479150069852"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/styles/cs1-2.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
+
+    <title>Student Projects 25-26 | CS1-2 Intro to Computer Science - Pueblo High School</title>
+    <style>
+        section {
+            width: 100%;
+        }
+
+        /* Use Grid for better responsiveness and alignment */
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        /* Make the anchor tag cover the image and title only */
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            /* Pushes the vote button to the bottom */
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 180px;
+            /* Fixed height for uniformity */
+            background-color: #f4f4f4;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Prevents image stretching/distortion */
+            object-position: top center;
+        }
+
+        .card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            margin: 0;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Vote Section Styles */
+        .vote-section {
+            padding: 15px;
+            background-color: #fafafa;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vote-count {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .vote-btn {
+            background-color: white;
+            color: var(--active-color, #007bff);
+            /* Fallback to blue if var missing */
+            border: 2px solid var(--active-color, #007bff);
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 8px 16px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .vote-btn:hover {
+            background-color: var(--active-color, #007bff);
+            color: white;
+        }
+
+        .vote-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background-color: #e0e0e0;
+            border-color: #ccc;
+            color: #888;
+        }
+
+        /* Leaderboard Container */
+        #leaderboard-section {
+            width: 100%;
+            margin: 0 auto 40px auto;
+            /* Centered with bottom spacing */
+            background: linear-gradient(to bottom, #fff, #fff9f0);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+            transition: background-color 0.2s;
+        }
+
+        .leaderboard-row:last-child {
+            border-bottom: none;
+        }
+
+        .leaderboard-row:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+
+        /* Rank Badges */
+        .rank-badge {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #eee;
+            color: #555;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        /* Gold, Silver, Bronze Colors */
+        .rank-1 .rank-badge {
+            background-color: #FFD700;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .rank-2 .rank-badge {
+            background-color: #C0C0C0;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .rank-3 .rank-badge {
+            background-color: #CD7F32;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .leaderboard-name {
+            flex-grow: 1;
+            font-weight: 600;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .leaderboard-name:hover {
+            text-decoration: underline;
+            color: var(--active-color);
+        }
+
+        .leaderboard-votes {
+            font-weight: bold;
+            color: #555;
+            background-color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        #vote-countdown {
+            margin: 0 auto 40px auto;
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-85Z0RPVRNR"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-85Z0RPVRNR');
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import {
+        getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot,
+        collection, query, orderBy, limit
+    } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    // Firebase Config
+    const firebaseConfig = {
+        apiKey: "AIzaSyDZ8fhLVmOVay80Y33LAEVBopns1k-Fytg",
+        authDomain: "pueblo-cs-website.firebaseapp.com",
+        projectId: "pueblo-cs-website",
+        storageBucket: "pueblo-cs-website.appspot.com",
+        messagingSenderId: "528094862817",
+        appId: "1:528094862817:web:2f8468a947f9161ff846a0",
+        measurementId: "G-85Z0RPVRNR"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Student Data
+    const websites = [
+        { name: "Michell Alonso Miranda", url: "https://1301311267-cyber.github.io/soccer-website/" },
+        { name: "David Alvarez", url: "https://davidcelealva01.github.io/volleyball/" },
+        { name: "Dominic Arambula", url: "https://datboiidom.github.io/Final-Project/" },
+        { name: "Jesus Armenta Carino", url: "https://mamamiajazz.github.io/final-website-project/" },
+        { name: "Lilyrose Bryant", url: "https://0715431007-hue.github.io/final-project-3/" },
+        { name: "Emmanuel Castro Contreras", url: "https://emmanuel778-tech.github.io/Final-Project-UofAHistory/" },
+        { name: "Amysaday Castro Cuadras", url: "https://amysadayc.github.io/Css-final-website-project/" },
+        { name: "Joseangel Chavez Ruiz", url: "https://0415120004-alt.github.io/final-project/" },
+        { name: "Donald Cooke", url: "https://donaldcookeatphs-star.github.io/tickle-bob-449/" },
+        { name: "Jose Fabian Cubillas Lujan", url: "https://fabian5511.github.io/final-personal-website-project/" },
+        { name: "Aiden Doubleday", url: "https://aidendoubleday.github.io/final-website-project/" },
+        { name: "Santos Duarte-Cabrera", url: "https://0516233001-star.github.io/Horror-Movies/" },
+        { name: "Jose Duran Meza", url: "https://joseduran67.github.io/final-project/" },
+        { name: "Alejandro Encinas", url: "https://alejandroe345.github.io/cs1-final-project/" },
+        { name: "Jose Escalante", url: "https://0414231012.github.io/cs1-Final-Website-Project/" },
+        { name: "Charles Foster", url: "https://1214419004-cmyk.github.io/Deepwoken-Final-Project/" },
+        { name: "Isabella Arias Galaz", url: "https://isabellaaa-a.github.io/final-website-project/" },
+        { name: "Felix Garcia", url: "https://felixxgarcia064-web.github.io/final-project/" },
+        { name: "Reymond Gutierrez Campos", url: "https://1301312165-creator.github.io/Final-Project/" },
+        { name: "Dalia Hernandez", url: "https://dalih-4cls.github.io/Final-Website-Project/" },
+        { name: "Nicholas Ingersoll", url: "https://nicholasreedingersoll-debug.github.io/Final-website/" },
+        { name: "Isaac Lopez", url: "https://blankisaac4345.github.io/Final-Project/" },
+        { name: "Leilan Martinez", url: "https://leilanmartinez.github.io/project/" },
+        { name: "Santiago Martinez", url: "https://1301235340-commits.github.io/Music-topic/" },
+        { name: "Aubrey McIntyre", url: "https://1301318619-ctrl.github.io/horror-movie-website/" },
+        { name: "Aimee Millanes Velazquez", url: "https://aimeemillanes13-commits.github.io/final-wensite-day-1-/" },
+        { name: "Minh Nguyen", url: "https://1301310347-ctrl.github.io/cs1-final-project7/" },
+        { name: "Roberto Peraza Cordova", url: "https://perazaroberto69.github.io/Final-project/index.html" },
+        { name: "Alberto Peraza Vasquez", url: "https://albbertooo499-lgtm.github.io/cs1-final-website-project/" },
+        { name: "Oscar Peru", url: "http://1301318956-glitch.github.io/cs1-final-website-project/" },
+        { name: "Antoinette Polanco", url: "https://antoinettefpolanco-cloud.github.io/Final-Website-Project/" },
+        { name: "Miguel Rivera", url: "https://0915371010-bot.github.io/Final-project/" },
+        { name: "Cynthia Rodriguez", url: "https://cynthiamia300-del.github.io/softball-tops/" },
+        { name: "Anthony Ruiz", url: "https://anthonyruiz3.github.io/final-project/" },
+        { name: "Darian Soto Gonzalez", url: "https://dariann-ss.github.io/cs1-final-website-project/" },
+        { name: "Kamilah Soto", url: "https://kamilahs0308-dotcom.github.io/final-project/" },
+        { name: "Alexander Valdez Leyva", url: "https://alexander832-svg.github.io/Fianl-project-website/" },
+        { name: "Abraham Valenzuela", url: "https://i-luv-monster.github.io/Final-Website-Project-Semester-1/" },
+        { name: "Ivan Vargas Erunes", url: "https://1301315780-svg.github.io/Albums/" },
+        { name: "San Juan Vicente", url: "https://0315311001-ops.github.io/cs1-final-website-project/" },
+        { name: "Dali Villarreal Jasso", url: "https://0814231028-bot.github.io/final-project/" },
+        { name: "Isaiah Yebra", url: "https://isaiah51354.github.io/cs1-final-website-project/" }
+    ];
+
+    // Helper to create safe IDs for Firestore
+    const getSafeId = (name) => name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+
+    // Voting dates
+    const startDate = new Date(Date.parse("2:55 pm 12/15/2025"));
+    const endDate = new Date(Date.parse("3:00 pm 12/18/2025"));
+
+    window.addEventListener('load', function () {
+        const gallery = document.getElementById('gallery');
+        if (Date.now() < startDate) {
+            const msg = document.getElementById("countdown-msg");
+            const intervalId = setInterval(() => {
+                if (Date.now() >= startDate) {
+                    showButtons();
+                    document.getElementById("countdown-msg").style.display = "none";
+                    clearInterval(intervalId);
+                    return;
+                }
+                let time = (startDate - Date.now()) / 1000;
+                let hours = Math.floor(time / 3600);
+                let minutes = Math.floor(time / 60 % 60);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                let seconds = Math.floor(time % 60);
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                msg.innerText = `Voting starts in ${hours}:${minutes}:${seconds}`;
+            }, 1000);
+        }
+        else if (Date.now() < endDate) {
+            const msg = document.getElementById("countdown-msg");
+            const intervalId = setInterval(() => {
+                if (Date.now() >= endDate) {
+                    hideButtons();
+                    document.getElementById("countdown-msg").style.display = "none";
+                    clearInterval(intervalId);
+                    return;
+                }
+                let time = (endDate - Date.now()) / 1000;
+                let hours = Math.floor(time / 3600);
+                let minutes = Math.floor(time / 60 % 60);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                let seconds = Math.floor(time % 60);
+                seconds = seconds < 10 ? "0" + seconds : seconds;;
+                msg.innerText = `Voting ends in ${hours}:${minutes}:${seconds}`;
+            }, 1000);
+        }
+        else {
+            document.getElementById("countdown-msg").innerText = "Voting has ended";
+        }
+        let hasVoted = false;
+
+        websites.forEach(site => {
+            const safeId = getSafeId(site.name);
+            const imagePath = 'assets/images/cs1-2/25-26_site_thumbnails/' + site.name.replaceAll(" ", "_") + ".png";
+
+            // Create Card Container
+            let card = document.createElement("div");
+            card.classList.add('card');
+
+            // Inner HTML Structure
+            card.innerHTML = `
+                <a href="${site.url}" target="_blank" class="card-link">
+                    <div class="card-image-container">
+                        <img src="${imagePath}" alt="${site.name}'s Project" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h2>${site.name}</h2>
+                    </div>
+                </a>
+                <div class="vote-section">
+                    <span class="vote-count" id="count-${safeId}">0 Votes</span>
+                    <button class="vote-btn" id="btn-${safeId}" onclick="handleVote('${safeId}', '${site.name}')">
+                        👍 +1
+                    </button>
+                </div>
+            `;
+
+            gallery.appendChild(card);
+
+            // Check if user already voted (local storage) to disable button
+            if (localStorage.getItem(`voted_${safeId}`)) {
+                // Set flag to disable all voting buttons;
+                hasVoted = true;
+            }
+
+            // Real-time listener for this specific project
+            const docRef = doc(db, "cs1projects-2025", safeId);
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    document.getElementById(`count-${safeId}`).innerText = `${data.votes || 0} Votes`;
+                }
+            });
+        });
+
+        // Disable all buttons if user has voted
+        if (hasVoted) {
+            const buttons = document.getElementsByClassName("vote-btn")
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].innerText = "Voted!";
+                buttons[i].disabled = true;
+            }
+        }
+
+        // Remove all buttons if voting hasn't started or has ended
+        if (Date.now() < startDate || Date.now() > endDate) {
+            hideButtons();
+        }
+    });
+
+    function hideButtons() {
+        const buttons = document.getElementsByClassName("vote-btn");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.display = "none";
+        }
+    }
+
+    function showButtons() {
+        const buttons = document.getElementsByClassName("vote-btn");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.display = "block";
+        }
+    }
+
+    // Make function available globally
+    window.handleVote = async (safeId, realName) => {
+        // Prevent double voting locally
+        if (localStorage.getItem(`voted_${safeId}`)) return;
+
+        const btn = document.getElementById(`btn-${safeId}`);
+        const originalText = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = "Processing...";
+
+        try {
+            const projectRef = doc(db, "cs1projects-2025", safeId);
+            const docSnap = await getDoc(projectRef);
+
+            if (!docSnap.exists()) {
+                // Create document if it doesn't exist yet
+                await setDoc(projectRef, {
+                    name: realName,
+                    votes: 1
+                });
+            } else {
+                // Atomically increment the vote
+                await updateDoc(projectRef, {
+                    votes: increment(1)
+                });
+            }
+
+            // Lock voting in local storage
+            localStorage.setItem(`voted_${safeId}`, 'true');
+            btn.innerText = "Voted!";
+
+            // Disable all buttons
+            const buttons = document.getElementsByClassName("vote-btn")
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].innerText = "Voted!";
+                buttons[i].disabled = true;
+            }
+
+        } catch (error) {
+            console.error("Error updating vote:", error);
+            btn.disabled = false;
+            btn.innerText = originalText;
+            alert("Something went wrong. Please try again.");
+        }
+    };
+
+    // --- LEADERBOARD LOGIC ---
+    const leaderboardList = document.getElementById('leaderboard-list');
+    const leaderboardSection = document.getElementById('leaderboard-section');
+
+    // Query the top 5 projects sorted by votes
+    const q = query(collection(db, "cs1projects-2025"), orderBy("votes", "desc"), limit(5));
+
+    onSnapshot(q, (querySnapshot) => {
+        // Clear current list
+        leaderboardList.innerHTML = '';
+
+        // Hide leaderboard if no votes exist yet
+        if (querySnapshot.empty) {
+            //leaderboardSection.style.display = 'none';
+            leaderboardList.innerHTML = 'No votes yet ...';
+            return;
+        }
+
+        leaderboardSection.style.display = 'block';
+
+        let rank = 1;
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const safeId = doc.id;
+
+            // Find the URL from your local 'websites' array using the safeId/name
+            // (We match loosely by checking if the safeId includes the name parts or match ID generation)
+            // A more robust way is to just find the name match:
+            const projectInfo = websites.find(w => getSafeId(w.name) === safeId);
+            const projectUrl = projectInfo ? projectInfo.url : '#';
+
+            // Create Row
+            const row = document.createElement('div');
+            row.classList.add('leaderboard-row', `rank-${rank}`);
+            row.innerHTML = `
+                <div style="display:flex; align-items:center; flex-grow:1;">
+                    <span class="rank-badge">${rank}</span>
+                    <a href="${projectUrl}" target="_blank" class="leaderboard-name">
+                        ${data.name}
+                    </a>
+                </div>
+                <span class="leaderboard-votes">${data.votes} Votes</span>
+            `;
+
+            leaderboardList.appendChild(row);
+            rank++;
+        });
+    });
+</script>
+
+<body>
+    <header>
+        <div>
+            <h2>&lt;CS1-2&gt;</h2>
+            <h1>Introduction to Computer Science</h1>
+            <h2 style="align-self: flex-end;">&lt;/CS1-2&gt;</h2>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Final Website Projects</h2>
+            <p>
+                These are the final website projects built by the first-year students in the Software and App Design
+                program at Pueblo High School. Most of these students had ZERO coding experience at the beginning of the
+                semester and many had little computer experience as well.
+                These websites represent the end result of one semester studying HTML, CSS, and webdesign.
+                <b>Vote for your favorite!</b>
+            </p>
+            <h3>Project Summary</h3>
+            <p>
+                Students were instructed to create a website about a topic of their choice that has at least three pages
+                and incorporates basic design principles, color, images, and animations.
+                Students had about 4 weeks to develop their projects and were allowed to use MagicSchool AI for coding
+                assitance.
+            </p>
+        </section>
+
+        <section id="leaderboard-section">
+            <h2 style="text-align: center; color: #d35400;">🏆 Current Top 5 Favorites 🏆</h2>
+            <div id="leaderboard-list">
+
+            </div>
+        </section>
+
+        <section id="vote-countdown">
+            <h2 id="countdown-msg"></h2>
+        </section>
+
+        <section id="gallery">
+
+        </section>
+    </main>
+
+
+
+    <footer>
+        <div class="social-media-box">
+            <div><a href="volunteer.html" class="donate-links">volunteer</a></div>
+            <div class="soc-media-placeholder"></div>
+            <div class="soc-media-placeholder"></div>
+            <div class="soc-media-placeholder"></div>
+            <div><a href="#" class="donate-links">donate</a></div>
+        </div>
+        <p style="text-align:center;">
+            Copyright (C) 2025 Nathan Adams<br> <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a>
+        </p>
+    </footer>
+</body>
+
+</html>
