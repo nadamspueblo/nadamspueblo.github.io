@@ -16,6 +16,7 @@
 
     <title>Student Projects 25-26 | CS1-2 Intro to Computer Science - Pueblo High School</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
         section {
             width: 100%;
         }
@@ -215,9 +216,50 @@
         }
 
         #vote-countdown {
+            display: none;
             margin: 0 auto 40px auto;
             color: red;
             text-align: center;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        #vote-countdown span {
+            display: inline-block;
+            background-color: #535353;
+            color: rgb(252, 83, 83);
+            font-family: Doto;
+            font-weight: 900;
+            background: linear-gradient(to bottom right, #181515, #412626 );
+            padding: 8px;
+            box-sizing: border-box;
+            height: 56px;
+            width: 200px;
+            border-radius: 4px;
+            border: 2px solid #504747;
+            box-shadow: inset 2px 2px 2px rgb(34, 24, 24),
+                inset -2px -2px 2px rgb(201, 201, 201);
+            text-shadow: 0px 0px 6px red;
+        }
+
+        .flip-animation {
+            animation: flip 1s ease 0s 1 forwards;
+            transform: rotateY(0deg);
+            height: 24px !important;
+            transform-origin: bottom;
+            position: relative;
+            top: -11px;
+            overflow: hidden;
+        }
+
+        @keyframes flip {
+            0% {
+                
+            }
+            50% {
+                transform: rotateX(180deg);
+                height: 50%;
+            }
         }
     </style>
 </head>
@@ -310,8 +352,11 @@
     window.addEventListener('load', function () {
         const gallery = document.getElementById('gallery');
         if (Date.now() < startDate) {
+            const timerSection = document.getElementById("vote-countdown");
+            timerSection.style.display = "block";
             const msg = document.getElementById("countdown-msg");
             const intervalId = setInterval(() => {
+                timerSection.style.opacity = "1";
                 if (Date.now() >= startDate) {
                     showButtons();
                     document.getElementById("countdown-msg").style.display = "none";
@@ -320,11 +365,12 @@
                 }
                 let time = (startDate - Date.now()) / 1000;
                 let hours = Math.floor(time / 3600);
+                hours = hours < 10 ? "0" + hours : "" + hours;
                 let minutes = Math.floor(time / 60 % 60);
-                minutes = minutes < 10 ? "0" + minutes : minutes;
+                minutes = minutes < 10 ? "0" + minutes : "" + minutes;
                 let seconds = Math.floor(time % 60);
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-                msg.innerText = `Voting starts in ${hours}:${minutes}:${seconds}`;
+                seconds = seconds < 10 ? "0" + seconds : "" + seconds;
+                msg.innerHTML = `Voting starts in <span>${hours}:${minutes}:${seconds}</span>`;
             }, 1000);
         }
         else if (Date.now() < endDate) {
@@ -342,7 +388,7 @@
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 let seconds = Math.floor(time % 60);
                 seconds = seconds < 10 ? "0" + seconds : seconds;;
-                msg.innerText = `Voting ends in ${hours}:${minutes}:${seconds}`;
+                msg.innerText = `Voting ends in <span>${hours}:${minutes}:${seconds}</span>`;
             }, 1000);
         }
         else {
@@ -538,13 +584,6 @@
                 These websites represent the end result of one semester studying HTML, CSS, and webdesign.
                 <b>Vote for your favorite!</b>
             </p>
-            <h3>Project Summary</h3>
-            <p>
-                Students were instructed to create a website about a topic of their choice that has at least three pages
-                and incorporates basic design principles, color, images, and animations.
-                Students had about 4 weeks to develop their projects and were allowed to use MagicSchool AI for coding
-                assitance.
-            </p>
         </section>
 
         <section id="leaderboard-section">
@@ -556,6 +595,16 @@
 
         <section id="vote-countdown">
             <h2 id="countdown-msg"></h2>
+        </section>
+
+        <section>
+            <h3>Project Summary</h3>
+            <p>
+                Students were instructed to create a website about a topic of their choice that has at least three pages
+                and incorporates basic design principles, color, images, and animations.
+                Students had about 4 weeks to develop their projects and were allowed to use MagicSchool AI for coding
+                assitance.
+            </p>
         </section>
 
         <section id="gallery">
