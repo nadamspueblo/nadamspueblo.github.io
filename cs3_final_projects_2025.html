@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="pueblo high school, programming, CTE, AP Computer Science, Software and App Design">
+    <meta name="description"
+        content="Website for Pueblo High School's computer science, software and app design program">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4640479150069852"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="assets/styles/cs1-2.css">
+    <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
+
+    <title>Student Projects 25-26 | CS3-4 AP CS Principles - Pueblo High School</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+
+        section {
+            width: 100%;
+        }
+
+        /* Use Grid for better responsiveness and alignment */
+        #gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        /* Make the anchor tag cover the image and title only */
+        .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            /* Pushes the vote button to the bottom */
+        }
+
+        .card-image-container {
+            width: 100%;
+            height: 180px;
+            /* Fixed height for uniformity */
+            background-color: #f4f4f4;
+            overflow: hidden;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Prevents image stretching/distortion */
+            object-position: top center;
+        }
+
+        .card-content {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            margin: 0;
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Vote Section Styles */
+        .vote-section {
+            padding: 15px;
+            background-color: #fafafa;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vote-count {
+            font-weight: bold;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .vote-btn {
+            background-color: white;
+            color: var(--active-color, #007bff);
+            /* Fallback to blue if var missing */
+            border: 2px solid var(--active-color, #007bff);
+            border-radius: 25px;
+            cursor: pointer;
+            padding: 8px 16px;
+            font-weight: bold;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .vote-btn:hover {
+            background-color: var(--active-color, #007bff);
+            color: white;
+        }
+
+        .vote-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background-color: #e0e0e0;
+            border-color: #ccc;
+            color: #888;
+        }
+
+        /* Leaderboard Container */
+        #leaderboard-section {
+            width: 100%;
+            margin: 0 auto 40px auto;
+            /* Centered with bottom spacing */
+            background: linear-gradient(to bottom, #fff, #fff9f0);
+            border: 2px solid #ffd700;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            border-bottom: 1px solid #eee;
+            font-size: 1.1rem;
+            transition: background-color 0.2s;
+        }
+
+        .leaderboard-row:last-child {
+            border-bottom: none;
+        }
+
+        .leaderboard-row:hover {
+            background-color: rgba(255, 215, 0, 0.1);
+        }
+
+        /* Rank Badges */
+        .rank-badge {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #eee;
+            color: #555;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        /* Gold, Silver, Bronze Colors */
+        .rank-1 .rank-badge {
+            background-color: #FFD700;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .rank-2 .rank-badge {
+            background-color: #C0C0C0;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .rank-3 .rank-badge {
+            background-color: #CD7F32;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .leaderboard-name {
+            flex-grow: 1;
+            font-weight: 600;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .leaderboard-name:hover {
+            text-decoration: underline;
+            color: var(--active-color);
+        }
+
+        .leaderboard-votes {
+            font-weight: bold;
+            color: #555;
+            background-color: #fff;
+            padding: 5px 12px;
+            border-radius: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        #vote-countdown {
+            display: none;
+            margin: 0 auto 40px auto;
+            color: red;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 1s;
+        }
+
+        #vote-countdown span {
+            display: inline-block;
+            background-color: #535353;
+            color: rgb(252, 83, 83);
+            font-family: Doto;
+            font-weight: 900;
+            background: linear-gradient(to bottom right, #181515, #412626);
+            padding: 8px;
+            box-sizing: border-box;
+            height: 56px;
+            width: 200px;
+            border-radius: 4px;
+            border: 2px solid #504747;
+            box-shadow: inset 2px 2px 2px rgb(34, 24, 24),
+                inset -2px -2px 2px rgb(201, 201, 201);
+            text-shadow: 0px 0px 6px red;
+        }
+
+        .flip-animation {
+            animation: flip 1s ease 0s 1 forwards;
+            transform: rotateY(0deg);
+            height: 24px !important;
+            transform-origin: bottom;
+            position: relative;
+            top: -11px;
+            overflow: hidden;
+        }
+
+        @keyframes flip {
+            0% {}
+
+            50% {
+                transform: rotateX(180deg);
+                height: 50%;
+            }
+        }
+    </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-85Z0RPVRNR"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-85Z0RPVRNR');
+</script>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import {
+        getFirestore, doc, getDoc, setDoc, updateDoc, increment, onSnapshot,
+        collection, query, orderBy, limit
+    } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    // Firebase Config
+    const firebaseConfig = {
+        apiKey: "AIzaSyDZ8fhLVmOVay80Y33LAEVBopns1k-Fytg",
+        authDomain: "pueblo-cs-website.firebaseapp.com",
+        projectId: "pueblo-cs-website",
+        storageBucket: "pueblo-cs-website.appspot.com",
+        messagingSenderId: "528094862817",
+        appId: "1:528094862817:web:2f8468a947f9161ff846a0",
+        measurementId: "G-85Z0RPVRNR"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // Student Data
+    const websites = [
+        {
+            name: "Armando Bernal",
+            url: "https://armbernal7-dotcom.github.io/final-project/"
+        },
+        {
+            name: "Antonio Campas Ortiz",
+            url: "https://ant2235.github.io/App-project/"
+        },
+        {
+            name: "Shawn-Jacob Campbell",
+            url: "https://glitterfart9000.github.io/final-app-project/"
+        },
+        {
+            name: "Anavay Cano",
+            url: "https://anavaycano.github.io/final-app-project/"
+        },
+        {
+            name: "Santiago Cazares Flores",
+            url: "https://santithe78-alt.github.io/FInal-project-app/"
+        },
+        {
+            name: "Scarlett Herrle-Rios",
+            url: "https://lowklettie.github.io/cs3-final-app-project/"
+        },
+        {
+            name: "Alec Martinez",
+            url: "https://theduckinduck.github.io/final-app-project/"
+        },
+        {
+            name: "Dante Matanza",
+            url: "https://dantem-max.github.io/Final-project/"
+        },
+        {
+            name: "Erik Mercado",
+            url: "https://erik-merc09.github.io/Final-App-Project-/"
+        },
+        {
+            name: "Patricia Moraga Ramirez",
+            url: "https://itsjustpaty4ever.github.io/final-project/"
+        },
+        {
+            name: "Jassiel Ramirez Othon",
+            url: "https://jaasiel790.github.io/final-project-ap-computer-science/"
+        },
+        {
+            name: "Aaron Robledo",
+            url: "https://aaronrobledo187-beep.github.io/final-app-project/"
+        }
+    ];
+
+    // Helper to create safe IDs for Firestore
+    const getSafeId = (name) => name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+
+    // Voting dates
+    const startDate = new Date(Date.parse("1:55 pm 12/15/2025"));
+    const endDate = new Date(Date.parse("3:00 pm 12/18/2025"));
+
+    window.addEventListener('load', function () {
+        const gallery = document.getElementById('gallery');
+        if (Date.now() < startDate) {
+            const timerSection = document.getElementById("vote-countdown");
+            timerSection.style.display = "block";
+            const msg = document.getElementById("countdown-msg");
+            const intervalId = setInterval(() => {
+                timerSection.style.opacity = "1";
+                if (Date.now() >= startDate) {
+                    showButtons();
+                    document.getElementById("countdown-msg").style.display = "none";
+                    clearInterval(intervalId);
+                    return;
+                }
+                let time = (startDate - Date.now()) / 1000;
+                let hours = Math.floor(time / 3600);
+                hours = hours < 10 ? "0" + hours : "" + hours;
+                let minutes = Math.floor(time / 60 % 60);
+                minutes = minutes < 10 ? "0" + minutes : "" + minutes;
+                let seconds = Math.floor(time % 60);
+                seconds = seconds < 10 ? "0" + seconds : "" + seconds;
+                msg.innerHTML = `Voting starts in <span>${hours}:${minutes}:${seconds}</span>`;
+            }, 1000);
+        }
+        else if (Date.now() < endDate) {
+            const msg = document.getElementById("countdown-msg");
+            const intervalId = setInterval(() => {
+                if (Date.now() >= endDate) {
+                    hideButtons();
+                    document.getElementById("countdown-msg").style.display = "none";
+                    clearInterval(intervalId);
+                    return;
+                }
+                let time = (endDate - Date.now()) / 1000;
+                let hours = Math.floor(time / 3600);
+                let minutes = Math.floor(time / 60 % 60);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                let seconds = Math.floor(time % 60);
+                seconds = seconds < 10 ? "0" + seconds : seconds;;
+                msg.innerText = `Voting ends in <span>${hours}:${minutes}:${seconds}</span>`;
+            }, 1000);
+        }
+        else {
+            document.getElementById("countdown-msg").innerText = "Voting has ended";
+        }
+        let hasVoted = false;
+
+        websites.forEach(site => {
+            const safeId = getSafeId(site.name);
+            const imagePath = 'assets/images/cs3-4/fall_25_project_thumbnails/' + site.name.replaceAll(" ", "_") + ".png";
+
+            // Create Card Container
+            let card = document.createElement("div");
+            card.classList.add('card');
+
+            // Inner HTML Structure
+            card.innerHTML = `
+                <a href="${site.url}" target="_blank" class="card-link">
+                    <div class="card-image-container">
+                        <img src="${imagePath}" alt="${site.name}'s Project" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <h2>${site.name}</h2>
+                    </div>
+                </a>
+                <div class="vote-section">
+                    <span class="vote-count" id="count-${safeId}">0 Votes</span>
+                    <button class="vote-btn" id="btn-${safeId}" onclick="handleVote('${safeId}', '${site.name}')">
+                        👍 +1
+                    </button>
+                </div>
+            `;
+
+            gallery.appendChild(card);
+
+            // Check if user already voted (local storage) to disable button
+            if (localStorage.getItem(`voted_${safeId}`)) {
+                // Set flag to disable all voting buttons;
+                hasVoted = true;
+            }
+
+            // Real-time listener for this specific project
+            const docRef = doc(db, "cs3projects-2025", safeId);
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    document.getElementById(`count-${safeId}`).innerText = `${data.votes || 0} Votes`;
+                }
+            });
+        });
+
+        // Disable all buttons if user has voted
+        if (hasVoted) {
+            const buttons = document.getElementsByClassName("vote-btn")
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].innerText = "Voted!";
+                buttons[i].disabled = true;
+            }
+        }
+
+        // Remove all buttons if voting hasn't started or has ended
+        if (Date.now() < startDate || Date.now() > endDate) {
+            hideButtons();
+        }
+    });
+
+    function hideButtons() {
+        const buttons = document.getElementsByClassName("vote-btn");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.display = "none";
+        }
+    }
+
+    function showButtons() {
+        const buttons = document.getElementsByClassName("vote-btn");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.display = "block";
+        }
+    }
+
+    // Make function available globally
+    window.handleVote = async (safeId, realName) => {
+        // Prevent double voting locally
+        if (localStorage.getItem(`voted_${safeId}`)) return;
+
+        const btn = document.getElementById(`btn-${safeId}`);
+        const originalText = btn.innerText;
+        btn.disabled = true;
+        btn.innerText = "Processing...";
+
+        try {
+            const projectRef = doc(db, "cs3projects-2025", safeId);
+            const docSnap = await getDoc(projectRef);
+
+            if (!docSnap.exists()) {
+                // Create document if it doesn't exist yet
+                await setDoc(projectRef, {
+                    name: realName,
+                    votes: 1
+                });
+            } else {
+                // Atomically increment the vote
+                await updateDoc(projectRef, {
+                    votes: increment(1)
+                });
+            }
+
+            // Lock voting in local storage
+            localStorage.setItem(`voted_${safeId}`, 'true');
+            btn.innerText = "Voted!";
+
+            // Disable all buttons
+            const buttons = document.getElementsByClassName("vote-btn")
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].innerText = "Voted!";
+                buttons[i].disabled = true;
+            }
+
+        } catch (error) {
+            console.error("Error updating vote:", error);
+            btn.disabled = false;
+            btn.innerText = originalText;
+            alert("Something went wrong. Please try again.");
+        }
+    };
+
+    // --- LEADERBOARD LOGIC ---
+    const leaderboardList = document.getElementById('leaderboard-list');
+    const leaderboardSection = document.getElementById('leaderboard-section');
+
+    // Query the top 5 projects sorted by votes
+    const q = query(collection(db, "cs3projects-2025"), orderBy("votes", "desc"), limit(5));
+
+    onSnapshot(q, (querySnapshot) => {
+        // Clear current list
+        leaderboardList.innerHTML = '';
+
+        // Hide leaderboard if no votes exist yet
+        if (querySnapshot.empty) {
+            //leaderboardSection.style.display = 'none';
+            leaderboardList.innerHTML = 'No votes yet ...';
+            return;
+        }
+
+        leaderboardSection.style.display = 'block';
+
+        let rank = 1;
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+            const safeId = doc.id;
+
+            // Find the URL from your local 'websites' array using the safeId/name
+            // (We match loosely by checking if the safeId includes the name parts or match ID generation)
+            // A more robust way is to just find the name match:
+            const projectInfo = websites.find(w => getSafeId(w.name) === safeId);
+            const projectUrl = projectInfo ? projectInfo.url : '#';
+
+            // Create Row
+            const row = document.createElement('div');
+            row.classList.add('leaderboard-row', `rank-${rank}`);
+            row.innerHTML = `
+                <div style="display:flex; align-items:center; flex-grow:1;">
+                    <span class="rank-badge">${rank}</span>
+                    <a href="${projectUrl}" target="_blank" class="leaderboard-name">
+                        ${data.name}
+                    </a>
+                </div>
+                <span class="leaderboard-votes">${data.votes} Votes</span>
+            `;
+
+            leaderboardList.appendChild(row);
+            rank++;
+        });
+    });
+</script>
+
+<body>
+    <header>
+        <div>
+            <h2>&lt;CS3-4&gt;</h2>
+            <h1>AP CS Principles</h1>
+            <h2 style="align-self: flex-end;">&lt;/CS3-4&gt;</h2>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>Final Web App Projects</h2>
+            <p>
+                🎉 Congratulations to all the students who completed their first original live web app project! 🎉
+            </p>
+            <p>
+                Below are the final web app projects built by the second-year students in the Software and App Design
+                program at Pueblo High School.
+                <b>Vote for your favorite!</b>
+            </p>
+        </section>
+
+        <section id="leaderboard-section">
+            <h2 style="text-align: center; color: #d35400;">🏆 Current Top 5 Favorites 🏆</h2>
+            <div id="leaderboard-list">
+
+            </div>
+        </section>
+
+        <section id="vote-countdown">
+            <h2 id="countdown-msg"></h2>
+        </section>
+
+        <section>
+            <h3>Project Summary</h3>
+            <p>
+                Students were instructed to create a web app that did something useful, interesting, or entertaining. The app should have a nice user interface (UI) and user experience (UX) and demonstrate
+                the student's understanding of web development with HTML/CSS and their JavaScript programming skills.
+                Students had about 4 weeks to develop their projects and were allowed to use MagicSchool AI for coding assitance.
+            </p>
+        </section>
+
+        <section id="gallery">
+
+        </section>
+    </main>
+
+
+
+    <footer>
+        <div class="social-media-box">
+            <div><a href="volunteer.html" class="donate-links">volunteer</a></div>
+            <div class="soc-media-placeholder"></div>
+            <div class="soc-media-placeholder"></div>
+            <div class="soc-media-placeholder"></div>
+            <div><a href="#" class="donate-links">donate</a></div>
+        </div>
+        <p style="text-align:center;">
+            Copyright (C) 2025 Nathan Adams<br> <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a>
+        </p>
+    </footer>
+</body>
+
+</html>

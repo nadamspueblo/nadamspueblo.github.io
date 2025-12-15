@@ -1,4 +1,5 @@
 import { launch } from 'puppeteer';
+
 const websites = [
   {
     name: "Michell Alonso Miranda",
@@ -170,8 +171,59 @@ const websites = [
   }
 ];
 
+const webapps = [
+  {
+    name: "Armando Bernal",
+    url: "https://armbernal7-dotcom.github.io/final-project/"
+  },
+  {
+    name: "Antonio Campas Ortiz",
+    url: "https://ant2235.github.io/App-project/"
+  },
+  {
+    name: "Shawn-Jacob Campbell",
+    url: "https://glitterfart9000.github.io/final-app-project/"
+  },
+  {
+    name: "Anavay Cano",
+    url: "https://anavaycano.github.io/final-app-project/"
+  },
+  {
+    name: "Santiago Cazares Flores",
+    url: "https://santithe78-alt.github.io/FInal-project-app/"
+  },
+  {
+    name: "Scarlett Herrle-Rios",
+    url: "https://lowklettie.github.io/cs3-final-app-project/"
+  },
+  {
+    name: "Alec Martinez",
+    url: "https://theduckinduck.github.io/final-app-project/"
+  },
+  {
+    name: "Dante Matanza",
+    url: "https://dantem-max.github.io/Final-project/"
+  },
+  {
+    name: "Erik Mercado",
+    url: "https://erik-merc09.github.io/Final-App-Project-/"
+  },
+  {
+    name: "Patricia Moraga Ramirez",
+    url: "https://itsjustpaty4ever.github.io/final-project/"
+  },
+  {
+    name: "Jassiel Ramirez Othon",
+    url: "https://jaasiel790.github.io/final-project-ap-computer-science/"
+  },
+  {
+    name: "Aaron Robledo",
+    url: "https://aaronrobledo187-beep.github.io/final-app-project/"
+  }
+]
 
-for (let site of websites) {
+
+for (let site of webapps) {
     await getScreenShots(site);
 }
 
@@ -179,7 +231,8 @@ async function getScreenShots(website) {
     const browser = await launch();
     const page = await browser.newPage();
     await page.goto(website.url);
-    const imagePath = 'assets/images/cs1-2/25-26_site_thumbnails/' + website.name.replaceAll(" ", "_") + ".png";
+    //const imagePath = 'assets/images/cs1-2/25-26_site_thumbnails/' + website.name.replaceAll(" ", "_") + ".png";
+    const imagePath = 'assets/images/cs3-4/fall_25_project_thumbnails/' + website.name.replaceAll(" ", "_") + ".png";
     await page.screenshot({ path: imagePath });
     await browser.close();
 }
