@@ -171,6 +171,10 @@ const websites = [
   }
 ];
 
+for (let site of websites) {
+    await getScreenShots(site, 'assets/images/cs1-2/25-26_site_thumbnails/');
+}
+
 const webapps = [
   {
     name: "Armando Bernal",
@@ -224,15 +228,15 @@ const webapps = [
 
 
 for (let site of webapps) {
-    await getScreenShots(site);
+    await getScreenShots(site, 'assets/images/cs3-4/fall_25_project_thumbnails/');
 }
 
-async function getScreenShots(website) {
+async function getScreenShots(website, path) {
     const browser = await launch();
     const page = await browser.newPage();
     await page.goto(website.url);
     //const imagePath = 'assets/images/cs1-2/25-26_site_thumbnails/' + website.name.replaceAll(" ", "_") + ".png";
-    const imagePath = 'assets/images/cs3-4/fall_25_project_thumbnails/' + website.name.replaceAll(" ", "_") + ".png";
+    const imagePath = path + website.name.replaceAll(" ", "_") + ".png";
     await page.screenshot({ path: imagePath });
     await browser.close();
 }
