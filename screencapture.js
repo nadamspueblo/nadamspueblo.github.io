@@ -234,9 +234,16 @@ for (let site of webapps) {
 async function getScreenShots(website, path) {
     const browser = await launch();
     const page = await browser.newPage();
-    await page.goto(website.url);
-    //const imagePath = 'assets/images/cs1-2/25-26_site_thumbnails/' + website.name.replaceAll(" ", "_") + ".png";
-    const imagePath = path + website.name.replaceAll(" ", "_") + ".png";
-    await page.screenshot({ path: imagePath });
-    await browser.close();
+    try {
+      await page.goto(website.url);
+      const imagePath = path + website.name.replaceAll(" ", "_") + ".png";
+      await page.screenshot({ path: imagePath });
+    }
+    catch (error) {
+      console.log(error);
+      console.log(website.url);
+    }
+    finally {
+      await browser.close();
+    }   
 }
