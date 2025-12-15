@@ -179,6 +179,7 @@ async function getScreenShots(website) {
     const browser = await launch();
     const page = await browser.newPage();
     await page.goto(website.url);
-    await page.screenshot({ path: (website.name.replaceAll(" ", "_") + '.png') });
+    const imagePath = 'assets/images/cs1-2/25-26_site_thumbnails/' + website.name.replaceAll(" ", "_") + ".png";
+    await page.screenshot({ path: imagePath });
     await browser.close();
 }
