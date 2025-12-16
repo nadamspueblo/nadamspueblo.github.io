@@ -216,7 +216,6 @@
         }
 
         #vote-countdown {
-            display: none;
             margin: 0 auto 40px auto;
             color: red;
             text-align: center;
@@ -359,7 +358,6 @@
                 timerSection.style.opacity = "1";
                 if (Date.now() >= startDate) {
                     showButtons();
-                    document.getElementById("countdown-msg").style.display = "none";
                     clearInterval(intervalId);
                     return;
                 }
@@ -375,11 +373,14 @@
         }
         else if (Date.now() < endDate) {
             const msg = document.getElementById("countdown-msg");
+            const timerSection = document.getElementById("vote-countdown");
+            timerSection.style.display = "block";
             const intervalId = setInterval(() => {
+                timerSection.style.opacity = "1";
                 if (Date.now() >= endDate) {
                     hideButtons();
-                    document.getElementById("countdown-msg").style.display = "none";
                     clearInterval(intervalId);
+                    msg.innerHTML = "Voting has ended";
                     return;
                 }
                 let time = (endDate - Date.now()) / 1000;
@@ -388,7 +389,7 @@
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 let seconds = Math.floor(time % 60);
                 seconds = seconds < 10 ? "0" + seconds : seconds;;
-                msg.innerText = `Voting ends in <span>${hours}:${minutes}:${seconds}</span>`;
+                msg.innerHTML = `Voting ends in <span>${hours}:${minutes}:${seconds}</span>`;
             }, 1000);
         }
         else {

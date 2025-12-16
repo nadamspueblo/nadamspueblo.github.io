@@ -381,10 +381,12 @@
         }
         else if (Date.now() < endDate) {
             const msg = document.getElementById("countdown-msg");
+            const timerSection = document.getElementById("vote-countdown");
+            timerSection.style.display = "block";
             const intervalId = setInterval(() => {
+                timerSection.style.opacity = "1";
                 if (Date.now() >= endDate) {
                     hideButtons();
-                    document.getElementById("countdown-msg").style.display = "none";
                     clearInterval(intervalId);
                     return;
                 }
@@ -394,7 +396,7 @@
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 let seconds = Math.floor(time % 60);
                 seconds = seconds < 10 ? "0" + seconds : seconds;;
-                msg.innerText = `Voting ends in <span>${hours}:${minutes}:${seconds}</span>`;
+                msg.innerHTML = `Voting ends in <span>${hours}:${minutes}:${seconds}</span>`;
             }, 1000);
         }
         else {
