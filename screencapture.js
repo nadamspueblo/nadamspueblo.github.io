@@ -146,12 +146,20 @@ const websites = [
     url: "https://kamilahs0308-dotcom.github.io/final-project/"
   },
   {
+    name: "Canek Tarazon",
+    url: "https://kaneki-cit.github.io/eat-my-pooppie69/"
+  },
+  {
     name: "Alexander Valdez Leyva",
     url: "https://alexander832-svg.github.io/Fianl-project-website/"
   },
   {
     name: "Abraham Valenzuela",
     url: "https://i-luv-monster.github.io/Final-Website-Project-Semester-1/"
+  },
+  {
+    name: "Taliah Valenzuela",
+    url: "https://0815311016-beep.github.io/Html-css-final-project/"
   },
   {
     name: "Ivan Vargas Erunes",
