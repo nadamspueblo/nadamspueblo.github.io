@@ -197,6 +197,10 @@ const webapps = [
     url: "https://santithe78-alt.github.io/FInal-project-app/"
   },
   {
+    name: "Mariah Garabay",
+    url: "https://mariahannette.github.io/final-app-project/"
+  },
+  {
     name: "Scarlett Herrle-Rios",
     url: "https://lowklettie.github.io/cs3-final-app-project/"
   },
