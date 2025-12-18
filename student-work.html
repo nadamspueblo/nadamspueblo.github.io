@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/styles/base-styles.css">
+  <link rel="stylesheet" href="assets/styles/index.css">
   <link rel="icon" type="image/png" href="assets/images/favicon-32x32.png" sizes="32x32" />
   <link rel="icon" type="image/png" href="assets/images/favicon-16x16.png" sizes="16x16" />
 
   <title>Featured Student Work - Pueblo High School</title>
+  <script defer src="assets/js/base-scripts.js"></script>
+  <script defer src="assets/js/animations.js"></script>
 </head>
 
 <!-- Google tag (gtag.js) -->
@@ -21,9 +23,173 @@
   gtag('config', 'G-85Z0RPVRNR');
 </script>
 
-<body>
+<body onload="startTypingTitle()">
   
-  <h1>Coming soon ...</h1>
+  <header>
+    <h2><a href="https://www.pueblocs.org">PH:S\Computer Science\&gt;</a></h2>
+    <h1 id="site-title"></h1><span id="site-title-text" class="data">Student Developed Projects</span>
+  </header>
+
+  <main>
+    <nav id="nav-section">
+            <a href="cs1-2.html">Intro Course</a>
+            <a href="cs3-4.html">AP CS Principles</a>
+            <a href="cs5-6.html">AP CS A</a>
+            <a href="https://www.pueblocs.org/basic-html-css-reference/">HTML/CSS Reference</a>
+            <a href="resources/js-reference.html">JavaScript Reference</a>
+            <a href="https://www.pueblocs.org/domhelper">DOM Helper</a>
+            <a href="newsletter.html">Newsletter</a>
+            <a href="student-work.html">Student Work</a>
+            <a href="https://johnnysaenz.github.io">C:\S Club</a>
+        </nav>
+    <section id="main-content">
+      <h2>Fall 2025</h2>
+      <ul>
+        <li><a href="cs1_final_projects_2025.html">CS1-2 Website Projects</a></li>
+        <li><a href="cs3_final_projects_2025.html">CS3-4 Web App Projects</a></li>
+      </ul>
+
+      <h2>Spring 2023</h2>
+      <ul>
+        <li>
+          <a href="https://jolettec.github.io/final-project/">Movie Diary</a> by Jolette Coronado
+        </li>
+        <li>
+          <a href="https://marimarisc.github.io/Forgotten-Inventions/">Forgotten Invenstions</a> by Mariana Mariscal
+        </li>
+        <li>
+          <a href="https://jesusmoose.github.io/gc-website/">My Music Catalogue</a> by Jesus Acuna
+        </li>
+        <li>
+          <a href="https://deusexmachina1999.github.io/my-keanu-movies/">My Keanu Movies</a> by Joshua Jaeger
+        </li>
+        <li>
+          <a href="https://jacoblp123.github.io/food-website/">Best Foods</a> by Jacob Lopez-Perez
+        </li>
+        <li>
+          <a href="https://kiwisundea.github.io/The-Memeverse/">The Memeverse</a> by Remi Mwamba
+        </li>
+        <li>
+          <a href="https://esoto668.github.io/favortiegameweb/">My Favorite Game</a> by Elijah Soto
+        </li>
+        <li>
+          <a href="https://diegomontijo12006.github.io/cookbook/">Cookbook</a> by Diego Montijo
+        </li>
+        <li>
+          <a href="https://marcosbonillas.github.io/About-Me-/">About me</a> by Marcos Bonillas
+        </li>
+      </ul>
+
+      <h2>Fall 2022 Snap! Projects</h2>
+      <div class="resource-card">
+          <div class="horz-flex-box" style="justify-content: space-around; gap: 16px; align-items: flex-start;">
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-jesus-acuna-cat-piano.png" alt="Cat piano screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20cat%20piano&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Cat piano</a>
+                <p>Cat Piano by Jesus Acuna</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-juan-angumea-zombie-game.png" alt="Zombie game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Zombie%20Game&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Zombie game</a>
+                <p>Zombie game by Juan Angumea</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-edgar-m-space-hockey.png" alt="Space Hockey screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Space%20Hockey&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Space hockey</a>
+                <p>Space Hockey by Edgar Martinez</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-luis-m-space-hockey.png" alt="Duck Hunt screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Duck%20Hunt&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Duck hunt</a>
+                <p>Duck Hunt style game by Luis Montoya</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-remi-tubaknight.png" alt="Tuba Knight screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Tuba%20Knight&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Tuba Knight</a>
+                <p>Tuba Knight adventure game by Remi Mwamba</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-alan-s-rhythm.png" alt="Rhythm game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Rhythm%20game&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Rhythm game</a>
+                <p>Rhythm game by Alan Salazar</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-mark-a-gta.png" alt="GTA game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Grand%20Theft%20Auto&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">GTA: Snap City</a>
+                <p>Grand Theft Auto inspired game by Mark Anaya</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-ryanc-dungeon.png" alt="Dungeon game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Dungeon%20Game&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Dungeon Game</a>
+                <p>Top-down dungeon maze game by Ryan Clevinger</p>
+              </div>
+            </div>
+
+            <div class="image-item-card">
+              <img src="assets/images/cs1-2/thumb-antonn-racing.png" alt="Racing game screenshot">
+              <div>
+                <a href="https://snap.berkeley.edu/embed?projectname=SP%2022%20Racing%20Game&username=nathaniel%2eadams%40tusd1%2eorg&showTitle=true&pauseButton=true"
+                  target="_blank">Racing Game</a>
+                <p>Top-down racing game by Anton Niebur</p>
+              </div>
+            </div>
+
+          </div>
+    </section>
+  </main>
   
+  <footer>
+        <div class="social-media-box">
+            <div><a href="#" class="donate-links">volunteer</a></div>
+            <div class="soc-media-placeholder"></div>
+            <div class="soc-media-placeholder"></div>
+            <div class="soc-media-placeholder"></div>
+            <div><a href="donate.html" class="donate-links">donate</a></div>
+        </div>
+        <nav>
+            <a href="cs1-2.html">Intro Course</a>
+            <a href="cs3-4.html">AP CS Principles</a>
+            <a href="cs5-6.html">AP CS A</a>
+            <a href="https://www.pueblocs.org/basic-html-css-reference/">HTML/CSS Reference</a>
+            <a href="resources/js-reference.html">JavaScript Reference</a>
+            <a href="https://www.pueblocs.org/domhelper">DOM Helper</a>
+            <a href="newsletter.html">Newsletter</a>
+            <a href="student-work.html">Student Work</a>
+            <a href="https://johnnysaenz.github.io">C:\S Club</a>
+        </nav>
+        <p>Copyright &copy; 2025 Nathan Adams <a href="mailto:nathaniel.adams@tusd1.org">nathaniel.adams@tusd1.org</a>
+        </p>
+    </footer>
 </body>
 </html>
