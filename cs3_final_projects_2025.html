@@ -405,6 +405,9 @@
         }
         else {
             document.getElementById("countdown-msg").innerText = "Voting has ended";
+            const timerSection = document.getElementById("vote-countdown");
+            timerSection.style.display = "block";
+            timerSection.style.opacity = "1";
         }
         let hasVoted = false;
 

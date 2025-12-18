@@ -450,6 +450,10 @@
             url: "https://alexander832-svg.github.io/Fianl-project-website/"
         },
         {
+            name: "Danna Valencia Murillo",
+            url: "https://danna60635.github.io/Css-final-website-project/"
+        },
+        {
             name: "Abraham Valenzuela",
             url: "https://i-luv-monster.github.io/Final-Website-Project-Semester-1/"
         },
@@ -528,6 +532,9 @@
         }
         else {
             document.getElementById("countdown-msg").innerText = "Voting has ended";
+            const timerSection = document.getElementById("vote-countdown");
+            timerSection.style.display = "block";
+            timerSection.style.opacity = "1";
         }
         let hasVoted = false;
 
